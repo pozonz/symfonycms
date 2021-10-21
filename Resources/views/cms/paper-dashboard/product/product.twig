@@ -1,0 +1,13 @@
+{% extends 'cms/' ~ _theme ~ '/core/orm.twig' %}
+
+{% block css %}
+    <link href="{{ preload(asset('build/cms-product.css'), { as: 'style' }) }}?v={{ timeStamp }}" as="style" rel="preload">
+    <link type="text/css" href="{{ asset('build/cms-product.css') }}?v={{ timeStamp }}" rel="stylesheet" />
+{% endblock %}
+
+{% block js %}
+    <link href="{{ preload(asset('build/runtime.js'), { as: 'script' }) }}?v={{ timeStamp }}" as="script" rel="preload">
+    <link href="{{ preload(asset('build/cms-product.js'), { as: 'script' }) }}?v={{ timeStamp }}" as="script" rel="preload">
+    <script src="{{ asset('build/runtime.js') }}?v={{ timeStamp }}" defer></script>
+    <script src="{{ asset('build/cms-product.js') }}?v={{ timeStamp }}" defer></script>
+{% endblock %}

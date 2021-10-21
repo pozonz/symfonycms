@@ -1,0 +1,17 @@
+{% extends 'cms/' ~ _theme ~ '/base.twig' %}
+{% block extraBodyClass %}page-orms page-models{% endblock %}
+
+{% block js %}
+    <link href="{{ preload(asset('build/runtime.js'), { as: 'script' }) }}?v={{ timeStamp }}" as="script" rel="preload">
+    <link href="{{ preload(asset('build/cms-files.js'), { as: 'script' }) }}?v={{ timeStamp }}" as="script" rel="preload">
+    <script src="{{ asset('build/runtime.js') }}?v={{ timeStamp }}" defer></script>
+    <script src="{{ asset('build/cms-files.js') }}?v={{ timeStamp }}" defer></script>
+{% endblock %}
+
+{% block contentWrapper %}
+    {% include 'cms/' ~ _theme ~ '/file/includes/file-manager.twig' %}
+{% endblock %}
+
+{% block extraHtml %}
+    {% include 'cms/' ~ _theme ~ '/file/includes/file-manager-modals.twig' %}
+{% endblock %}

@@ -1,0 +1,72 @@
+{% extends 'cms/' ~ _theme ~ '/core/orms-pagination.twig' %}
+
+{% block addButton %}{% endblock %}
+{% block actionColumn %}<th width="80px"></th>{% endblock %}
+
+{% block extraFilter %}
+    <form method="get" class="data-filter-form js-data-filter-form" autocomplete="off" novalidate>
+        <input class="form-control js-filter-page" type="hidden" name="pageNum" value="{{ pageNum }}">
+        <input class="form-control js-filter-sort" type="hidden" name="sort" value="{{ sort }}">
+        <input class="form-control js-filter-order" type="hidden" name="order" value="{{ order }}">
+
+        <div class="row">
+            <div class="col-lg-6 form-group">
+                <label>Form:</label>
+                <select class="form-control js-chosen" name="form">
+                    <option value="all">All</option>
+                    {% for itm in forms %}
+                        <option {% if itm.id == filterForm %}selected{% endif %} value="{{ itm.id }}">{{ itm.title }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="col-lg-6 form-group">
+                <label>Keyword:</label>
+                <input class="form-control js-filter" type="text" placeholder="Keyword" name="keyword" value="{{ keyword }}"/>
+            </div>
+
+            <div class="col-lg-6 form-group">
+                <label>Created from / to:</label>
+                <div class="row">
+                    <div class="col-lg-6 form-group js-datepicker">
+                        <input class="form-control js-filter" type="text" placeholder="From" name="dateStart" value="{{ filterDateStart }}"/>
+                    </div>
+                    <div class="col-lg-6 form-group js-datepicker">
+                        <input class="form-control js-filter" type="text" placeholder="to" name="dateEnd" value="{{ filterDateEnd }}"/>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-12 form-group">
+                <button class="btn btn-default">Search</button>
+                {% if filterForm != 'all' %}
+                    <a href="{{ app.request.uri }}&export=1" class="btn btn-default btn-fill" target="_blank">Export&nbsp;<i class="fa fa-external-link"></i></a>
+                {% endif %}
+            </div>
+
+            {% if filterForm == 'all' %}
+                <div class="col-lg-6 form-group">
+                    <p class="alert alert-info">Search for a form to export</p>
+                </div>
+            {% endif %}
+        </div>
+    </form>
+{% endblock %}
+
+{% block dataRows %}
+    <tr id="{{ itm.id }}" data-id="{{ itm.id }}" data-value="{{ itm._status }}" class="js-data-item-container {% block sortableTableRow %}{% endblock %}">
+        {% for column in columns %}
+            {% set columnField = column.field %}
+
+            {% if column.queryable %}
+                <td>{{ itm._display(columnField, cmsService)|highlight(keyword ?? null)|raw }}</td>
+            {% else %}
+                <td>{{ itm._display(columnField, cmsService)|raw }}</td>
+            {% endif %}
+        {% endfor %}
+
+        <td>
+            <a rel="tooltip" class="btn btn-simple btn-default btn-icon table-action edit" href="{{ app.request.pathInfo }}/{{ itm.id }}{{ returnQuery }}" data-original-title="View"><i class="ti-search"></i></a>
+        </td>
+    </tr>
+{% endblock %}

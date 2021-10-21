@@ -1,0 +1,94 @@
+{% extends 'cms/' ~ _theme ~ '/base.twig' %}
+{% block extraBodyClass %}page-orms page-models page-pages{% endblock %}
+
+{% block css %}
+    <link href="{{ preload(asset('build/cms-pages.css'), { as: 'style' }) }}?v={{ timeStamp }}" as="style" rel="preload">
+    <link type="text/css" href="{{ asset('build/cms-pages.css') }}?v={{ timeStamp }}" rel="stylesheet" />
+{% endblock %}
+
+{% block js %}
+    <link href="{{ preload(asset('build/runtime.js'), { as: 'script' }) }}?v={{ timeStamp }}" as="script" rel="preload">
+    <link href="{{ preload(asset('build/cms-pages.js'), { as: 'script' }) }}?v={{ timeStamp }}" as="script" rel="preload">
+    <script src="{{ asset('build/runtime.js') }}?v={{ timeStamp }}" defer></script>
+    <script src="{{ asset('build/cms-pages.js') }}?v={{ timeStamp }}" defer></script>
+{% endblock %}
+
+{% macro nest(node, model, depth, returnQuery) %}
+    <li class="dd-item dd3-item content-container {% if node.closed == 1 %}dd-collapsed{% endif %} js-data-item-container" id="{{ node.data.id }}" data-id="{{ node.data.id }}" data-value="{{ node.status }}">
+        <div class="dd-handle dd3-handle"></div>
+        <div class="dd-handle dd3-handle"></div>
+        <div class="dd3-content">
+            <span class="dd3-content__title">
+                {{ node.title }}
+            </span>
+            {% if node.data.hideFromCmsNav %}<span class="dd-item__hide-from-nav hide-from-cms-nav">Hidden - CMS</span>{% endif %}
+            {% if node.data.hideFromFrontendNav %}<span class="dd-item__hide-from-nav hide-from-web-nav">Hidden - Frontend</span>{% endif %}
+            {% if node.data.hideFromSearch %}<span class="dd-item__hide-from-nav hide-from-search">Hidden - Search</span>{% endif %}
+
+            <a class="dd-item__link-url" href="{{ node.data.url }}" target="_blank">{{ node.data.url }}</a>
+
+            <a style="right: 5.9em;" rel="tooltip" class="state js-data-item-button-status btn btn-simple {% if node.status == 1 %}btn-success{% else%}btn-danger{% endif%} btn-icon table-action edit" href="#" data-original-title="Enable / Disable"><i class="fa fa-circle"></i></a>
+            <a style="right: 4.1em;" rel="tooltip" class="edit btn btn-simple btn-default btn-icon table-action edit" href="{{ app.request.pathInfo }}/{{ node.data.id }}{{ returnQuery }}" data-original-title="Edit"><i class="ti-pencil"></i></a>
+            <a style="right: 2.3em;" rel="tooltip" class="copy state btn btn-simple btn-default btn-icon table-action copy" href="{{ app.request.pathInfo }}/copy/{{ node.data.id }}{{ returnQuery }}" data-original-title="Copy"><i class="ti-files"></i></a>
+            <a style="right: 0.5em;" rel="tooltip" class="delete js-data-item-button-delete btn btn-simple btn-danger btn-icon table-action remove" href="#" data-original-title="Remove"><i class="ti-close"></i></a>
+        </div>
+
+        {% if node.children|length %}
+            <ol class="dd-list" {% if node.closed == 1 %}style="display: none;"{% endif %}">
+                {% for itm in node.children %}
+                {{ _self.nest(itm, model, depth + 1, returnQuery) }}
+                {% endfor %}
+            </ol>
+        {% endif %}
+    </li>
+{% endmacro %}
+
+{% block content %}
+    <div class="card bg-lightgrey">
+        <div class="card-header">
+            <h4 class="card-title">{{ model.title }}</h4>
+        </div>
+        <div class="card-content">
+            <div class="bootstrap-table">
+                <div class="fixed-table-toolbar">
+                    {% block extraFilter %}
+                    {% endblock %}
+
+                    <div class="columns columns-right pull-right">
+                        <a href="{{ app.request.pathInfo }}/new{{ returnQuery }}" class="btn btn-primary" type="button" title="Add new"><i class="glyphicon fa fa-plus"></i> New</a>
+                    </div>
+                </div>
+
+                <div class="page-category">
+                    {% for itm in categories %}
+                        <input data-id="{{ itm.id }}" id="itm{{ itm.id }}" type="radio" name="category" {{ itm.id == cat ? 'checked="checked"' : '' }} />
+                        <label data-id="{{ itm.id }}" for="itm{{ itm.id }}">
+                            <div class="dd other content-{{ itm.id }}" data-id="{{ itm.id }}">
+                                <div class="dd-empty"></div>
+                            </div>
+                            <div class="item-title">{{ itm.title }} <span class="number"></span></div>
+                        </label>
+                    {% endfor %}
+
+                    <input data-id="0" id="itm0" type="radio" name="category" {{ 0 == cat ? 'checked="checked"' : '' }} />
+                    <label data-id="0" for="itm0">
+                        <div class="other dd content--1" data-id="0">
+                            <div class="dd-empty"></div>
+                        </div>
+                        <div class="item-title">Uncategorised <span class="number"></span></div>
+                    </label>
+                </div>
+                <div style="clear: both;">&nbsp;</div>
+                <div class="nestable-lists">
+                    <div class="dd" id="nestable">
+                        <ol class="dd-list js-data-container" data-class="{{ model.className }}" data-redirect="{{ app.request.pathInfo }}">
+                            {% for itm in pageTree.rootNodes %}
+                                {{ _self.nest(itm, model, 1, returnQuery) }}
+                            {% endfor %}
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

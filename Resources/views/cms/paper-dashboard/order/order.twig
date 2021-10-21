@@ -1,0 +1,251 @@
+{% extends 'cms/' ~ _theme ~ '/core/orm.twig' %}
+{% block extraBodyClass %}page-orm page-orm page-order{% endblock %}
+
+{% block rightSide %}{% endblock %}
+{% block leftSideClass %}col-lg-9{% endblock %}
+
+{% block formWidgets %}
+    <h2>Order detail</h2>
+
+    <div class="typo-line mb-1 textarea">
+        <label class="category">Status:</label> {% if orm.category == 0 %}NEW{% elseif orm.category == cartService.STATUS_ACCEPTED %}PAID by {{ orm.payType }}{% else %}UNPAID{% endif %}
+    </div>
+    <div class="typo-line mb-1 textarea">
+        <label class="category">ID:</label> {{ orm.title }}
+    </div>
+    <div class="typo-line mb-1 textarea">
+        <label class="category">Email:</label> {{ orm.email }}
+    </div>
+
+    <div class="orm-widget">
+        <div class="">
+            <h3>Shipping address</h3>
+        </div>
+        <div class="typo-line mb-1 textarea">
+            <label class="category">First Name:</label> {{ orm.shippingFirstName ?: '-' }}
+        </div>
+        <div class="typo-line mb-1 textarea">
+            <label class="category">Last Name:</label> {{ orm.shippingLastName ?: '-' }}
+        </div>
+        <div class="typo-line mb-1 textarea">
+            <label class="category">Phone:</label> {{ orm.shippingPhone ?: '-' }}
+        </div>
+        <div class="typo-line mb-1 textarea">
+            <label class="category">Apartment No.:</label> {{ orm.shippingApartmentNo ?: '-' }}
+        </div>
+        <div class="typo-line mb-1 textarea">
+            <label class="category">Address:</label> {{ orm.shippingAddress ?: '-' }}
+        </div>
+        <div class="typo-line mb-1 textarea">
+            <label class="category">Address2:</label> {{ orm.shippingAddress2 ?: '-' }}
+        </div>
+        <div class="typo-line mb-1 textarea">
+            <label class="category">City:</label> {{ orm.shippingCity ?: '-' }}
+        </div>
+        <div class="typo-line mb-1 textarea">
+            <label class="category">Postcode:</label> {{ orm.shippingPostcode ?: '-' }}
+        </div>
+        <div class="typo-line mb-1 textarea">
+            <label class="category">Region:</label> {{ orm.shippingState ?: '-' }}
+        </div>
+        <div class="typo-line mb-1 textarea">
+            <label class="category">Country:</label> {{ orm.shippingCountry ?: '-' }}
+        </div>
+    </div>
+
+    <div class="orm-widget ">
+        <div class="">
+            <h3>Billing address</h3>
+        </div>
+
+        {% if orm.billingSame %}
+            <div class="pb-3">
+                <p>Same as shipping address</p>
+            </div>
+        {% else %}
+            <div class="typo-line mb-1 textarea">
+                <label class="category">First Name:</label> {{ orm.billingFirstname ?: '-' }}
+            </div>
+            <div class="typo-line mb-1 textarea">
+                <label class="category">Last Name:</label> {{ orm.billingLastname ?: '-' }}
+            </div>
+            <div class="typo-line mb-1 textarea">
+                <label class="category">Phone:</label> {{ orm.billingPhone ?: '-' }}
+            </div>
+            <div class="typo-line mb-1 textarea">
+                <label class="category">Apartment No.:</label> {{ orm.billingApartmentNo ?: '-' }}
+            </div>
+            <div class="typo-line mb-1 textarea">
+                <label class="category">Address:</label> {{ orm.billingAddress ?: '-' }}
+            </div>
+            <div class="typo-line mb-1 textarea">
+                <label class="category">Address2:</label> {{ orm.billingAddress2 ?: '-' }}
+            </div>
+            <div class="typo-line mb-1 textarea">
+                <label class="category">City:</label> {{ orm.billingCity ?: '-' }}
+            </div>
+            <div class="typo-line mb-1 textarea">
+                <label class="category">Postcode:</label> {{ orm.billingPostcode ?: '-' }}
+            </div>
+            <div class="typo-line mb-1 textarea">
+                <label class="category">Region:</label> {{ orm.billingState ?: '-' }}
+            </div>
+            <div class="typo-line mb-1 textarea">
+                <label class="category">Country:</label> {{ orm.billingCountry ?: '-' }}
+            </div>
+        {% endif %}
+    </div>
+
+    <div class="typo-line mb-1">
+        <label class="category">Note:</label> {{ (orm.note ?: '-')|nl2br }}
+    </div>
+
+    <div class="orm-widget orm-widget-full form-group content_block textarea">
+        <table class="table" style="margin-top: 50px;">
+            <tbody>
+            <tr>
+                <td class="tableHead">Product</td>
+                <td class="tableHead text-right" style="width: 10em">Price</td>
+                <td class="tableHead text-right">Qty</td>
+                <td class="tableHead text-right" style="width: 10em">Subtotal</td>
+            </tr>
+            </tbody>
+
+            <tbody>
+            {% for itm in orm.objOrderItems %}
+                <tr>
+                    <td>
+                        <p>{{ itm.title }}</p>
+                        <small>{{ itm.sku }}</small>
+                    </td>
+                    <td class="text-right">
+                        {% if itm.compareAtPrice %}
+                            <del><small>${{ itm.compareAtPrice|number_format(2, '.', ',') }}</small></del>
+                            <small>$</small>
+                            {{ itm.price|number_format(2, '.', ',') }}
+                        {% else %}
+                            <small>$</small>
+                            {{ itm.price|number_format(2, '.', ',') }}
+                        {% endif %}
+                    </td>
+                    <td class="text-right">{{ itm.quantity }}</td>
+                    <td class="text-right">${{ (itm.price * itm.quantity)|number_format(2, '.', ',') }}</td>
+                </tr>
+            {% endfor %}
+
+            {% if orm.discount %}
+                <tr>
+                    <td style="border: none;"></td>
+                    <td class="text-right font-weight-bold" colspan="2">Subtotal:</td>
+                    <td class="text-right font-weight-bold">
+                        ${{ orm.subtotal|number_format(2, '.', ',') }}
+                    </td>
+                </tr>
+
+                <tr>
+                    <td style="border: none;"></td>
+                    <td class="text-right font-weight-bold" colspan="2">Discount:</td>
+                    <td class="text-right font-weight-bold">
+                        -${{ orm.discount|number_format(2, '.', ',') }}
+                    </td>
+                </tr>
+
+                <tr>
+                    <td style="border: none;"></td>
+                    <td class="text-right font-weight-bold" colspan="2">After discount:</td>
+                    <td class="text-right font-weight-bold">
+                        ${{ orm.afterDiscount|number_format(2, '.', ',') }}
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td style="border: none;"></td>
+                    <td class="text-right font-weight-bold" colspan="2">Subtotal:</td>
+                    <td class="text-right font-weight-bold">
+                        ${{ orm.subtotal|number_format(2, '.', ',') }}
+                    </td>
+                </tr>
+            {% endif %}
+
+            <tr>
+                <td style="border: none;"></td>
+                <td class="text-right font-weight-bold" colspan="2">Delivery fee:</td>
+                <td class="text-right font-weight-bold">
+                    ${{ orm.shippingCost|number_format(2, '.', ',') }}
+                    {% if orm.shippingTitle %}
+                        <div><small>({{ orm.shippingTitle }})</small></div>
+                    {% endif %}
+                </td>
+            </tr>
+            <tr>
+                <td style="border: none;"></td>
+                <td class="text-right font-weight-bold" colspan="2">Total:</td>
+                <td class="text-right font-weight-bold">
+                    ${{ orm.total|number_format(2, '.', ',') }}
+                    <div><small>(Incl. GST ${{ orm.tax|number_format(2, '.', ',') }})</small></div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+    {% set logs = orm.logs|json_decode %}
+
+    {% if logs is defined and logs %}
+        {% set blocks = logs.0.blocks %}
+        <div class="orm-widget orm-widget-full form-group content_block textarea">
+            <div class="section-blocks">
+                {% for block in blocks %}
+                    <div class="content-block">
+                        <div class="block-file">
+                            <h4 class="block-title">{{ block.title }}</h4>
+                        </div>
+                        <div class="block-widgets">
+                            <div class="orm-widget form-group mb-little">
+                                <label>Type:</label>
+                                <p>{{ block.values.type ?? '-' }}</p>
+                            </div>
+
+                            <div class="orm-widget form-group mb-little">
+                                <label>Status:</label>
+                                <p>{{ block.values.status ?? '-' }}</p>
+                            </div>
+
+                            <div class="orm-widget form-group mb-little">
+                                <label>URL:</label>
+                                <p>{{ block.values.url ?? '-' }}</p>
+                            </div>
+
+                            <div class="orm-widget form-group mb-little">
+                                <label>Date:</label>
+                                <p>{{ block.values.date ?? '-' }}</p>
+                            </div>
+
+                            <div class="orm-widget form-group mb-little">
+                                <label>Seconds:</label>
+                                <p>{{ block.values.secondsUsed ?? '-' }}</p>
+                            </div>
+
+                            <div class="orm-widget form-group mb-little">
+                                <label>User:</label>
+                                <p>{{ block.values.user ?? '-' }}</p>
+                            </div>
+
+                            <div class="orm-widget orm-widget-full form-group mb-little">
+                                <label>Request:</label>
+                                <p>{{ (block.values.request ?? '-')|raw }}</p>
+                            </div>
+
+                            <div class="orm-widget orm-widget-full form-group mb-little">
+                                <label>Response:</label>
+                                <p>{{ (block.values.response ?? '-')|raw }}</p>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    {% endif %}
+
+{% endblock %}

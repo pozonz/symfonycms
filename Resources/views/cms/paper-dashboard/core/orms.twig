@@ -1,0 +1,115 @@
+{% extends 'cms/' ~ _theme ~ '/base.twig' %}
+{% block extraBodyClass %}page-orms page-models{% endblock %}
+
+{% block css %}
+    <link href="{{ preload(asset('build/cms.css'), { as: 'style' }) }}?v={{ timeStamp }}" as="style" rel="preload">
+    <link type="text/css" href="{{ asset('build/cms-orms.css') }}?v={{ timeStamp }}" rel="stylesheet" />
+{% endblock %}
+
+{% block js %}
+    <link href="{{ preload(asset('build/runtime.js'), { as: 'script' }) }}?v={{ timeStamp }}" as="script" rel="preload">
+    <link href="{{ preload(asset('build/cms-orms.js'), { as: 'script' }) }}?v={{ timeStamp }}" as="script" rel="preload">
+    <script src="{{ asset('build/runtime.js') }}?v={{ timeStamp }}" defer></script>
+    <script src="{{ asset('build/cms-orms.js') }}?v={{ timeStamp }}" defer></script>
+{% endblock %}
+
+{% block content %}
+    <div class="card {% block extraContentClass %}{% endblock %}">
+        <div class="card-header">
+            <h4 class="card-title">{{ model.title }} <a href="#" class="ml-1 text-primary" data-toggle="modal" data-target="#js-model-note-dialog"><i class="fa fa-pencil-square-o"></i></a></h4>
+            <div class="row mt-1 js-model-note-display" {% if not model.objModelNote.note %}style="display: none"{% endif %}>
+                <div class="col-lg-6">{{ model.objModelNote.note }}</div>
+            </div>
+        </div>
+        <div class="card-content">
+            <div class="bootstrap-table">
+                <div class="fixed-table-toolbar">
+                    {% block extraFilter %}
+                    {% endblock %}
+
+                    {% block addButton %}
+                        <div class="columns columns-right pull-right">
+                            <a href="/manage/section/{{ section }}/orms/{{ model.className }}/new{{ returnQuery }}" class="btn btn-primary" type="button" title="Add new"><i class="glyphicon fa fa-plus"></i> New</a>
+                        </div>
+                    {% endblock %}
+                </div>
+
+
+                <div class="fixed-table-container pt-1">
+                    {% block mainContent %}
+                        {% if not data|length %}
+                            <div class="alert alert-default">
+                                No results found
+                            </div>
+                        {% else %}
+                            <p class="category pb-1">{{ total }} result{% if total != 1 %}s{% endif%} found</p>
+                            <table class="table table-hover orms-table js-data-container {% block sortableTable %}js-sortable-container{% endblock %}" data-class="{{ model.className }}" data-redirect="{{ app.request.pathInfo }}">
+                                <thead>
+                                <tr>
+                                    {% for column in columns %}
+                                        <th {% if column.listingWidth %}width="{{ column.listingWidth }}px"{% endif %}>
+                                            {% block th %}
+                                                {{ column.listingTitle ?? column.label }}
+                                            {% endblock %}
+                                        </th>
+                                    {% endfor %}
+                                    {% block actionColumn %}<th width="180px"></th>{% endblock %}
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for itm in data %}
+                                    {% block dataRows %}
+                                        <tr id="{{ itm.id }}" data-id="{{ itm.id }}" data-value="{{ itm._status }}" class="js-data-item-container {% block sortableTableRow %}js-sortable-item{% endblock %}">
+                                            {% for column in columns %}
+                                                {% set columnField = column.field %}
+
+                                                {% if column.queryable %}
+                                                    <td>{{ itm._display(columnField, cmsService)|highlight(keyword ?? null)|raw }}</td>
+                                                {% else %}
+                                                    <td>{{ itm._display(columnField, cmsService)|raw }}</td>
+                                                {% endif %}
+                                            {% endfor %}
+
+                                            <td>
+                                                <a rel="tooltip" class="js-data-item-button-status btn btn-simple {% if itm._status == 1 %}btn-success{% else%}btn-danger{% endif%} btn-icon table-action edit" href="#" data-original-title="Enable / Disable"><i class="fa fa-circle"></i></a>
+                                                <a rel="tooltip" class="btn btn-simple btn-default btn-icon table-action edit" href="/manage/section/{{ section }}/orms/{{ model.className }}/{{ itm.id }}{{ returnQuery }}" data-original-title="Edit"><i class="ti-pencil"></i></a>
+                                                <a rel="tooltip" class="btn btn-simple btn-default btn-icon table-action copy" href="/manage/section/{{ section }}/orms/{{ model.className }}/copy/{{ itm.id }}{{ returnQuery }}" data-original-title="Copy"><i class="ti-files"></i></a>
+                                                <a rel="tooltip" class="js-data-item-button-delete btn btn-simple btn-danger btn-icon table-action remove" href="#" data-original-title="Remove"><i class="ti-close"></i></a>
+                                            </td>
+                                        </tr>
+                                    {% endblock %}
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        {% endif %}
+                    {% endblock %}
+                </div>
+
+                {% block extraContent %}
+                {% endblock %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block extraHtml %}
+    <div class="modal fade" id="js-model-note-dialog" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <form>
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Note:</h4>
+                    </div>
+                    <div class="modal-body">
+                        <textarea type="text" name="name" placeholder="Add a note..." class="form-control js-model-note-content" data-model="{{ model.className }}" rows="6">{{ model.objModelNote.note }}</textarea>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary js-model-note-save">Save changes</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+{% endblock %}

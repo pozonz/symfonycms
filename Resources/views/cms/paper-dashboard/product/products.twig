@@ -1,0 +1,116 @@
+{% extends 'cms/' ~ _theme ~ '/core/orms-pagination.twig' %}
+{% block extraBodyClass %}page-orms page-models page-products{% endblock %}
+
+{% block extraFilter %}
+    <form method="get" class="data-filter-form js-data-filter-form" autocomplete="off" novalidate>
+        <input class="form-control js-filter-page" type="hidden" name="pageNum" value="{{ pageNum }}">
+        <input class="form-control js-filter-sort" type="hidden" name="sort" value="{{ sort }}">
+        <input class="form-control js-filter-order" type="hidden" name="order" value="{{ order }}">
+
+        <div class="row">
+            <div class="col-lg-6 form-group">
+                <label>Status:</label>
+                <select class="form-control" name="status">
+                    <option value="all">All</option>
+                    <option {% if filterStatus == 1 %}selected{% endif%} value="1">Enabled only</option>
+                    <option {% if filterStatus == 0 %}selected{% endif%} value="0">Disabeld only</option>
+                </select>
+            </div>
+            <div class="col-lg-6 form-group">
+                <label>Keyword:</label>
+                <input class="form-control js-filter" type="text" placeholder="Keyword" name="keyword" value="{{ keyword }}"/>
+            </div>
+            <div class="col-lg-6 form-group">
+                <label>Category:</label>
+
+                {% macro catOpt(node, selects, depth) %}
+                    <option style="padding-left: {{ (depth * 20) + 10 }}px;" {% if node.slug in selects %}selected{% endif%} value="{{ node.slug }}">{{ node.title }}</option>
+                    {% for itm in node.children %}
+                        {{ _self.catOpt(itm, selects, depth + 1) }}
+                    {% endfor %}
+                {% endmacro %}
+
+                <select class="form-control js-chosen" name="category[]" multiple>
+                    {% for itm in categories.rootNodes %}
+                        {{ _self.catOpt(itm, filterCategories, 0) }}
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-lg-6 form-group">
+                <label>Brand:</label>
+                <select class="form-control js-chosen" name="brand[]" multiple>
+                    {% for itm in brands %}
+                        <option {% if itm._slug in filterBrands %}selected{% endif %} value="{{ itm._slug }}">{{ itm.title }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-lg-6 form-group">
+                <label>Created from / to:</label>
+                <div class="row">
+                    <div class="col-lg-6 form-group js-datepicker">
+                        <input class="form-control js-filter" type="text" placeholder="From" name="dateStart" value="{{ filterDateStart }}"/>
+                    </div>
+                    <div class="col-lg-6 form-group js-datepicker">
+                        <input class="form-control js-filter" type="text" placeholder="to" name="dateEnd" value="{{ filterDateEnd }}"/>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6 form-group">
+                <label>Type:</label>
+                <select class="form-control js-chosen" name="type">
+                    <option></option>
+                    <option {% if filterType == 1 %}selected{% endif%} value="1">Out of stock</option>
+                    <option {% if filterType == 2 %}selected{% endif%} value="2">Low stock</option>
+                    <option {% if filterType == 3 %}selected{% endif%} value="3">No images</option>
+                </select>
+            </div>
+            <div class="col-lg-12 form-group">
+                <button class="btn btn-default">Search</button>
+            </div>
+        </div>
+    </form>
+{% endblock %}
+
+{% block dataRows %}
+    <tr id="{{ itm.id }}" data-id="{{ itm.id }}" data-value="{{ itm._status }}" class="js-data-item-container {% block sortableTableRow %}{% endblock %}">
+        {% for column in columns %}
+            {% set columnField = column.field %}
+
+            {% if columnField == 'title' %}
+                <td>
+                    {{ itm.title }}
+
+                    {% if itm.outOfStock == 1 %}
+                        <small class="text-danger" title="All the product variants are out of stock">(Out&nbsp;of&nbsp;stock)</small>
+                    {% elseif itm.outOfStock == 2 %}
+                        <small class="text-danger" title="Some product variants are out of stock">(Out&nbsp;of&nbsp;stock&nbsp;*)</small>
+                    {% endif %}
+
+                    {% if itm.lowStock == 1 %}
+                        <small class="text-danger" title="All the product variants are at low stock">(Low&nbsp;stock)</small>
+                    {% elseif itm.lowStock == 2 %}
+                        <small class="text-danger" title="Some product variants are at low stock">(Low&nbsp;stock&nbsp;*)</small>
+                    {% endif %}
+                </td>
+            {% elseif columnField == 'variantCount' %}
+                <td>
+                    {{ itm.variantCount }}{% if itm.variantDisabledCount > 0 %}<span class="pl-1 text-lightgrey">({{ itm.variantDisabledCount }})</span>{% endif %}
+                </td>
+            {% else %}
+                {% if column.queryable %}
+                    <td>{{ itm._display(columnField, cmsService)|highlight(keyword ?? null)|raw }}</td>
+                {% else %}
+                    <td>{{ itm._display(columnField, cmsService)|raw }}</td>
+                {% endif %}
+            {% endif %}
+        {% endfor %}
+
+        <td>
+            <a rel="tooltip" class="js-data-item-button-status btn btn-simple {% if itm._status == 1 %}btn-success{% else%}btn-danger{% endif%} btn-icon table-action edit" href="#" data-original-title="Enable / Disable"><i class="fa fa-circle"></i></a>
+            <a rel="tooltip" class="btn btn-simple btn-default btn-icon table-action edit" href="{{ app.request.pathInfo }}/{{ itm.id }}{{ returnQuery }}" data-original-title="Edit"><i class="ti-pencil"></i></a>
+            <a rel="tooltip" class="btn btn-simple btn-default btn-icon table-action copy" href="{{ app.request.pathInfo }}/copy/{{ itm.id }}{{ returnQuery }}" data-original-title="Copy"><i class="ti-files"></i></a>
+            <a rel="tooltip" class="js-data-item-button-delete btn btn-simple btn-danger btn-icon table-action remove" href="#" data-original-title="Remove"><i class="ti-close"></i></a>
+        </td>
+    </tr>
+{% endblock %}

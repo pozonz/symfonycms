@@ -1,0 +1,16 @@
+<?php
+
+namespace {namespace}\Model;
+
+use Doctrine\DBAL\Connection;
+use ExWife\Engine\Cms\Core\Model\Model;
+
+class {classname}Model extends Model
+{
+{fields}
+
+    public function __construct(Connection $connection)
+    {
+        $this->_connection = $connection;
+    }
+}

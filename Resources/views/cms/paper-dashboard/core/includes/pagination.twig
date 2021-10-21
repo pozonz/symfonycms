@@ -1,0 +1,31 @@
+{% if pageTotal > 1 %}
+    {% set pageRange = 5 %}
+
+    {% if pageNum == 1 %}
+        {% set minPages = 1 %}
+        {% set maxPages = min(minPages + pageRange - 1, pageTotal) %}
+    {% elseif pageNum == pageTotal %}
+        {% set minPages = max(pageTotal - pageRange + 1, 1)  %}
+        {% set maxPages = pageTotal %}
+    {% else %}
+        {% set half = (pageRange / 2)|round(0, 'floor') %}
+        {% set maxPages = min(pageNum + half, pageTotal) %}
+        {% set minPages = max(maxPages - pageRange + 1, 1) %}
+    {% endif %}
+
+    <div class="fixed-table-pagination">
+        <div class="pagination pt-1 js-data-pagination">
+            <ul class="pagination">
+{#                <li class="page-first {% if pageNum - 1 < 1 %}disabled{% endif %}"><a href="#" data-page="{{ max(pageNum - 5, 1) }}"><i class="fa fa-angle-double-left" aria-hidden="true"></i></a></li>#}
+{#                <li class="page-pre {% if pageNum - 1 < 1 %}disabled{% endif %}"><a href="#" data-page="{{ max(pageNum - 1, 1) }}">‹</a></li>#}
+
+                {% for i in minPages..maxPages %}
+                    <li class="page-number {% if i == pageNum %}active{% endif %}"><a href="#" data-page="{{ i }}">{{ i }}</a></li>
+                {% endfor %}
+
+{#                <li class="page-next {% if pageNum + 1 > pageTotal %}disabled{% endif %}"><a href="#" data-page="{{ min(pageNum + 1, pageTotal) }}">›</a></li>#}
+{#                <li class="page-last {% if pageNum + 1 > pageTotal %}disabled{% endif %}"><a href="#" data-page="{{ min(pageNum + 5, pageTotal) }}"><i class="fa fa-angle-double-right" aria-hidden="true"></i></a></li>#}
+            </ul>
+        </div>
+    </div>
+{% endif %}

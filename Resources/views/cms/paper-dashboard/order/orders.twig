@@ -1,0 +1,24 @@
+{% extends 'cms/' ~ _theme ~ '/core/orms-pagination.twig' %}
+{% block extraBodyClass %}page-orms page-models page-products{% endblock %}
+
+{% block addButton %}{% endblock %}
+
+{% block actionColumn %}<th width="80px"></th>{% endblock %}
+
+{% block dataRows %}
+    <tr id="{{ itm.id }}" data-id="{{ itm.id }}" data-value="{{ itm._status }}" class="js-data-item-container {% block sortableTableRow %}{% endblock %}">
+        {% for column in columns %}
+            {% set columnField = column.field %}
+
+            {% if column.queryable %}
+                <td>{{ itm._display(columnField, cmsService)|highlight(keyword ?? null)|raw }}</td>
+            {% else %}
+                <td>{{ itm._display(columnField, cmsService)|raw }}</td>
+            {% endif %}
+        {% endfor %}
+
+        <td>
+            <a rel="tooltip" class="btn btn-simple btn-default btn-icon table-action edit" href="{{ app.request.pathInfo }}/{{ itm.id }}{{ returnQuery }}" data-original-title="View"><i class="ti-search"></i></a>
+        </td>
+    </tr>
+{% endblock %}

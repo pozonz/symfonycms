@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+    <head></head>
+
+    <body>
+
+        <main style="font: 1rem 'Helvetica Neue', Arial, sans-serif; line-height: 1.6; max-width: 37.5rem; display: block;">
+
+            <p>{{ include(template_from_string(_formBuilder.thankYouEmailText))|raw }}</p>
+        
+            <hr style=" border: none;
+                        border-top: 1px solid #e5e5e5;
+                        margin: 1.5rem 0;" />
+        
+            <small>{{ getenv('PROJECT_NAME') }} &copy; {{ 'now'|date('Y') }}</small>
+        </main>
+
+    </body>
+</html>
+                              

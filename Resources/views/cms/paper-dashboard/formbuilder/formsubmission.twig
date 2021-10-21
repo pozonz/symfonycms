@@ -1,0 +1,82 @@
+{% extends 'cms/' ~ _theme ~ '/core/orm.twig' %}
+{% block extraBodyClass %}page-orm page-orm page-order{% endblock %}
+
+{% block rightSide %}{% endblock %}
+{% block leftSideClass %}col-lg-9{% endblock %}
+
+{% block formWidgets %}
+    <h2>Form submission detail</h2>
+
+    <div class="typo-line mb-1 textarea">
+        <label class="category">ID:</label> {{ orm.uniqueId ?: '-' }}
+    </div>
+    <div class="typo-line mb-1 textarea">
+        <label class="category">Date:</label> {{ orm.date ?: '-' }}
+    </div>
+    <div class="typo-line mb-1 textarea">
+        <label class="category">From:</label> {{ orm.fromAddress ?: '-' }}
+    </div>
+    <div class="typo-line mb-1 textarea">
+        <label class="category">Recipients:</label> {{ (orm.recipients ?: '-')|nl2br }}
+    </div>
+    <div class="typo-line mb-1 textarea">
+        <label class="category">Form:</label> {{ orm.formName ?: '-' }}
+    </div>
+    <div class="typo-line mb-1 textarea">
+        <label class="category">URL:</label> {{ orm.url ?: '-' }}
+    </div>
+    <div class="typo-line mb-1 textarea">
+        <label class="category">IP:</label> {{ orm.ip ?: '-' }}
+    </div>
+    <div class="typo-line mb-1 textarea">
+        <label class="category">Country:</label> {{ orm.country ?: '-' }}
+    </div>
+
+
+    <div class="orm-widget ">
+        <div class="">
+            <h3>Submitted data</h3>
+        </div>
+
+        {% for itm in orm.content|json_decode %}
+            <div class="typo-line mb-1 textarea">
+                <label class="category">{{ itm.0 }}</label> {{ (itm.1 ?: '-')|raw }}
+            </div>
+        {% endfor %}
+    </div>
+
+
+    <div class="orm-widget orm-widget-full form-group content_block textarea">
+        <div class="section-blocks">
+            <div class="content-block">
+                <div class="block-file">
+                    <h4 class="block-title">Log</h4>
+                </div>
+                <div class="block-widgets">
+                    <div class="orm-widget form-group mb-little">
+                        <label>Email status:</label>
+                        <p>
+                            {% if orm.emailStatus == 0 %}
+                                Pending
+                            {% elseif orm.emailStatus == 1 %}
+                                Success
+                            {% elseif orm.emailStatus == 2 %}
+                                Failed
+                            {% endif %}
+                        </p>
+                    </div>
+
+                    <div class="orm-widget orm-widget-full form-group mb-little">
+                        <label>Email html:</label>
+                        <p>{{ orm.emailRequest }}</p>
+                    </div>
+
+                    <div class="orm-widget orm-widget-full form-group mb-little">
+                        <label>Email response:</label>
+                        <p>{{ orm.emailResponse }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

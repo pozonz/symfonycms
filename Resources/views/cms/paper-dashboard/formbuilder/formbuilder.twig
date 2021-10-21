@@ -1,0 +1,60 @@
+{% extends 'cms/' ~ _theme ~ '/core/orm.twig' %}
+{% block extraBodyClass %}{{ parent() }} page-shipping{% endblock %}
+
+{% block css %}
+    <link href="{{ preload(asset('build/cms-formbuilder.css'), { as: 'style' }) }}?v={{ timeStamp }}" as="style" rel="preload">
+    <link type="text/css" href="{{ asset('build/cms-formbuilder.css') }}?v={{ timeStamp }}" rel="stylesheet"/>
+{% endblock %}
+
+{% block js %}
+    <script>
+        window._formFieldWidgets = {{ formBuilderService.formFieldWidgets|json_encode|raw }};
+        window._formFieldWidgetsNeedQuery = {{ formBuilderService.formFieldWidgetsNeedQuery|json_encode|raw }};
+    </script>
+
+    <link href="{{ preload(asset('build/runtime.js'), { as: 'script' }) }}?v={{ timeStamp }}" as="script" rel="preload">
+    <link href="{{ preload(asset('build/cms-formbuilder.js'), { as: 'script' }) }}?v={{ timeStamp }}" as="script" rel="preload">
+    <script src="{{ asset('build/runtime.js') }}?v={{ timeStamp }}" defer></script>
+    <script src="{{ asset('build/cms-formbuilder.js') }}?v={{ timeStamp }}" defer></script>
+{% endblock %}
+
+
+{% block formWidgets %}
+    {{ form_row(formView.title) }}
+    {{ form_row(formView.code) }}
+    {{ form_row(formView.formName) }}
+    {{ form_row(formView.fromAddress) }}
+    {{ form_row(formView.recipients) }}
+    {{ form_row(formView.antispam) }}
+
+    <div id="formBuilder" class="orm-widget orm-widget-full type6">
+        {{ form_label(formView.formFields) }}
+        {{ form_widget(formView.formFields, {attr: {style: 'display: none;'}}) }}
+
+        <div class="section-toolbar pull-right">
+            <select id="{{ formView.formFields.vars.id }}_add" type="button" class="form-control js-chosen" data-placeholder="Add a field...">
+                <option value=""></option>
+                {% for key, val in formBuilderService.formFieldWidgets %}
+                    <option value="{{ key }}">{{ val }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <table id="{{ formView.formFields.vars.id }}_formbuilder" class="table">
+            <thead>
+            <tr>
+                <th class="tableHead" width="25%">Widget</th>
+                <th class="tableHead" width="30%">Title</th>
+                <th class="tableHead" width="30%">ID</th>
+                <th class="tableHead" width="10%">Required</th>
+                <th class="tableHead" width="5%"></th>
+            </tr>
+            </thead>
+        </table>
+        <div>&nbsp;</div>
+        {{ form_errors(formView.formFields) }}
+    </div>
+
+
+    {{ form_rest(formView) }}
+{% endblock %}

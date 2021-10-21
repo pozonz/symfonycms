@@ -1,0 +1,7 @@
+<?php
+
+namespace {namespace}\Traits;
+
+trait {classname}Trait
+{
+}

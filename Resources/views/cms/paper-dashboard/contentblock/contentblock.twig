@@ -1,0 +1,47 @@
+{% extends 'cms/' ~ _theme ~ '/core/orm.twig' %}
+{% block extraBodyClass %}{{ parent() }} page-contentblock{% endblock %}
+
+{% block css %}
+    <link href="{{ preload(asset('build/cms-contentblock.css'), { as: 'style' }) }}?v={{ timeStamp }}" as="style" rel="preload">
+    <link type="text/css" href="{{ asset('build/cms-contentblock.css') }}?v={{ timeStamp }}" rel="stylesheet"/>
+{% endblock %}
+
+{% block js %}
+    <script>
+        window._blockWidgets = {{ modelService.blockWidgets|json_encode|raw }};
+    </script>
+
+    <link href="{{ preload(asset('build/runtime.js'), { as: 'script' }) }}?v={{ timeStamp }}" as="script" rel="preload">
+    <link href="{{ preload(asset('build/cms-contentblock.js'), { as: 'script' }) }}?v={{ timeStamp }}" as="script" rel="preload">
+    <script src="{{ asset('build/runtime.js') }}?v={{ timeStamp }}" defer></script>
+    <script src="{{ asset('build/cms-contentblock.js') }}?v={{ timeStamp }}" defer></script>
+{% endblock %}
+
+{% block formWidgets %}
+    {{ form_row(formView.title) }}
+    {{ form_row(formView.dataType) }}
+    {{ form_row(formView.twig) }}
+    {{ form_row(formView.tags) }}
+
+    <div class="orm-widget orm-widget-full form-group js-contentblock-container mb-5">
+        <button type="button" class="btn btn-sm pull-right js-contentblock-add">Add</button>
+        {{ form_label(formView.items) }}
+        {{ form_widget(formView.items, {attr: {style: 'display: none;'}}) }}
+
+        <table class="table js-contentblock-table" style="display: none;">
+            <thead>
+            <tr>
+                <th>Widget</th>
+                <th width="350">Title</th>
+                <th width="350">ID</th>
+                <th width="90">&nbsp;</th>
+            </tr>
+            </thead>
+        </table>
+
+        <div class="mt-1 alert alert-default js-contentblock-noresult" style="display: none;">
+            No data added
+        </div>
+        {{ form_errors(formView.items) }}
+    </div>
+{% endblock %}

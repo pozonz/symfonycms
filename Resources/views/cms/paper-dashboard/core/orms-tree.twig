@@ -1,0 +1,55 @@
+{% extends 'cms/' ~ _theme ~ '/core/orms.twig' %}
+{% block extraBodyClass %}page-orms page-models{% endblock %}
+
+{% macro nest(node, model, depth, returnQuery) %}
+    {% from _self import nest as nest %}
+    <li class="dd-item dd3-item content-container {% if node.closed == 1 %}dd-collapsed{% endif %} js-data-item-container" id="{{ node.id }}" data-id="{{ node.id }}" data-value="{{ node.status }}">
+        <div class="dd-handle dd3-handle"></div>
+        <div class="dd-handle dd3-handle"></div>
+        <div class="dd3-content">
+            <span class="dd3-content__title">
+                {{ node.title }}
+            </span>
+
+            <a style="right: 5.9em;" rel="tooltip" class="state js-data-item-button-status btn btn-simple {% if node.status == 1 %}btn-success{% else%}btn-danger{% endif%} btn-icon table-action edit" href="#" data-original-title="Enable / Disable"><i class="fa fa-circle"></i></a>
+            <a style="right: 4.1em;" rel="tooltip" class="edit btn btn-simple btn-default btn-icon table-action edit" href="{{ app.request.pathInfo }}/{{ node.id }}{{ returnQuery }}" data-original-title="Edit"><i class="ti-pencil"></i></a>
+            <a style="right: 2.3em;" rel="tooltip" class="copy state btn btn-simple btn-default btn-icon table-action copy" href="{{ app.request.pathInfo }}/copy/{{ node.id }}{{ returnQuery }}" data-original-title="Copy"><i class="ti-files"></i></a>
+            <a style="right: 0.5em;" rel="tooltip" class="delete js-data-item-button-delete btn btn-simple btn-danger btn-icon table-action remove" href="#" data-original-title="Remove"><i class="ti-close"></i></a>
+        </div>
+        {% if node.children|length %}
+            <ol class="dd-list" {% if node.closed == 1 %}style="display: none;"{% endif %}">
+                {% for itm in node.children %}
+                    {{ _self.nest(itm, model, depth + 1, returnQuery) }}
+                {% endfor %}
+            </ol>
+        {% endif %}
+    </li>
+{% endmacro %}
+
+
+{% block extraContentClass %}bg-lightgrey{% endblock %}
+
+{% block mainContent %}
+    <div class="nestable-lists js-data-container" data-class="{{ model.className }}">
+        <div class="dd" id="nestable">
+            {% if data.rootNodes|length %}
+                <ol class="dd-list">
+                    {% for itm in data.rootNodes %}
+                        {{ _self.nest(itm, model, 1, returnQuery) }}
+                    {% endfor %}
+                </ol>
+            {% else %}
+                <div class="alert alert-white">
+                    No data added
+                </div>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}
+
+{% block externalFooter %}
+    {{ parent() }}
+
+    <script src="/cms/develop/js/jquery.nestable.js?v={{ version }}"></script>
+    <script src="/cms/develop/js/orms-tree.js"></script>
+{% endblock %}

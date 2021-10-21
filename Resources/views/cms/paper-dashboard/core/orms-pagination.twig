@@ -1,0 +1,29 @@
+{% extends 'cms/' ~ _theme ~ '/core/orms.twig' %}
+
+{% block sortableTable %}{% endblock %}
+{% block sortableTableRow %}{% endblock %}
+
+{% block th %}
+    <a href="#" class="js-sort" data-sort="{{ column.field }}">{{ column.listingTitle ?? column.label }}</a>
+{% endblock %}
+
+{% block extraFilter %}
+    <form method="get" class="js-data-filter-form pull-left">
+        <div class="pull-left search">
+            <input class="form-control js-filter-page" type="hidden" name="pageNum" value="{{ pageNum }}">
+            <input class="form-control js-filter-sort" type="hidden" name="sort" value="{{ sort }}">
+            <input class="form-control js-filter-order" type="hidden" name="order" value="{{ order }}">
+
+            <input class="form-control js-filter" type="text" placeholder="Keyword" name="keyword" value="{{ keyword }}">
+        </div>
+        <div class="bars pull-left mr-3">
+        </div>
+        <div class="bars pull-left">
+            <button class="btn btn-default">Go</button>
+        </div>
+    </form>
+{% endblock %}
+
+{% block extraContent %}
+    {% include 'cms/' ~ _theme ~ '/core/includes/pagination.twig' %}
+{% endblock %}

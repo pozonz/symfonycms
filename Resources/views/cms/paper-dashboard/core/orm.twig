@@ -1,0 +1,212 @@
+{% extends 'cms/' ~ _theme ~ '/base.twig' %}
+{% block extraBodyClass %}page-orm page-orm{% endblock %}
+
+{% block css %}
+    <link href="{{ preload(asset('build/cms.css'), { as: 'style' }) }}?v={{ timeStamp }}" as="style" rel="preload">
+    <link type="text/css" href="{{ asset('build/cms-orm.css') }}?v={{ timeStamp }}" rel="stylesheet" />
+{% endblock %}
+
+{% block js %}
+    <link href="{{ preload(asset('build/runtime.js'), { as: 'script' }) }}?v={{ timeStamp }}" as="script" rel="preload">
+    <link href="{{ preload(asset('build/cms-orm.js'), { as: 'script' }) }}?v={{ timeStamp }}" as="script" rel="preload">
+    <script src="{{ asset('build/runtime.js') }}?v={{ timeStamp }}" defer></script>
+    <script src="{{ asset('build/cms-orm.js') }}?v={{ timeStamp }}" defer></script>
+{% endblock %}
+
+{% form_theme formView '/cms/' ~ _theme ~ '/form.twig' %}
+
+{% block content %}
+    <form method="post" autocomplete="off" novalidate enctype="multipart/form-data">
+        <div class="row">
+            <div class="{% block leftSideClass %}col-lg-9{% endblock %}">
+                <div class="card {% block extraCardClass %}{% endblock %}">
+                    <div class="card-header">
+                        {% block heading %}
+                            {% block returnUrl %}
+                                {% if returnUrl %}
+                                    <a class="mb-5" href="{{ returnUrl }}">
+                                        <i class="fa fa-angle-left mr-1" aria-hidden="true"></i>Back to listing
+                                    </a>
+                                {% endif %}
+                            {% endblock %}
+
+                            <div class="pb-1 js-data-item-container js-orm-version-container" data-id="{{ orm.id }}" data-draft="{{ orm._draftName }}" data-version="{{ orm._versionUuid }}">
+                                {% if orm._versionUuid %}
+                                    <h4 class="py-2 card-title">{{ model.title }} - {{ orm.title ?? 'NEW' }}</h4>
+                                    <span class="bg-info pa-1">{% if orm._isDraft %}Draft: {{ orm._draftName }}{% else %}Recent version{% endif %}</span>
+                                    <span class="pl-1">{% if orm._ormUser %}{{ orm._ormUser.name }} - {% endif %}{{ orm._modified|date('d F y @ g:ia') }}</span>
+                                {% else %}
+                                    {% if orm.id %}
+                                        <h4 class="py-2 card-title">{{ model.title }} - {{ orm.title ?? 'NEW' }}</h4>
+                                        <span class="bg-success pa-1">Current</span>
+                                        <span class="pl-1">{% if orm._ormUser %}{{ orm._ormUser.name }} - {% endif %}{{ orm._modified|date('d F y @ g:ia') }}</span>
+                                    {% else %}
+                                        <h4 class="py-2 card-title">{{ model.title }}</h4>
+                                        {% if copying is defined %}
+                                            <span class="bg-success pa-1">Copying "{{ orm.title }}"</span>
+                                        {% else %}
+                                            <span class="bg-success pa-1">Creating new</span>
+                                        {% endif %}
+                                    {% endif %}
+                                {% endif %}
+                            </div>
+                        {% endblock %}
+                    </div>
+                    <div class="card-content">
+                        <div class="orm-widgets">
+                            <div class="" style="display: none;">
+                                {{ form_widget(formView.__draftName) }}
+                                {{ form_widget(formView._status) }}
+                            </div>
+
+                            {% block formWidgets %}
+                                {{ form_widget(formView) }}
+                            {% endblock %}
+                        </div>
+
+                        {% block modalButtons %}
+                        {% endblock %}
+                    </div>
+                </div>
+            </div>
+
+            {% block rightSide %}
+                <div class="col-lg-3">
+                <div class="card" data-sticky-container data-margin-bottom="-999999">
+                    <div class="card-content">
+                        <div class="row">
+                            <div class="col-lg-12 pb-1">
+                                {% if not orm._versionUuid and cmsMenuItem and (cmsMenuItem._slug != '_pages' and model.className != 'Page')%}
+                                    <input type="checkbox" class="js-orm-form-checkbox switch" data-field="_status" {% if orm._status == 1 %}checked{% endif %}>
+                                {% endif %}
+
+                                {% if orm.canBePreviewed %}
+                                    <button class="btn btn-simple pull-right btn-wd js-orm-form-preview" type="submit" name="submit" value="Preview"><i class="fa fa-eye"></i>&nbsp;Preview</button>
+                                {% endif %}
+                            </div>
+                            <div class="col-lg-12">
+                                {{ form_rest(formView) }}
+
+                                {% if orm.id and orm.enabledVersioning %}
+                                    <div class="pb-1 version-item-list js-data-container" data-class="{{ model.className }}">
+                                        <div class="dropdown">
+                                            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                                {% if orm._versionUuid %}
+                                                    {% if orm._isDraft %}Draft: {{ orm._draftName }}{% else %}{{ orm._modified|date('d F Y @ g:ia') }}{% endif %}
+                                                    <span class="caret"></span>
+                                                {% else %}
+                                                    Current
+                                                    <span class="caret"></span>
+                                                {% endif %}
+                                            </button>
+
+                                            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" style="width: 300px;">
+                                                {% if orm._versionUuid %}
+                                                    <li class="version-item">
+                                                        <div class="version-info px-2 py-1">
+                                                            <a href="/manage/section/{{ section }}/orms/{{ model.className }}/{{ orm._originalOrm.id }}{{ returnQuery }}">Current</a>
+                                                            <div><small>{% if orm._originalOrm._ormUser %}{{ orm._originalOrm._ormUser.name }} - {% endif %}{{ orm._originalOrm._modified|date('d F Y @ g:ia') }}</small></div>
+                                                        </div>
+                                                    </li>
+                                                {% else %}
+                                                    {% if orm.id %}
+                                                        <li class="version-item active">
+                                                            <div class="version-info px-2 py-1">
+                                                                <a href="/manage/section/{{ section }}/orms/{{ model.className }}/{{ orm.id }}{{ returnQuery }}">Current</a>
+                                                                <div><small>{% if orm._ormUser %}{{ orm._ormUser.name }} - {% endif %}{{ orm._modified|date('d F Y @ g:ia') }}</small></div>
+                                                            </div>
+                                                        </li>
+                                                    {% else %}
+                                                        <li class="version-item active">
+                                                            <div class="version-info px-2 py-1">
+                                                                <span>Creating new</span>
+                                                            </div>
+                                                        </li>
+                                                    {% endif %}
+                                                {% endif %}
+
+                                                {% set objDrafts = orm._versionUuid ? orm._originalOrm.objDrafts : orm.objDrafts %}
+                                                {% if objDrafts|length %}
+                                                    <li role="separator" class="divider"></li>
+                                                    <li><div class="version-info px-2 pt-1 text-muted">Drafts</div></li>
+                                                    {% for itm in objDrafts %}
+                                                        <li class="version-item js-data-item-container {% if orm.id == itm.id %}active{% endif %}" data-id="{{ itm.id }}" data-draft="{{ itm._draftName }}">
+                                                            <button type="button" class="version-edit btn-success btn btn-simple js-draft-item-edit"><i class="ti-pencil"></i></button>
+                                                            {% if orm.id != itm.id %}<button type="button" class="version-delete btn-danger btn btn-simple js-data-item-button-delete"><i class="ti-close"></i></button>{% endif %}
+                                                            <div class="version-info px-2 py-1">
+                                                                <a href="/manage/section/{{ section }}/orms/{{ model.className }}/{{ orm._versionUuid ? orm._originalOrm.id : orm.id }}/version/{{ itm._versionUuid }}{{ returnQuery }}">{{ itm._draftName }}</a>
+                                                                <div><small>{% if itm._ormUser %}{{ itm._ormUser.name }} - {% endif %}{{ itm._modified|date('d F Y @ g:ia') }}</small></div>
+                                                            </div>
+                                                        </li>
+                                                    {% endfor %}
+                                                {% endif %}
+
+                                                {% set objVersions = orm._versionUuid ? orm._originalOrm.objVersions : orm.objVersions %}
+                                                {% if objVersions|length %}
+                                                    <li role="separator" class="divider"></li>
+                                                    <li><div class="version-info px-2 pt-1 text-muted">Recent</div></li>
+                                                    {% for itm in objVersions %}
+                                                        <li class="version-item js-data-item-container {% if orm.id == itm.id %}active{% endif %}" data-id="{{ itm.id }}">
+                                                            {% if orm.id != itm.id %}<button type="button" class="version-delete btn-danger btn btn-simple js-data-item-button-delete"><i class="ti-close"></i></button>{% endif %}
+                                                            <div class="version-info px-2 py-1">
+                                                                <a href="/manage/section/{{ section }}/orms/{{ model.className }}/{{ orm._versionUuid ? orm._originalOrm.id : orm.id }}/version/{{ itm._versionUuid }}{{ returnQuery }}">{{ itm._modified|date('d F Y @ g:ia') }}</a>
+                                                                <div><small>{% if itm._ormUser %}{{ itm._ormUser.name }}{% endif %}</small></div>
+                                                            </div>
+                                                        </li>
+                                                    {% endfor %}
+                                                {% endif %}
+                                            </ul>
+                                        </div>
+                                    </div>
+                                {% endif %}
+
+                                <div class="orm-form-buttons">
+                                    {% if orm._versionUuid %}
+                                        {% if orm._isDraft %}
+                                            <input class="btn btn-success btn-fill btn-wd js-orm-form-non-preview" type="submit" name="submit" value="Save draft"/>
+                                            <input class="btn btn-info btn-fill btn-wd js-orm-form-non-preview" type="submit" name="submit" value="Publish draft"/>
+                                        {% else %}
+                                            <input class="btn btn-success btn-fill btn-wd js-orm-form-non-preview" type="submit" name="submit" value="Restore"/>
+                                        {% endif %}
+                                        <div class="pt-1">
+                                            <a href="/manage/section/{{ section }}/orms/{{ model.className }}/{{ orm._originalOrm.id }}{{ returnQuery }}"><span>Return to current version</span></a>
+                                        </div>
+                                    {% else %}
+                                        <input class="btn btn-success btn-fill btn-wd js-orm-form-non-preview" type="submit" name="submit" value="Apply"/>
+                                        {% if returnUrl %}
+                                            <input class="btn btn-info btn-fill btn-wd js-orm-form-non-preview" type="submit" name="submit" value="Save & exit"/>
+                                        {% endif %}
+                                        <input class="btn btn-fill btn-wd js-save-as-draft-submit js-orm-form-non-preview" type="submit" name="submit" value="Save as draft" style="display: none;"/>
+                                        {% if orm.enabledVersioning %}
+                                            <div class="pt-1">
+                                                <a href="#" class="js-save-as-draft-modal js-orm-form-non-preview">Save as new draft version</a>
+                                            </div>
+                                        {% endif %}
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row sidebar-tree-container js-sidebar-tree-container" style="display: none;">
+                            <div class="col-lg-12 pt-1">
+                                <h5 class="mb-1">Content overview</h5>
+                                <div class="js-sidebar-tree"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endblock %}
+        </div>
+    </form>
+
+    <div id="draft-name-modal" class="modal fade" aria-hidden="true" role="dialog" tabindex="-1"></div>
+{% endblock %}
+
+{% block extraHtml %}
+    <div id="orm-popup-container" class="wrapper wrapper-content file-manager mode-asset orm-fm js-orm-fm" style="display: none;">
+        {% include 'cms/' ~ _theme ~ '/file/includes/file-manager-popup.twig' %}
+    </div>
+
+    {% include 'cms/' ~ _theme ~ '/file/includes/file-manager-modals.twig' %}
+{% endblock %}

@@ -1,0 +1,100 @@
+{% extends 'cms/' ~ _theme ~ '/core/orm.twig' %}
+
+{% block js %}
+    <link href="{{ preload(asset('build/runtime.js'), { as: 'script' }) }}?v={{ timeStamp }}" as="script" rel="preload">
+    <link href="{{ preload(asset('build/cms-file.js'), { as: 'script' }) }}?v={{ timeStamp }}" as="script" rel="preload">
+    <script src="{{ asset('build/runtime.js') }}?v={{ timeStamp }}" defer></script>
+    <script src="{{ asset('build/cms-file.js') }}?v={{ timeStamp }}" defer></script>
+{% endblock %}
+
+{% block sideNav %}{% endblock %}
+
+{% block heading %}
+    <a class="mb-5" href="{{ returnUrl }}">
+        <i class="fa fa-angle-left mr-1" aria-hidden="true"></i>Back to listing
+    </a>
+    <h4 class="pt-2 card-title">Assets - {{ orm.title }}</h4>
+    <div class="pt-1 pb-1">
+        <span class="bg-success pa-1">Current</span>
+        <span class="pl-1">{% if orm._ormUser %}{{ orm._ormUser.name }} - {% endif %}{{ orm._modified|date('d M y @ g:ia') }}</span>
+    </div>
+
+    <div class="asset-edit-single">
+        <div id="h1">
+            <h4>
+{#                <div class="formStyle id type14 doccode">URL Code: <strong name="documentcode" class="cms_form_textlabel">{{ orm.code }}</strong></div>#}
+                <div class="asset-path">
+                    Path:
+                    {% set path = orm.folderPath %}
+                    {% for itm in path %}
+                        {% if not loop.last %}
+                            <a href="/manage/section/files?currentFolderId={{ itm.id }}">{{ itm.title }}</a> /
+                        {% else %}
+                            {{ itm.title }}
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </h4>
+        </div>
+    </div>
+{% endblock %}
+
+{% block formWidgets %}
+    <div class="asset-edit-single">
+        <div class="asset-record-fields">
+            {{ form_row(formView.title) }}
+            {{ form_row(formView.code) }}
+            {{ form_row(formView.alt) }}
+            {{ form_row(formView.description) }}
+            {{ form_row(formView.url) }}
+            {{ form_row(formView.fileName) }}
+            {{ form_row(formView.hideFromSearch) }}
+            {{ form_row(formView.searchKeywords) }}
+        </div>
+
+        <div class="asset-image-area">
+            <div id="preview" class="img-wrap">
+                <img src="/images/assets/{{ orm.code }}/cms_large/?v={{ random() }}" class="obj">
+            </div>
+
+            <div class="buttons pb-1">
+                {# <input style="display: none;" type="file" class="cms_form_file" id="cms_form_content" name="content" onchange="handleFiles(this.files);"> #}
+                <button class="btn btn-primary" onclick="$('#orm_file').click(); return false;">Replace file ›</button>
+            </div>
+
+            <div style="display: none;">
+                {{ form_widget(formView.file) }}
+            </div>
+
+            <ul class="nav asset-image-meta">
+                <li class="file-download">
+                    Preview: <a target="_blank" href="{{ app.request.schemeAndHttpHost }}/images/assets/{{ orm.code }}/1/{{ orm.fileName|url_encode }}">{{ orm.fileName }}</a>
+                </li>
+                <li class="file-download">
+                    Download: <a target="_blank" href="{{ app.request.schemeAndHttpHost }}/downloads/assets/{{ orm.code }}/{{ orm.fileName|url_encode }}">{{ orm.fileName }}</a>
+                </li>
+                <li>&nbsp;</li>
+                 <li>Size: <span id="file-size"></span><span id="file-size-unit"></span></li>
+                <li>Mime Type: <span id="file-type">{{ orm.fileType }}</span></li>
+            </ul>
+        </div>
+
+        <div style="display: none;">
+            {{ form_row(formView.parentId) }}
+
+            {{ form_row(formView.fileSize) }}
+            {{ form_row(formView.fileExtension) }}
+            {{ form_row(formView.fileType) }}
+            {{ form_row(formView.fileLocation) }}
+            {{ form_row(formView.isImage) }}
+            {{ form_row(formView.width) }}
+            {{ form_row(formView.height) }}
+            {{ form_row(formView.isFolder) }}
+        </div>
+    </div>
+{% endblock %}
+
+{% block externalFooter %}
+    {{ parent() }}
+    <script src="/cms/develop/js/asset.js"></script>
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends 'cms/' ~ _theme ~ '/base.twig' %}
+{% block extraBodyClass %}page-404{% endblock %}
+
+{% block sideNav %}{% endblock %}
+{% block contentClass %}col-lg-4{% endblock %}
+
+{% block content %}
+    <div class="card pb-2">
+        <div class="card-header">
+            <h2 class="card-title">Permission denied</h2>
+        </div>
+        <div class="card-content">
+            <p class="category pt-1">It looks like you don't have the permission to make this action.</p>
+        </div>
+    </div>
+{% endblock %}
+

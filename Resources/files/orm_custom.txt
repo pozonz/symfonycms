@@ -1,0 +1,11 @@
+<?php
+
+namespace {namespace};
+
+use {namespace}\Generated\{classname}Generated;
+{useTraitsClass}
+
+class {classname} extends {classname}Generated
+{
+    {traitsClass}
+}

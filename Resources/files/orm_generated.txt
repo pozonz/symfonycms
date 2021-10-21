@@ -1,0 +1,18 @@
+<?php
+
+namespace {namespace}\Generated;
+
+use ExWife\Engine\Cms\Core\Base\ORM\BaseORM;
+use ExWife\Engine\Cms\Core\Version\VersionInterface;
+use ExWife\Engine\Cms\Core\Version\VersionTrait;
+use ExWife\Engine\Cms\Core\SiteSearch\SiteSearchInterface;
+use ExWife\Engine\Cms\Core\SiteSearch\SiteSearchTrait;
+use ExWife\Engine\Cms\Core\ManageSearch\ManageSearchInterface;
+use ExWife\Engine\Cms\Core\ManageSearch\ManageSearchTrait;
+
+class {classname}Generated extends BaseORM {interfaces}
+{
+    {traits}
+
+{fields}
+}

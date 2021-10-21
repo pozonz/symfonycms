@@ -1,0 +1,159 @@
+{% extends 'cms/' ~ _theme ~ '/base.twig' %}
+{% block extraBodyClass %}page-orm page-model{% endblock %}
+
+{% block css %}
+    <link href="{{ preload(asset('build/cms.css'), { as: 'style' }) }}?v={{ timeStamp }}" as="style" rel="preload">
+    <link type="text/css" href="{{ asset('build/cms-model.css') }}?v={{ timeStamp }}" rel="stylesheet" />
+{% endblock %}
+
+{% block js %}
+    <link href="{{ preload(asset('build/runtime.js'), { as: 'script' }) }}?v={{ timeStamp }}" as="script" rel="preload">
+    <link href="{{ preload(asset('build/cms-model.js'), { as: 'script' }) }}?v={{ timeStamp }}" as="script" rel="preload">
+    <script src="{{ asset('build/runtime.js') }}?v={{ timeStamp }}" defer></script>
+    <script src="{{ asset('build/cms-model.js') }}?v={{ timeStamp }}" defer></script>
+{% endblock %}
+
+{% form_theme formView '/cms/' ~ _theme ~ '/form.twig' %}
+
+{% block content %}
+    <form method="post" autocomplete="off" novalidate>
+        <div class="row">
+            <div class="col-lg-9">
+                <div class="card">
+                    <div class="card-header">
+                        <a class="mb-5" href="{{ returnUrl }}">
+                            <i class="fa fa-angle-left mr-1" aria-hidden="true"></i>Back to listing
+                        </a>
+
+                        <h4 class="pt-2 card-title">Model</h4>
+                        <div class="pt-1 pb-1">
+                            {% if model.id %}
+                                <span class="bg-success pa-1">Current</span>
+                                <span class="pl-1">{% if model._ormUser %}{{ model._ormUser.name }} - {% endif %}{{ model._modified|date('d M y @ g:ia') }}</span>
+                            {% else %}
+                                {% if copying is defined %}
+                                    <span class="bg-success pa-1">Copying "{{ model.title }}"</span>
+                                {% else %}
+                                    <span class="bg-success pa-1">Creating new</span>
+                                {% endif %}
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <div class="orm-widgets">
+                            <div class="" style="display: none">
+                                {{ form_rest(formView._status) }}
+                            </div>
+
+                            {{ form_row(formView.title, {attr: {class: 'form-control'}}) }}
+                            {{ form_row(formView.className, {attr: {class: 'form-control'}}) }}
+                            {{ form_row(formView.modelCategory, {attr: {class: 'js-chosen form-control'}}) }}
+                            {{ form_row(formView.listingType, {attr: {class: 'js-chosen form-control'}}) }}
+
+                            <div id="model_listingType_container" class="orm-widget orm-widget-full pl-1 pr-1 mb-1" {% if model.listingType != 2 %}style="display: none;"{% endif %}>
+                                <div class="row pt-1 pb-1 bg-grey">
+                                    <div class="col-lg-4">
+                                        {{ form_label(formView.pageSize) }}
+                                        {{ form_widget(formView.pageSize, {attr: {class: 'form-control'}}) }}
+                                        {{ form_errors(formView.pageSize) }}
+                                    </div>
+                                    <div class="col-lg-4">
+                                        {{ form_label(formView.defaultSortBy) }}
+                                        {{ form_widget(formView.defaultSortBy, {attr: {class: 'form-control'}}) }}
+                                        {{ form_errors(formView.defaultSortBy) }}
+                                    </div>
+                                    <div class="col-lg-4">
+                                        {{ form_label(formView.defaultOrderBy) }}
+                                        {{ form_widget(formView.defaultOrderBy, {attr: {class: 'form-control'}}) }}
+                                        {{ form_errors(formView.defaultOrderBy) }}
+                                    </div>
+                                </div>
+                            </div>
+
+                            {{ form_row(formView.accesses, {attr: {class: 'js-chosen form-control'}}) }}
+                            {{ form_row(formView.frontendUrl, {attr: {class: 'form-control'}}) }}
+
+                            <div class="orm-widget form-group">
+                                <div class="checkbox">
+                                    {{ form_widget(formView.searchableInCms) }}
+                                    {{ form_label(formView.searchableInCms) }}
+                                    {{ form_errors(formView.searchableInCms) }}
+                                </div>
+                            </div>
+
+                            <div class="orm-widget form-group">
+                                <div class="checkbox">
+                                    {{ form_widget(formView.searchableInFrontend) }}
+                                    {{ form_label(formView.searchableInFrontend) }}
+                                    {{ form_errors(formView.searchableInFrontend) }}
+                                </div>
+                            </div>
+
+                            <div class="orm-widget form-group">
+                                <div class="checkbox">
+                                    {{ form_widget(formView.enableVersioning) }}
+                                    {{ form_label(formView.enableVersioning) }}
+                                    {{ form_errors(formView.enableVersioning) }}
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="row pt-3">
+                            <div class="col-lg-12" style="display: none;">
+                                {{ form_widget(formView.columnsJson, {attr: {class: 'form-control'}}) }}
+                                <textarea id="modelColumnTypes" class="form-control">{{ modelColumnTypes|json_encode|e }}</textarea>
+                                <textarea id="modelColumnWidgets" class="form-control">{{ modelColumnWidgets|json_encode|e }}</textarea>
+                            </div>
+                            <div id="modelColumnsJsonContainer"></div>
+                        </div>
+
+                        <div class="orm-widgets">
+                            <div class="orm-widget form-group">
+                                <div class="checkbox">
+                                    {{ form_widget(formView._displayAdded) }}
+                                    {{ form_label(formView._displayAdded) }}
+                                    {{ form_errors(formView._displayAdded) }}
+                                </div>
+                            </div>
+
+                            <div class="orm-widget form-group">
+                                <div class="checkbox">
+                                    {{ form_widget(formView._displayModified) }}
+                                    {{ form_label(formView._displayModified) }}
+                                    {{ form_errors(formView._displayModified) }}
+                                </div>
+                            </div>
+
+                            <div class="orm-widget form-group">
+                                <div class="checkbox">
+                                    {{ form_widget(formView._displayUser) }}
+                                    {{ form_label(formView._displayUser) }}
+                                    {{ form_errors(formView._displayUser) }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="card" data-sticky-container data-margin-bottom="-9999">
+                    <div class="card-content">
+                        <div class="row">
+                            <div class="col-lg-12 pb-1">
+                                <input type="checkbox" class="js-model-form-checkbox switch" data-field="_status" {% if model._status == 1 %}checked{% endif %}>
+                            </div>
+                            <div class="col-lg-12">
+                                {{ form_rest(formView) }}
+
+                                <input class="btn btn-success btn-fill btn-wd" type="submit" name="submit" value="Apply"/>
+                                <input class="btn btn-info btn-fill btn-wd" type="submit" name="submit" value="Save & exit"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+{% endblock %}
+

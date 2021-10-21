@@ -1,0 +1,29 @@
+{% extends 'cms/' ~ _theme ~ '/core/orm.twig' %}
+
+{% block bodyClass%}{% endblock%}
+{% block mainNav %}{% endblock %}
+{% block mainPanelExtraClass %}no-float{% endblock%}
+{% block mainHeader %}{% endblock %}
+{% block footer %}{% endblock %}
+{% block sideNav %}{% endblock %}
+{% block contentClass %}col-lg-12{% endblock %}
+{% block leftSideClass %}col-lg-12{% endblock %}
+{% block rightSide %}{% endblock %}
+{% block returnUrl %}{% endblock %}
+{% block extraCardClass %}no-border{% endblock %}
+
+
+{% block modalButtons %}
+    {{ form_rest(formView) }}
+
+    <input class="btn btn-success btn-fill btn-wd" type="submit" name="submit" value="Save"/>
+    <button class="btn btn-simple btn-wd js-orm-modal-close" type="button">Close</button>
+{% endblock %}
+
+{% block extraHtml %}
+    {{ parent() }}
+
+    {% if submitted %}
+        <input type="hidden" id="orm-modal-submitted" value="1">
+    {% endif %}
+{% endblock %}
