@@ -23,10 +23,10 @@ use Symfony\Component\HttpKernel\KernelInterface;
 use Symfony\Component\Security\Core\Security;
 use Twig\Environment;
 
-trait ManageControllerTratis
+trait ManageControllerTrait
 {
     /**
-     * ManageControllerTratis constructor.
+     * ManageControllerTrait constructor.
      * @param Connection $connection
      * @param KernelInterface $kernel
      * @param Environment $environment

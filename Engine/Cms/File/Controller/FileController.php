@@ -3,7 +3,7 @@
 namespace ExWife\Engine\Cms\File\Controller;
 
 use ExWife\Engine\Cms\Core\Base\Controller\BaseController;
-use ExWife\Engine\Cms\Core\Base\Controller\Traits\ManageControllerTratis;
+use ExWife\Engine\Cms\Core\Base\Controller\Traits\ManageControllerTrait;
 
 use Doctrine\DBAL\Connection;
 
@@ -31,7 +31,7 @@ use Twig\Environment;
  */
 class FileController extends BaseController
 {
-    use ManageControllerTratis;
+    use ManageControllerTrait;
 
     /**
      * @Route("/section/files")

@@ -4,8 +4,8 @@ namespace ExWife\Engine\Web\Cart\Controller;
 
 use Doctrine\DBAL\Connection;
 use ExWife\Engine\Cms\Core\Base\Controller\BaseController;
-use ExWife\Engine\Cms\Core\Base\Controller\Traits\ManageControllerTratis;
-use ExWife\Engine\Cms\Core\Base\Controller\Traits\WebControllerTratis;
+use ExWife\Engine\Cms\Core\Base\Controller\Traits\ManageControllerTrait;
+use ExWife\Engine\Cms\Core\Base\Controller\Traits\WebControllerTrait;
 use ExWife\Engine\Cms\Core\Service\CmsService;
 use ExWife\Engine\Cms\Core\Service\UtilsService;
 use ExWife\Engine\Cms\File\Service\FileManagerService;

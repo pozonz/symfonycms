@@ -2,7 +2,7 @@
 
 namespace ExWife\Engine\Cms\Core\Controller;
 
-use ExWife\Engine\Cms\Core\Base\Controller\Traits\ManageControllerTratis;
+use ExWife\Engine\Cms\Core\Base\Controller\Traits\ManageControllerTrait;
 use ExWife\Engine\Cms\Core\Service\ModelService;
 use ExWife\Engine\Cms\Core\Model\Form\ModelForm;
 use ExWife\Engine\Cms\Core\Model\Model;
@@ -23,7 +23,7 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class ModelController extends BaseController
 {
-    use ManageControllerTratis;
+    use ManageControllerTrait;
 
     /**
      * @route("/section/{section}/models", requirements={"section" = ".*"})

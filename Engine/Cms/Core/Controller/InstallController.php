@@ -3,7 +3,7 @@
 namespace ExWife\Engine\Cms\Core\Controller;
 
 use Doctrine\DBAL\Connection;
-use ExWife\Engine\Cms\Core\Base\Controller\Traits\ManageControllerTratis;
+use ExWife\Engine\Cms\Core\Base\Controller\Traits\ManageControllerTrait;
 use ExWife\Engine\Cms\Core\Service\CmsService;
 use ExWife\Engine\Cms\Core\Service\ModelService;
 use ExWife\Engine\Cms\Core\Model\Form\ModelForm;

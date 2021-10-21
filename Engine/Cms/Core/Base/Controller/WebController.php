@@ -2,7 +2,7 @@
 
 namespace ExWife\Engine\Cms\Core\Base\Controller;
 
-use ExWife\Engine\Cms\Core\Base\Controller\Traits\WebControllerTratis;
+use ExWife\Engine\Cms\Core\Base\Controller\Traits\WebControllerTrait;
 use ExWife\Engine\Cms\Core\Model\Model;
 use ExWife\Engine\Cms\Core\Service\CmsService;
 use ExWife\Engine\Cms\Core\Service\UtilsService;
@@ -19,7 +19,7 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
  */
 class WebController extends BaseController
 {
-    use WebControllerTratis;
+    use WebControllerTrait;
 
     /**
      * @route("/sitemap.xml")

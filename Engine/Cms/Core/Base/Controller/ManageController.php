@@ -2,7 +2,7 @@
 
 namespace ExWife\Engine\Cms\Core\Base\Controller;
 
-use ExWife\Engine\Cms\Core\Base\Controller\Traits\ManageControllerTratis;
+use ExWife\Engine\Cms\Core\Base\Controller\Traits\ManageControllerTrait;
 
 use ExWife\Engine\Cms\Core\Service\ModelService;
 use ExWife\Engine\Cms\Core\Service\UtilsService;
@@ -22,7 +22,7 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
  */
 class ManageController extends BaseController
 {
-    use ManageControllerTratis;
+    use ManageControllerTrait;
 
     /**
      * @route("/section/{section}")

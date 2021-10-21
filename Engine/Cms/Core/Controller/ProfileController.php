@@ -3,7 +3,7 @@
 namespace ExWife\Engine\Cms\Core\Controller;
 
 use ExWife\Engine\Cms\Core\Base\Controller\BaseController;
-use ExWife\Engine\Cms\Core\Base\Controller\Traits\ManageControllerTratis;
+use ExWife\Engine\Cms\Core\Base\Controller\Traits\ManageControllerTrait;
 
 use ExWife\Engine\Cms\Core\Model\Form\OrmProfileForm;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -19,7 +19,7 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
  */
 class ProfileController extends BaseController
 {
-    use ManageControllerTratis;
+    use ManageControllerTrait;
 
     /**
      * @route("/profile")

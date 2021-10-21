@@ -9,7 +9,7 @@ use ExWife\Engine\Cms\Core\Service\UtilsService;
 use Psr\Container\ContainerInterface;
 use Symfony\Component\HttpFoundation\Request;
 
-trait WebControllerTratis
+trait WebControllerTrait
 {
     /**
      * @return mixed

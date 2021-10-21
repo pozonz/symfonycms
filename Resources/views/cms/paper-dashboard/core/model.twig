@@ -2,7 +2,7 @@
 {% block extraBodyClass %}page-orm page-model{% endblock %}
 
 {% block css %}
-    <link href="{{ preload(asset('build/cms.css'), { as: 'style' }) }}?v={{ timeStamp }}" as="style" rel="preload">
+    <link href="{{ preload(asset('build/cms-model.css'), { as: 'style' }) }}?v={{ timeStamp }}" as="style" rel="preload">
     <link type="text/css" href="{{ asset('build/cms-model.css') }}?v={{ timeStamp }}" rel="stylesheet" />
 {% endblock %}
 

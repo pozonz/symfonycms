@@ -3,7 +3,7 @@
 namespace ExWife\Engine\Cms\Product\Controller;
 
 use BlueM\Tree;
-use ExWife\Engine\Cms\Core\Base\Controller\Traits\ManageControllerTratis;
+use ExWife\Engine\Cms\Core\Base\Controller\Traits\ManageControllerTrait;
 use ExWife\Engine\Cms\Core\Model\Form\OrmForm;
 use ExWife\Engine\Cms\Core\ORM\Page;
 use ExWife\Engine\Cms\Core\Service\CmsService;
@@ -33,7 +33,7 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class ProductController extends BaseController
 {
-    use ManageControllerTratis;
+    use ManageControllerTrait;
 
     /**
      * @param ContainerInterface $container

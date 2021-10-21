@@ -4,7 +4,7 @@ namespace ExWife\Engine\Cms\ImageSize\Controller;
 
 use Doctrine\DBAL\Connection;
 use ExWife\Engine\Cms\Core\Base\Controller\BaseController;
-use ExWife\Engine\Cms\Core\Base\Controller\Traits\ManageControllerTratis;
+use ExWife\Engine\Cms\Core\Base\Controller\Traits\ManageControllerTrait;
 
 use ExWife\Engine\Cms\Core\Model\Model;
 use ExWife\Engine\Cms\Core\Service\UtilsService;
@@ -26,7 +26,7 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
  */
 class ImageSizeController extends BaseController
 {
-    use ManageControllerTratis;
+    use ManageControllerTrait;
 
     /**
      * @route("/section/{section}/orms/ImageSize", requirements={"section" = ".*"})

@@ -3,7 +3,7 @@
 namespace ExWife\Engine\Cms\Core\Controller;
 
 use BlueM\Tree;
-use ExWife\Engine\Cms\Core\Base\Controller\Traits\ManageControllerTratis;
+use ExWife\Engine\Cms\Core\Base\Controller\Traits\ManageControllerTrait;
 use ExWife\Engine\Cms\Core\Model\Form\OrmForm;
 use ExWife\Engine\Cms\Core\Service\CmsService;
 use ExWife\Engine\Cms\Core\Base\Controller\BaseController;
@@ -25,7 +25,7 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class OrmController extends BaseController
 {
-    use ManageControllerTratis;
+    use ManageControllerTrait;
 
     /**
      * @route("/section/{section}/orms/{className}", requirements={"section" = ".*"})

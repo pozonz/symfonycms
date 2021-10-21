@@ -4,7 +4,7 @@ namespace ExWife\Engine\Cms\File\Controller;
 
 use Doctrine\DBAL\Connection;
 use ExWife\Engine\Cms\Core\Base\Controller\BaseController;
-use ExWife\Engine\Cms\Core\Base\Controller\Traits\ManageControllerTratis;
+use ExWife\Engine\Cms\Core\Base\Controller\Traits\ManageControllerTrait;
 
 use ExWife\Engine\Cms\Core\Service\UtilsService;
 use ExWife\Engine\Cms\File\Service\FileManagerService;
