@@ -1,10 +1,10 @@
 {% extends 'cms/' ~ _theme ~ '/core/orm.twig' %}
 
 {% block js %}
-    <link href="{{ preload(asset('build/runtime.js'), { as: 'script' }) }}?v={{ timeStamp }}" as="script" rel="preload">
-    <link href="{{ preload(asset('build/cms-file.js'), { as: 'script' }) }}?v={{ timeStamp }}" as="script" rel="preload">
-    <script src="{{ asset('build/runtime.js') }}?v={{ timeStamp }}" defer></script>
-    <script src="{{ asset('build/cms-file.js') }}?v={{ timeStamp }}" defer></script>
+    <link href="{{ preload(asset('build/runtime.js'), { as: 'script' }) }}" as="script" rel="preload">
+    <link href="{{ preload(asset('build/cms-file.js'), { as: 'script' }) }}" as="script" rel="preload">
+    <script src="{{ asset('build/runtime.js') }}" defer></script>
+    <script src="{{ asset('build/cms-file.js') }}" defer></script>
 {% endblock %}
 
 {% block sideNav %}{% endblock %}

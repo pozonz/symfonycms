@@ -16,11 +16,11 @@
     {# <!--  Fonts and icons     --> #}
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
     <link href='https://fonts.googleapis.com/css?family=Muli:400,300' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="{{ asset('build/cms.css') }}?v={{ timeStamp }}">
+    <link rel="stylesheet" href="{{ asset('build/cms.css') }}">
 
     {% block css %}
-        <link href="{{ preload(asset('build/cms.css'), { as: 'style' }) }}?v={{ timeStamp }}" as="style" rel="preload">
-        <link type="text/css" href="{{ asset('build/cms.css') }}?v={{ timeStamp }}" rel="stylesheet" />
+        <link href="{{ preload(asset('build/cms.css'), { as: 'style' }) }}" as="style" rel="preload">
+        <link type="text/css" href="{{ asset('build/cms.css') }}" rel="stylesheet" />
     {% endblock %}
 
     <script>
@@ -28,10 +28,10 @@
     </script>
 
     {% block js %}
-        <link href="{{ preload(asset('build/runtime.js'), { as: 'script' }) }}?v={{ timeStamp }}" as="script" rel="preload">
-        <link href="{{ preload(asset('build/cms.js'), { as: 'script' }) }}?v={{ timeStamp }}" as="script" rel="preload">
-        <script src="{{ asset('build/runtime.js') }}?v={{ timeStamp }}" defer></script>
-        <script src="{{ asset('build/cms.js') }}?v={{ timeStamp }}" defer></script>
+        <link href="{{ preload(asset('build/runtime.js'), { as: 'script' }) }}" as="script" rel="preload">
+        <link href="{{ preload(asset('build/cms.js'), { as: 'script' }) }}" as="script" rel="preload">
+        <script src="{{ asset('build/runtime.js') }}" defer></script>
+        <script src="{{ asset('build/cms.js') }}" defer></script>
     {% endblock %}
 </head>
 

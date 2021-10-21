@@ -2,8 +2,8 @@
 {% block extraBodyClass %}{{ parent() }} page-shipping{% endblock %}
 
 {% block css %}
-    <link href="{{ preload(asset('build/cms-shipping.css'), { as: 'style' }) }}?v={{ timeStamp }}" as="style" rel="preload">
-    <link type="text/css" href="{{ asset('build/cms-shipping.css') }}?v={{ timeStamp }}" rel="stylesheet"/>
+    <link href="{{ preload(asset('build/cms-shipping.css'), { as: 'style' }) }}" as="style" rel="preload">
+    <link type="text/css" href="{{ asset('build/cms-shipping.css') }}" rel="stylesheet"/>
 {% endblock %}
 
 {% block js %}
@@ -11,8 +11,8 @@
         window._shippingCostMode = '{{ getenv('SHIPPING_PRICE_MODE') ?: 1 }}';
     </script>
 
-    <link href="{{ preload(asset('build/runtime.js'), { as: 'script' }) }}?v={{ timeStamp }}" as="script" rel="preload">
-    <link href="{{ preload(asset('build/cms-shipping.js'), { as: 'script' }) }}?v={{ timeStamp }}" as="script" rel="preload">
-    <script src="{{ asset('build/runtime.js') }}?v={{ timeStamp }}" defer></script>
-    <script src="{{ asset('build/cms-shipping.js') }}?v={{ timeStamp }}" defer></script>
+    <link href="{{ preload(asset('build/runtime.js'), { as: 'script' }) }}" as="script" rel="preload">
+    <link href="{{ preload(asset('build/cms-shipping.js'), { as: 'script' }) }}" as="script" rel="preload">
+    <script src="{{ asset('build/runtime.js') }}" defer></script>
+    <script src="{{ asset('build/cms-shipping.js') }}" defer></script>
 {% endblock %}

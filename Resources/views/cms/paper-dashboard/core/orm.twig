@@ -2,15 +2,15 @@
 {% block extraBodyClass %}page-orm page-orm{% endblock %}
 
 {% block css %}
-    <link href="{{ preload(asset('build/cms-orm.css'), { as: 'style' }) }}?v={{ timeStamp }}" as="style" rel="preload">
-    <link type="text/css" href="{{ asset('build/cms-orm.css') }}?v={{ timeStamp }}" rel="stylesheet" />
+    <link href="{{ preload(asset('build/cms-orm.css'), { as: 'style' }) }}" as="style" rel="preload">
+    <link type="text/css" href="{{ asset('build/cms-orm.css') }}" rel="stylesheet" />
 {% endblock %}
 
 {% block js %}
-    <link href="{{ preload(asset('build/runtime.js'), { as: 'script' }) }}?v={{ timeStamp }}" as="script" rel="preload">
-    <link href="{{ preload(asset('build/cms-orm.js'), { as: 'script' }) }}?v={{ timeStamp }}" as="script" rel="preload">
-    <script src="{{ asset('build/runtime.js') }}?v={{ timeStamp }}" defer></script>
-    <script src="{{ asset('build/cms-orm.js') }}?v={{ timeStamp }}" defer></script>
+    <link href="{{ preload(asset('build/runtime.js'), { as: 'script' }) }}" as="script" rel="preload">
+    <link href="{{ preload(asset('build/cms-orm.js'), { as: 'script' }) }}" as="script" rel="preload">
+    <script src="{{ asset('build/runtime.js') }}" defer></script>
+    <script src="{{ asset('build/cms-orm.js') }}" defer></script>
 {% endblock %}
 
 {% form_theme formView '/cms/' ~ _theme ~ '/form.twig' %}

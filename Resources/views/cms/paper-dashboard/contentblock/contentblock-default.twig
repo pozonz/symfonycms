@@ -2,8 +2,8 @@
 {% block extraBodyClass %}{{ parent() }} page-contentblock-default{% endblock %}
 
 {% block css %}
-    <link href="{{ preload(asset('build/cms-contentblock-default.css'), { as: 'style' }) }}?v={{ timeStamp }}" as="style" rel="preload">
-    <link type="text/css" href="{{ asset('build/cms-contentblock-default.css') }}?v={{ timeStamp }}" rel="stylesheet"/>
+    <link href="{{ preload(asset('build/cms-contentblock-default.css'), { as: 'style' }) }}" as="style" rel="preload">
+    <link type="text/css" href="{{ asset('build/cms-contentblock-default.css') }}" rel="stylesheet"/>
 {% endblock %}
 
 {% block js %}
@@ -11,10 +11,10 @@
         window._blockTags = {{ dbService.active('ContentBlockTag')|json_encode|raw }};
     </script>
 
-    <link href="{{ preload(asset('build/runtime.js'), { as: 'script' }) }}?v={{ timeStamp }}" as="script" rel="preload">
-    <link href="{{ preload(asset('build/cms-contentblock-default.js'), { as: 'script' }) }}?v={{ timeStamp }}" as="script" rel="preload">
-    <script src="{{ asset('build/runtime.js') }}?v={{ timeStamp }}" defer></script>
-    <script src="{{ asset('build/cms-ontentblock-default.js') }}?v={{ timeStamp }}" defer></script>
+    <link href="{{ preload(asset('build/runtime.js'), { as: 'script' }) }}" as="script" rel="preload">
+    <link href="{{ preload(asset('build/cms-contentblock-default.js'), { as: 'script' }) }}" as="script" rel="preload">
+    <script src="{{ asset('build/runtime.js') }}" defer></script>
+    <script src="{{ asset('build/cms-ontentblock-default.js') }}" defer></script>
 {% endblock %}
 
 {% block formWidgets %}
