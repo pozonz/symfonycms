@@ -82,7 +82,10 @@ class CartApiController extends AbstractController
         $this->_security = $security;
         $this->_session = $session;
         $this->_cartService = $cartService;
-        $this->_environment->getLoader()->addPath(__DIR__ . '/../../../../Resources/views/web');
+        $dir = __DIR__ . '/../../../../Resources/views/web';
+        if (file_exists($dir)) {
+            $this->_environment->getLoader()->addPath($dir);
+        }
     }
 
     /**

@@ -36,6 +36,23 @@ class UtilsService
     }
 
     /**
+     * @param $theNode
+     * @param Tree $tree
+     * @return int
+     */
+    static public function hasActiveChildren($node, Tree $tree)
+    {
+        if (isset($node->children)) {
+            foreach ($node->children as $child) {
+                if ($child->status == 1) {
+                    return 1;
+                }
+            }
+        }
+        return 0;
+    }
+
+    /**
      * @param $className
      * @param $connection
      * @return mixed|null
