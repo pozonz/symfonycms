@@ -66,10 +66,10 @@ class PageService
      */
     static public function createTemplateFile($pageTemplate)
     {
-        $dir = static::getTemplatePath();
-        $file = $dir . $pageTemplate->fileName;
+        $file = static::getTemplatePath() . $pageTemplate->fileName;
         if (!file_exists($file)) {
             $str = file_get_contents(static::getResourceFilesPath() . 'template.txt');
+            $dir = dirname($file);
             if (!file_exists($dir)) {
                 mkdir($dir, 0777, true);
             }

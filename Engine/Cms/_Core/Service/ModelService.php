@@ -253,7 +253,7 @@ EOD;
      */
     public function getOrmNamespace($model)
     {
-        return $model->modelCategory == 1 ? 'App\\ORM' : 'ExWife\\Engine\\Cms\\Core\\ORM';
+        return $model->modelCategory == 1 ? 'App\\ORM' : 'ExWife\\Engine\\Cms\\_Core\\ORM';
     }
 
     /**
