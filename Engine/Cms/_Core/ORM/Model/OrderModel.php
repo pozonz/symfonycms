@@ -1,0 +1,81 @@
+<?php
+
+namespace ExWife\Engine\Cms\_Core\ORM\Model;
+
+use Doctrine\DBAL\Connection;
+use ExWife\Engine\Cms\_Core\Model\Model;
+
+class OrderModel extends Model
+{
+    public $id = '77649a5f-6ecf-49f2-b8e0-e201a9b7a7f9';
+   
+    public $_uniqid = 'd73b2c7e-caa5-4428-afe3-7f1e4d28a6c1';
+   
+    public $_slug = 'orders';
+   
+    public $_status = '1';
+   
+    public $_closed = '0';
+   
+    public $_rank = '0';
+   
+    public $_added = '2021-10-08 15:16:27';
+   
+    public $_modified = '2021-10-20 18:37:05';
+   
+    public $_publishFrom = null;
+   
+    public $_publishTo = null;
+   
+    public $_userId = '1';
+   
+    public $_versionUuid = '';
+   
+    public $_versionOrmId = null;
+   
+    public $_isDraft = null;
+   
+    public $_draftName = '';
+   
+    public $_isBootstrapData = null;
+   
+    public $_isArchived = null;
+   
+    public $_displayAdded = '1';
+   
+    public $_displayModified = '0';
+   
+    public $_displayUser = '0';
+   
+    public $title = 'Orders';
+   
+    public $className = 'Order';
+   
+    public $modelCategory = '2';
+   
+    public $listingType = '2';
+   
+    public $pageSize = '200';
+   
+    public $defaultSortBy = 'id';
+   
+    public $defaultOrderBy = 'DESC';
+   
+    public $accesses = '[]';
+   
+    public $frontendUrl = null;
+   
+    public $searchableInCms = '0';
+   
+    public $searchableInFrontend = '0';
+   
+    public $enableVersioning = '0';
+   
+    public $columnsJson = '[{"id":"title","label":"Title:","field":"title","widget":"Text","required":1,"unique":1,"sqlQuery":null,"listing":1,"listingWidth":null,"displayFunc":null,"queryable":1,"chosen":false,"selected":false},{"id":"email","label":"Email:","field":"email","widget":"Text","required":0,"unique":0,"sqlQuery":null,"listing":0,"listingWidth":null,"displayFunc":null,"queryable":0,"chosen":false,"selected":false},{"id":"category","label":"Category:","field":"category","widget":"Choice","required":0,"unique":0,"sqlQuery":"SELECT 0 AS `key`, \'New\' AS value \nUNION  SELECT 10 AS `key`, \'Created\' AS value \nUNION SELECT 20 AS `key`, \'Sent to gateway\' AS value \nUNION SELECT 30 AS `key`, \'Approved\' AS value \nUNION SELECT 40 AS `key`, \'Declined\' AS value","listing":1,"listingWidth":"150","displayFunc":null,"queryable":0,"chosen":false,"selected":false,"listingTitle":"Status"},{"id":"extra1","label":"Shipping first name:","field":"shippingFirstName","widget":"Text","required":0,"unique":0,"sqlQuery":null,"listing":0,"listingWidth":"200","displayFunc":null,"queryable":0,"chosen":false,"selected":false,"listingTitle":"First name"},{"id":"extra2","label":"Shipping last name:","field":"shippingLastName","widget":"Text","required":0,"unique":0,"sqlQuery":null,"listing":0,"listingWidth":"200","displayFunc":null,"queryable":0,"chosen":false,"selected":false,"listingTitle":"Last name"},{"id":"extra3","label":"Shipping phone:","field":"shippingPhone","widget":"Text","required":0,"unique":0,"sqlQuery":null,"listing":0,"listingWidth":null,"displayFunc":null,"queryable":0,"chosen":false,"selected":false},{"id":"extra4","label":"Shipping apartment No.:","field":"shippingApartmentNo","widget":"Text","required":0,"unique":0,"sqlQuery":null,"listing":0,"listingWidth":null,"displayFunc":null,"queryable":0,"chosen":false,"selected":false},{"id":"extra5","label":"Shipping address:","field":"shippingAddress","widget":"Text","required":0,"unique":0,"sqlQuery":null,"listing":0,"listingWidth":null,"displayFunc":null,"queryable":0,"chosen":false,"selected":false},{"id":"extra6","label":"Shipping address2:","field":"shippingAddress2","widget":"Text","required":0,"unique":0,"sqlQuery":null,"listing":0,"listingWidth":null,"displayFunc":null,"queryable":0,"chosen":false,"selected":false},{"id":"extra7","label":"Shipping city:","field":"shippingCity","widget":"Text","required":0,"unique":0,"sqlQuery":null,"listing":0,"listingWidth":null,"displayFunc":null,"queryable":0,"chosen":false,"selected":false},{"id":"extra8","label":"Shipping country:","field":"shippingCountry","widget":"Text","required":0,"unique":0,"sqlQuery":null,"listing":0,"listingWidth":null,"displayFunc":null,"queryable":0,"chosen":false,"selected":false},{"id":"extra9","label":"Shipping state:","field":"shippingState","widget":"Text","required":0,"unique":0,"sqlQuery":null,"listing":0,"listingWidth":null,"displayFunc":null,"queryable":0,"chosen":false,"selected":false},{"id":"extra10","label":"Shipping postcode:","field":"shippingPostcode","widget":"Text","required":0,"unique":0,"sqlQuery":null,"listing":0,"listingWidth":null,"displayFunc":null,"queryable":0,"chosen":false,"selected":false},{"id":"extra11","label":"Save this shipping address?","field":"shippingSave","widget":"Text","required":0,"unique":0,"sqlQuery":null,"listing":0,"listingWidth":null,"displayFunc":null,"queryable":0,"chosen":false,"selected":false},{"id":"extra12","label":"Billing same as shipping:","field":"billingSame","widget":"Text","required":0,"unique":0,"sqlQuery":null,"listing":0,"listingWidth":null,"displayFunc":null,"queryable":0,"chosen":false,"selected":false},{"id":"extra13","label":"Billing first name:","field":"billingFirstname","widget":"Text","required":0,"unique":0,"sqlQuery":null,"listing":0,"listingWidth":null,"displayFunc":null,"queryable":0,"chosen":false,"selected":false},{"id":"extra14","label":"Billing last name:","field":"billingLastname","widget":"Text","required":0,"unique":0,"sqlQuery":null,"listing":0,"listingWidth":null,"displayFunc":null,"queryable":0,"chosen":false,"selected":false},{"id":"extra15","label":"Billing phone:","field":"billingPhone","widget":"Text","required":0,"unique":0,"sqlQuery":null,"listing":0,"listingWidth":null,"displayFunc":null,"queryable":0,"chosen":false,"selected":false},{"id":"extra16","label":"Billing apartment No.:","field":"billingApartmentNo","widget":"Text","required":0,"unique":0,"sqlQuery":null,"listing":0,"listingWidth":null,"displayFunc":null,"queryable":0,"chosen":false,"selected":false},{"id":"extra17","label":"Billing address:","field":"billingAddress","widget":"Text","required":0,"unique":0,"sqlQuery":null,"listing":0,"listingWidth":null,"displayFunc":null,"queryable":0,"chosen":false,"selected":false},{"id":"extra18","label":"Billing address2:","field":"billingAddress2","widget":"Text","required":0,"unique":0,"sqlQuery":null,"listing":0,"listingWidth":null,"displayFunc":null,"queryable":0,"chosen":false,"selected":false},{"id":"extra19","label":"Billing city:","field":"billingCity","widget":"Text","required":0,"unique":0,"sqlQuery":null,"listing":0,"listingWidth":null,"displayFunc":null,"queryable":0,"chosen":false,"selected":false},{"id":"extra20","label":"Billing country:","field":"billingCountry","widget":"Text","required":0,"unique":0,"sqlQuery":null,"listing":0,"listingWidth":null,"displayFunc":null,"queryable":0,"chosen":false,"selected":false},{"id":"extra21","label":"Billing state:","field":"billingState","widget":"Text","required":0,"unique":0,"sqlQuery":null,"listing":0,"listingWidth":null,"displayFunc":null,"queryable":0,"chosen":false,"selected":false},{"id":"extra22","label":"Billing postcode:","field":"billingPostcode","widget":"Text","required":0,"unique":0,"sqlQuery":null,"listing":0,"listingWidth":null,"displayFunc":null,"queryable":0,"chosen":false,"selected":false},{"id":"extra23","label":"Save this billing address?","field":"billingSave","widget":"Text","required":0,"unique":0,"sqlQuery":null,"listing":0,"listingWidth":null,"displayFunc":null,"queryable":0,"chosen":false,"selected":false},{"id":"extra24","label":"Note:","field":"note","widget":"Text","required":0,"unique":0,"sqlQuery":null,"listing":0,"listingWidth":null,"displayFunc":null,"queryable":0,"chosen":false,"selected":false},{"id":"extra25","label":"Payment status:","field":"payStatus","widget":"Text","required":0,"unique":0,"sqlQuery":null,"listing":0,"listingWidth":null,"displayFunc":null,"queryable":0,"chosen":false,"selected":false},{"id":"extra26","label":"Payment token:","field":"payToken","widget":"Text","required":0,"unique":0,"sqlQuery":null,"listing":0,"listingWidth":null,"displayFunc":null,"queryable":0,"chosen":false,"selected":false},{"id":"extra27","label":"Payment secret:","field":"paySecret","widget":"Text","required":0,"unique":0,"sqlQuery":null,"listing":0,"listingWidth":null,"displayFunc":null,"queryable":0,"chosen":false,"selected":false},{"id":"extra28","label":"Payment type:","field":"payType","widget":"Text","required":0,"unique":0,"sqlQuery":null,"listing":0,"listingWidth":null,"displayFunc":null,"queryable":0,"chosen":false,"selected":false},{"id":"date1","label":"Pay date:","field":"payDate","widget":"Date picker","required":0,"unique":0,"sqlQuery":null,"listing":0,"listingWidth":null,"displayFunc":null,"queryable":0,"chosen":false,"selected":false},{"id":"extra30","label":"Email content:","field":"emailContent","widget":"Text","required":0,"unique":0,"sqlQuery":null,"listing":0,"listingWidth":null,"displayFunc":null,"queryable":0,"chosen":false,"selected":false},{"id":"extra31","label":"Customer ID:","field":"customerId","widget":"Text","required":0,"unique":0,"sqlQuery":null,"listing":0,"listingWidth":null,"displayFunc":null,"queryable":0,"chosen":false,"selected":false},{"id":"extra32","label":"Customer name:","field":"customerName","widget":"Text","required":0,"unique":0,"sqlQuery":null,"listing":0,"listingWidth":null,"displayFunc":null,"queryable":0,"chosen":false,"selected":false},{"id":"extra33","label":"Shipping ID:","field":"shippingId","widget":"Text","required":0,"unique":0,"sqlQuery":null,"listing":0,"listingWidth":null,"displayFunc":null,"queryable":0,"chosen":false,"selected":false},{"id":"extra34","label":"Shipping title:","field":"shippingTitle","widget":"Text","required":0,"unique":0,"sqlQuery":null,"listing":0,"listingWidth":null,"displayFunc":null,"queryable":0,"chosen":false,"selected":false},{"id":"extra35","label":"Promo ID:","field":"promoId","widget":"Text","required":0,"unique":0,"sqlQuery":null,"listing":0,"listingWidth":null,"displayFunc":null,"queryable":0,"chosen":false,"selected":false},{"id":"extra36","label":"Promo code:","field":"promoCode","widget":"Text","required":0,"unique":0,"sqlQuery":null,"listing":0,"listingWidth":null,"displayFunc":null,"queryable":0,"chosen":false,"selected":false},{"id":"extra37","label":"Discount type:","field":"discountType","widget":"Text","required":0,"unique":0,"sqlQuery":null,"listing":0,"listingWidth":null,"displayFunc":null,"queryable":0,"chosen":false,"selected":false},{"id":"extra38","label":"Discount value:","field":"discountValue","widget":"Text","required":0,"unique":0,"sqlQuery":null,"listing":0,"listingWidth":null,"displayFunc":null,"queryable":0,"chosen":false,"selected":false},{"id":"extra39","label":"Weight:","field":"weight","widget":"Text","required":0,"unique":0,"sqlQuery":null,"listing":0,"listingWidth":null,"displayFunc":null,"queryable":0,"chosen":false,"selected":false},{"id":"extra40","label":"Subtotal:","field":"subtotal","widget":"Text","required":0,"unique":0,"sqlQuery":null,"listing":0,"listingWidth":null,"displayFunc":null,"queryable":0,"chosen":false,"selected":false},{"id":"extra41","label":"Discount:","field":"discount","widget":"Text","required":0,"unique":0,"sqlQuery":null,"listing":0,"listingWidth":null,"displayFunc":null,"queryable":0,"chosen":false,"selected":false},{"id":"extra42","label":"After discount:","field":"afterDiscount","widget":"Text","required":0,"unique":0,"sqlQuery":null,"listing":0,"listingWidth":null,"displayFunc":null,"queryable":0,"chosen":false,"selected":false},{"id":"extra43","label":"GST:","field":"tax","widget":"Text","required":0,"unique":0,"sqlQuery":null,"listing":0,"listingWidth":null,"displayFunc":null,"queryable":0,"chosen":false,"selected":false},{"id":"extra44","label":"Shipping cost:","field":"shippingCost","widget":"Text","required":0,"unique":0,"sqlQuery":null,"listing":0,"listingWidth":null,"displayFunc":null,"queryable":0,"chosen":false,"selected":false},{"id":"extra45","label":"Total:","field":"total","widget":"Text","required":0,"unique":0,"sqlQuery":null,"listing":1,"listingWidth":"100","displayFunc":null,"queryable":1,"chosen":false,"selected":false,"listingTitle":"Price"},{"id":"extra57","label":"Total saving:","field":"totalSaving","widget":"Text","required":0,"unique":0,"sqlQuery":null,"listing":0,"listingWidth":null,"displayFunc":null,"queryable":0,"chosen":false,"selected":false},{"id":"extra46","label":"Submitted:","field":"submitted","widget":"Text","required":0,"unique":0,"sqlQuery":null,"listing":0,"listingWidth":null,"displayFunc":null,"queryable":0,"chosen":false,"selected":false},{"id":"date2","label":"Submitted date:","field":"submittedDate","widget":"Date picker","required":0,"unique":0,"sqlQuery":null,"listing":0,"listingWidth":"100","displayFunc":null,"queryable":0,"chosen":false,"selected":false},{"id":"extra47","label":"Logs:","field":"logs","widget":"Content blocks","required":0,"unique":0,"sqlQuery":null,"listing":0,"listingWidth":null,"displayFunc":null,"queryable":0,"chosen":false,"selected":false},{"id":"extra48","label":"Pick-up?","field":"isPickup","widget":"Choice","required":0,"unique":0,"sqlQuery":"SELECT 1 AS `key`, \'Pick-up\' AS value \nUNION  SELECT 2 AS `key`, \'Delivery\' AS value ","listing":0,"listingWidth":null,"displayFunc":null,"queryable":0,"chosen":false,"selected":false},{"id":"extra49","label":"Pickup first name:","field":"pickupFirstName","widget":"Text","required":0,"unique":0,"sqlQuery":null,"listing":0,"listingWidth":null,"displayFunc":null,"queryable":0,"chosen":false,"selected":false},{"id":"extra50","label":"Pickup last name:","field":"pickupLastName","widget":"Text","required":0,"unique":0,"sqlQuery":null,"listing":0,"listingWidth":null,"displayFunc":null,"queryable":0,"chosen":false,"selected":false},{"id":"extra29","label":"Pickup phone:","field":"pickupPhone","widget":"Text","required":0,"unique":0,"sqlQuery":null,"listing":0,"listingWidth":null,"displayFunc":null,"queryable":0,"chosen":false,"selected":false},{"id":"extra51","label":"Password Input:","field":"passwordInput","widget":"Text","required":0,"unique":0,"sqlQuery":null,"listing":0,"listingWidth":null,"displayFunc":null,"queryable":0,"chosen":false,"selected":false},{"id":"extra52","label":"Create an account?","field":"createAnAccount","widget":"Text","required":0,"unique":0,"sqlQuery":null,"listing":0,"listingWidth":null,"displayFunc":null,"queryable":0,"chosen":false,"selected":false},{"id":"extra53","label":"Shipping use existing?","field":"shippingUseExisting","widget":"Text","required":0,"unique":0,"sqlQuery":null,"listing":0,"listingWidth":null,"displayFunc":null,"queryable":0,"chosen":false,"selected":false},{"id":"extra54","label":"Billing use existing?","field":"billingUseExisting","widget":"Text","required":0,"unique":0,"sqlQuery":null,"listing":0,"listingWidth":null,"displayFunc":null,"queryable":0,"chosen":false,"selected":false},{"id":"extra55","label":"Humm request query:","field":"hummRequestQuery","widget":"Text","required":0,"unique":0,"sqlQuery":null,"listing":0,"listingWidth":null,"displayFunc":null,"queryable":0,"chosen":false,"selected":false},{"id":"extra56","label":"Gateway sent:","field":"gatewaySent","widget":"Text","required":0,"unique":0,"sqlQuery":null,"listing":0,"listingWidth":null,"displayFunc":null,"queryable":0,"chosen":false,"selected":false},{"id":"date3","label":"Gateway sent date:","field":"gatewaySentDate","widget":"Date picker","required":0,"unique":0,"sqlQuery":null,"listing":0,"listingWidth":null,"displayFunc":null,"queryable":0,"chosen":false,"selected":false},{"id":"extra58","label":"First name:","field":"firstName","widget":"Hidden","required":0,"unique":0,"sqlQuery":null,"listing":1,"listingWidth":"200","listingTitle":null,"displayFunc":null,"queryable":1,"chosen":false,"selected":false},{"id":"extra59","label":"Last name:","field":"lastName","widget":"Hidden","required":0,"unique":0,"sqlQuery":null,"listing":1,"listingWidth":"200","listingTitle":null,"displayFunc":null,"queryable":1,"chosen":false,"selected":false}]';
+   
+
+    public function __construct(Connection $connection)
+    {
+        $this->_connection = $connection;
+    }
+}

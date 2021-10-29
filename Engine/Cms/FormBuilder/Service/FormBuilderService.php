@@ -2,8 +2,8 @@
 
 namespace ExWife\Engine\Cms\FormBuilder\Service;
 
-use ExWife\Engine\Cms\Core\Service\CmsService;
-use ExWife\Engine\Cms\Core\Service\UtilsService;
+use ExWife\Engine\Cms\_Core\Service\CmsService;
+use ExWife\Engine\Cms\_Core\Service\UtilsService;
 
 use Doctrine\DBAL\Connection;
 use ExWife\Engine\Cms\File\Service\FileManagerService;

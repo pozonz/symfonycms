@@ -2,13 +2,13 @@
 
 namespace {namespace}\Generated;
 
-use ExWife\Engine\Cms\Core\Base\ORM\BaseORM;
-use ExWife\Engine\Cms\Core\Version\VersionInterface;
-use ExWife\Engine\Cms\Core\Version\VersionTrait;
-use ExWife\Engine\Cms\Core\SiteSearch\SiteSearchInterface;
-use ExWife\Engine\Cms\Core\SiteSearch\SiteSearchTrait;
-use ExWife\Engine\Cms\Core\ManageSearch\ManageSearchInterface;
-use ExWife\Engine\Cms\Core\ManageSearch\ManageSearchTrait;
+use ExWife\Engine\Cms\_Core\Base\ORM\BaseORM;
+use ExWife\Engine\Cms\_Core\Version\VersionInterface;
+use ExWife\Engine\Cms\_Core\Version\VersionTrait;
+use ExWife\Engine\Cms\_Core\SiteSearch\SiteSearchInterface;
+use ExWife\Engine\Cms\_Core\SiteSearch\SiteSearchTrait;
+use ExWife\Engine\Cms\_Core\ManageSearch\ManageSearchInterface;
+use ExWife\Engine\Cms\_Core\ManageSearch\ManageSearchTrait;
 
 class {classname}Generated extends BaseORM {interfaces}
 {

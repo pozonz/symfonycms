@@ -5,7 +5,7 @@ namespace ExWife\Engine\Cms\File\Service;
 use BlueM\Tree;
 use BlueM\Tree\Serializer\HierarchicalTreeJsonSerializer;
 use Doctrine\DBAL\Connection;
-use ExWife\Engine\Cms\Core\Service\UtilsService;
+use ExWife\Engine\Cms\_Core\Service\UtilsService;
 use MillenniumFalcon\Core\ORM\_Model;
 use MillenniumFalcon\Core\Service\AssetService;
 use Symfony\Component\HttpFoundation\File\UploadedFile;

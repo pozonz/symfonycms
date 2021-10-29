@@ -1,0 +1,59 @@
+#core_model:
+#  resource: "../../Engine/Cms/Model/Controller"
+#  type: annotation
+
+cms_product:
+  resource: "../../Engine/Cms/Product/Controller"
+  type: annotation
+
+cms_order:
+  resource: "../../Engine/Cms/Order/Controller"
+  type: annotation
+
+cms_shipping:
+  resource: "../../Engine/Cms/Shipping/Controller"
+  type: annotation
+
+cms_page:
+  resource: "../../Engine/Cms/Page/Controller"
+  type: annotation
+
+cms_formbuilder:
+  resource: "../../Engine/Cms/FormBuilder/Controller"
+  type: annotation
+
+cms_files:
+  resource: "../../Engine/Cms/File/Controller"
+  type: annotation
+
+cms_imagesize:
+  resource: "../../Engine/Cms/ImageSize/Controller"
+  type: annotation
+
+cms_contentblock:
+  resource: "../../Engine/Cms/ContentBlock/Controller"
+  type: annotation
+
+cms_core:
+  resource: "../../Engine/Cms/_Core/Controller"
+  type: annotation
+
+cms_core_base:
+  resource: "../../Engine/Cms/_Core/Base/Controller"
+  type: annotation
+
+web_cart:
+  resource: "../../Engine/Web/Cart/Controller"
+  type: annotation
+
+web_shop:
+  resource: "../../Engine/Web/Shop/Controller"
+  type: annotation
+
+web_news:
+  resource: "../../Engine/Web/News/Controller"
+  type: annotation
+
+web_core:
+  resource: "../../Engine/Web/_Core/Controller"
+  type: annotation

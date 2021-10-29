@@ -3,7 +3,7 @@
 namespace ExWife\Engine\Web\Cart\Service;
 
 use Doctrine\DBAL\Connection;
-use ExWife\Engine\Cms\Core\Service\UtilsService;
+use ExWife\Engine\Cms\_Core\Service\UtilsService;
 use Ramsey\Uuid\Uuid;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;

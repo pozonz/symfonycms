@@ -3,10 +3,10 @@
 namespace ExWife\Engine\Web\News\Controller;
 
 use Doctrine\DBAL\Connection;
-use ExWife\Engine\Cms\Core\Base\Controller\BaseController;
-use ExWife\Engine\Cms\Core\Base\Controller\Traits\ManageControllerTrait;
-use ExWife\Engine\Cms\Core\Base\Controller\Traits\WebControllerTrait;
-use ExWife\Engine\Cms\Core\Service\UtilsService;
+use ExWife\Engine\Cms\_Core\Base\Controller\BaseController;
+use ExWife\Engine\Cms\_Core\Base\Controller\Traits\ManageControllerTrait;
+use ExWife\Engine\Web\_Core\Base\Controller\Traits\WebControllerTrait;
+use ExWife\Engine\Cms\_Core\Service\UtilsService;
 use ExWife\Engine\Cms\File\Service\FileManagerService;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;

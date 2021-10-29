@@ -3,8 +3,8 @@
 namespace ExWife\Engine\Cms\Page\Service;
 
 use BlueM\Tree;
-use ExWife\Engine\Cms\Core\ORM\Page;
-use ExWife\Engine\Cms\Core\Service\UtilsService;
+use ExWife\Engine\Cms\_Core\ORM\Page;
+use ExWife\Engine\Cms\_Core\Service\UtilsService;
 
 class PageService
 {

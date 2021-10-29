@@ -155,9 +155,8 @@
         {% block footer %}
             <footer class="footer">
                 <div class="container-fluid">
-                    <div class="copyright pull-right">
-                        &copy;
-                        <script>document.write(new Date().getFullYear())</script> &bull; Pozo Software
+                    <div class="copyright pull-right text-primary">
+                        &copy; {{ 'now'|date('Y') }} - <a href="https://www.pozosoft.com" target="_blank" class="text-primary">Pozo Software</a>
                     </div>
                 </div>
             </footer>

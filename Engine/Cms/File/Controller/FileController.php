@@ -2,14 +2,14 @@
 
 namespace ExWife\Engine\Cms\File\Controller;
 
-use ExWife\Engine\Cms\Core\Base\Controller\BaseController;
-use ExWife\Engine\Cms\Core\Base\Controller\Traits\ManageControllerTrait;
+use ExWife\Engine\Cms\_Core\Base\Controller\BaseController;
+use ExWife\Engine\Cms\_Core\Base\Controller\Traits\ManageControllerTrait;
 
 use Doctrine\DBAL\Connection;
 
-use ExWife\Engine\Cms\Core\Model\Model;
-use ExWife\Engine\Cms\Core\Service\CmsService;
-use ExWife\Engine\Cms\Core\Service\UtilsService;
+use ExWife\Engine\Cms\_Core\Model\Model;
+use ExWife\Engine\Cms\_Core\Service\CmsService;
+use ExWife\Engine\Cms\_Core\Service\UtilsService;
 use ExWife\Engine\Cms\File\Form\FileForm;
 use ExWife\Engine\Cms\File\Service\FileManagerService;
 use MillenniumFalcon\Core\Service\AssetService;

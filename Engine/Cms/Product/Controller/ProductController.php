@@ -3,14 +3,14 @@
 namespace ExWife\Engine\Cms\Product\Controller;
 
 use BlueM\Tree;
-use ExWife\Engine\Cms\Core\Base\Controller\Traits\ManageControllerTrait;
-use ExWife\Engine\Cms\Core\Model\Form\OrmForm;
-use ExWife\Engine\Cms\Core\ORM\Page;
-use ExWife\Engine\Cms\Core\Service\CmsService;
-use ExWife\Engine\Cms\Core\Base\Controller\BaseController;
+use ExWife\Engine\Cms\_Core\Base\Controller\Traits\ManageControllerTrait;
+use ExWife\Engine\Cms\_Core\Model\Form\OrmForm;
+use ExWife\Engine\Cms\_Core\ORM\Page;
+use ExWife\Engine\Cms\_Core\Service\CmsService;
+use ExWife\Engine\Cms\_Core\Base\Controller\BaseController;
 
-use ExWife\Engine\Cms\Core\Model\Model;
-use ExWife\Engine\Cms\Core\Service\UtilsService;
+use ExWife\Engine\Cms\_Core\Model\Model;
+use ExWife\Engine\Cms\_Core\Service\UtilsService;
 use MillenniumFalcon\Core\Service\ModelService;
 use MillenniumFalcon\Core\Tree\RawData;
 use MillenniumFalcon\Core\Twig\Extension;
@@ -29,7 +29,7 @@ use Symfony\Component\Routing\Annotation\Route;
 /**
  * @route("/manage")
  * Class OrmController
- * @package ExWife\Engine\Cms\Core\Controller
+ * @package ExWife\Engine\Cms\_Core\Controller
  */
 class ProductController extends BaseController
 {
