@@ -113,6 +113,7 @@ class UtilsService
      */
     static public function basename($name, $delimeter = '\\')
     {
+        $name = basename($name);
         $array = explode($delimeter, $name);
         return end($array);
     }

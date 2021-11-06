@@ -38,8 +38,8 @@ trait PageTrait
             $json = json_decode($this->templateFile);
             if ($json) {
                 $templateName = $json->name;
-                $templateFile = preg_replace("/[^a-z0-9\_\-\.]/i", '', $json->file);
-                $templateFile = basename($templateFile, '.twig') . '.twig';
+//                $templateFile = preg_replace("/[^a-z0-9\_\-\.]/i", '', $json->file);
+                $templateFile = rtrim($json->file, '.twig') . '.twig';
 
                 $fullClass = UtilsService::getFullClassFromName('PageTemplate');
                 $orm = new $fullClass($this->_connection);
