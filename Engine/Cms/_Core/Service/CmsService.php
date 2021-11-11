@@ -60,8 +60,12 @@ class CmsService
     {
         $navTree = $this->getNavTree();
 
+        $isAdmin = 0;
         $models = [];
         foreach ($navTree->getRootNodes() as $rootNode) {
+            if (isset($rootNode->data) && $rootNode->data->title == 'Admin') {
+                $isAdmin = 1;
+            }
             $models = array_merge($models, $this->_getModelsFromNode($rootNode));
         }
 
@@ -71,6 +75,10 @@ class CmsService
 
         if (in_array('Product', $modelNames)) {
             $modelNames[] = 'ProductVariant';
+        }
+
+        if ($isAdmin) {
+            $modelNames[] = 'Model';
         }
 
         return array_unique($modelNames);
@@ -204,7 +212,7 @@ class CmsService
     {
         $models = $this->getModels();
         return array_filter($models, function ($itm) use ($cmsMenuItem) {
-            return strpos($itm->accesses, "\"{$cmsMenuItem->id}\"") === false ? 0 : 1;
+            return $itm->_status == 1 && strpos($itm->accesses, "\"{$cmsMenuItem->id}\"") !== false ? 1 : 0;
         });
     }
 
