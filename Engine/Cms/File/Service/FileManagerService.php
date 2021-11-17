@@ -9,7 +9,6 @@ use ExWife\Engine\Cms\_Core\Service\UtilsService;
 use MillenniumFalcon\Core\ORM\_Model;
 use MillenniumFalcon\Core\Service\AssetService;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\KernelInterface;
 
@@ -104,7 +103,7 @@ class FileManagerService
     /**
      * @param UploadedFile $uploadedFile
      * @param $foldId
-     * @return JsonResponse
+     * @return mixed
      */
     public function processUploadedFile(UploadedFile $uploadedFile, $foldId)
     {
@@ -121,7 +120,7 @@ class FileManagerService
      * @param $sourceFile
      * @param $foldId
      * @param array $options
-     * @return JsonResponse
+     * @return mixed
      */
     public function processFile($sourceFile, $foldId, $options = [])
     {
@@ -149,9 +148,9 @@ class FileManagerService
 
     /**
      * @param $sourceFile
-     * @param $foldId
      * @param $asset
-     * @return JsonResponse
+     * @param array $options
+     * @return mixed
      */
     public function processFileWithAsset($sourceFile, $asset, $options = [])
     {
@@ -219,10 +218,7 @@ class FileManagerService
             }
         }
 
-        return new JsonResponse([
-            'status' => 1,
-            'asset' => $asset,
-        ]);
+        return $asset;
     }
 
     /**
@@ -234,6 +230,7 @@ class FileManagerService
     public function generateOutput($command, &$in = '', &$out = null)
     {
         $logFolder = static::IMAGE_CACHE_PATH;
+        static::checkAndCreatePath($logFolder);
         $descriptorspec = array(
             0 => array("pipe", "r"),  // stdin is a pipe that the child will read from
             1 => array("pipe", "w"),  // stdout is a pipe that the child will write to

@@ -12,6 +12,7 @@ use ExWife\Engine\Cms\File\Service\FileManagerService;
 use Doctrine\DBAL\Connection;
 
 use GeoIp2\Util;
+use PayPalHttp\Serializer\Json;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -84,9 +85,9 @@ class FileManagerController extends BaseController
         $currentFolderId = $request->get('currentFolderId') ?: 0;
         $this->_session->set('currentFolderId', $currentFolderId);
 
-        return new JsonResponse(array(
+        return new JsonResponse([
             'folders' => $this->_fileManagerService->getFolderRoot($currentFolderId),
-        ));
+        ]);
     }
 
     /**
@@ -233,7 +234,10 @@ class FileManagerController extends BaseController
         $parentId = $request->request->get('parentId') ?: 0;
 
         if ($file) {
-            return $this->_fileManagerService->processUploadedFile($file, $parentId);
+            return new JsonResponse([
+                'status' => 1,
+                'asset' => $this->_fileManagerService->processUploadedFile($file, $parentId),
+            ]);
         }
 
         return new JsonResponse(array(
