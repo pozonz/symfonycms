@@ -211,7 +211,7 @@ trait BaseORMTrait
             foreach ($result as $itm) {
                 $orm = new $myClass($connection);
                 foreach ($fields as $field) {
-                    if (isset($itm[$field])) {
+                    if (array_key_exists($field, $itm)) {
                         $orm->{$field} = $itm[$field];
                     }
                 }
