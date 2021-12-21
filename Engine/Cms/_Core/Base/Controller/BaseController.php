@@ -7,7 +7,7 @@ use ExWife\Engine\Cms\_Core\Service\CmsService;
 use BlueM\Tree;
 use Doctrine\DBAL\Connection;
 
-use MillenniumFalcon\Core\SymfonyKernel\RedirectException;
+use ExWife\Engine\Cms\_Core\SymfonyKernel\RedirectException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;

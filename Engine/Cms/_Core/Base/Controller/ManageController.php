@@ -62,7 +62,7 @@ class ManageController extends BaseController
             array_walk($data, function ($value, $key) use ($modelService) {
                 $model = UtilsService::getModelFromName($value, $this->_connection);
                 if ($model) {
-                    $model->_rank = $key;
+                    $model->_rank = $model->modelCategory == 1 ? $key + 1000 : $key;
                     $model->save([
                         'modelService' => $modelService,
                     ]);
