@@ -1,0 +1,7 @@
+{% if [value] %}
+    <div>
+        {% for itm in [value]|json_decode %}
+            <div>{{ itm }}</div>
+        {% endfor %}
+    </div>
+{% endif %}

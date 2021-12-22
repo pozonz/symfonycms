@@ -1,0 +1,10 @@
+{% if [value] %}
+    <div>
+        {% for itm in [value]|json_decode %}
+            {% set asset = dbService.byId('Asset', itm) %}
+            {% if asset %}
+                <img src="/images/assets/{{ asset.code }}/medium" alt="{{ asset.title }}"/>
+            {% endif %}
+        {% endfor %}
+    </div>
+{% endif %}

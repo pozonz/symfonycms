@@ -267,7 +267,7 @@ EOD;
             'sort' => 'm.title',
         ]);
         $data = array_map(function ($itm) use ($cmsService) {
-            $jsonItems = json_decode($itm->items);
+            $jsonItems = json_decode($itm->items ?: '[]');
             foreach ($jsonItems as $jsonItem) {
                 $jsonItem->choices = static::getChoicesByWidget($jsonItem->widget, $this->_connection, $jsonItem->sql, $cmsService);
             }

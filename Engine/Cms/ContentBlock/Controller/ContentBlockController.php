@@ -8,6 +8,7 @@ use ExWife\Engine\Cms\_Core\Base\Controller\Traits\ManageControllerTrait;
 
 use ExWife\Engine\Cms\_Core\Model\Model;
 use ExWife\Engine\Cms\_Core\Service\UtilsService;
+use ExWife\Engine\Cms\Page\Service\PageService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -103,6 +104,28 @@ class ContentBlockController extends BaseController
         $className = 'ContentBlock';
         return $this->_orm($request, $section, $className, $id, $versionUuid, [
             'twig' => "/cms/{$this->_theme}/contentblock/contentblock.twig",
+            'callback' => function($form, $orm) {
+                PageService::createContentBlockFile($orm);
+            },
+        ]);
+    }
+
+    /**
+     * @route("/section/{section}/orms/ContentBlock/copy/{id}", requirements={"section" = ".*"})
+     * @param Request $request
+     * @param $section
+     * @param $className
+     * @param $ormId
+     * @return mixed
+     */
+    public function copyContentBlock(Request $request, $section, $id)
+    {
+        $className = 'ContentBlock';
+        return $this->_copyOrm($request, $section, $className, $id, [
+            'twig' => "/cms/{$this->_theme}/contentblock/contentblock.twig",
+            'callback' => function($form, $orm) {
+                PageService::createContentBlockFile($orm);
+            },
         ]);
     }
 }

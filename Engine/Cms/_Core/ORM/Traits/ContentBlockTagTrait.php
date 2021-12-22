@@ -6,4 +6,14 @@ use Doctrine\DBAL\Connection;
 
 trait ContentBlockTagTrait
 {
+    /**
+     * ContentBlockTrait constructor.
+     * @param Connection $connection
+     */
+    public function __construct(Connection $connection)
+    {
+        parent::__construct($connection);
+
+        $this->dataType = 1;
+    }
 }

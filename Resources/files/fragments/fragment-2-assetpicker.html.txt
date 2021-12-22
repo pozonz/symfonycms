@@ -1,0 +1,4 @@
+{% set asset = dbService.byId('Asset', [value]) %}
+{% if asset and asset._status == 1 %}
+    <img src="/images/assets/{{ asset.code }}/medium" />
+{% endif %}
