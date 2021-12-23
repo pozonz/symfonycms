@@ -562,6 +562,7 @@ class CartService
     {
         $messageBody = $this->_environment->render('cart/email-invoice.twig', array(
             'order' => $order,
+            'email' => $order->email,
         ));
         $message = (new \Swift_Message())
             ->setSubject((getenv('EMAIL_ORDER_SUBJECT') ?: 'Your order has been received') . " - #{$order->title}")
@@ -569,6 +570,58 @@ class CartService
                 getenv('EMAIL_FROM') => getenv('EMAIL_FROM_NAME')
             ])
             ->setTo([$order->email])
+            ->setBcc(array_filter(explode(',', getenv('EMAIL_BCC_ORDER'))))
+            ->setBody(
+                $messageBody, 'text/html'
+            );
+        return $this->_mailer->send($message);
+    }
+
+    /**
+     * @param $customer
+     * @return int
+     * @throws \Twig\Error\LoaderError
+     * @throws \Twig\Error\RuntimeError
+     * @throws \Twig\Error\SyntaxError
+     */
+    public function sendEmailActivation($customer, $subject = 'Activate your account')
+    {
+        $messageBody = $this->_environment->render('cart/email-activation.twig', array(
+            'customer' => $customer,
+            'email' => $customer->title,
+        ));
+        $message = (new \Swift_Message())
+            ->setSubject($subject)
+            ->setFrom([
+                getenv('EMAIL_FROM') => getenv('EMAIL_FROM_NAME')
+            ])
+            ->setTo([$customer->title])
+            ->setBcc(array_filter(explode(',', getenv('EMAIL_BCC_ORDER'))))
+            ->setBody(
+                $messageBody, 'text/html'
+            );
+        return $this->_mailer->send($message);
+    }
+
+    /**
+     * @param $customer
+     * @return int
+     * @throws \Twig\Error\LoaderError
+     * @throws \Twig\Error\RuntimeError
+     * @throws \Twig\Error\SyntaxError
+     */
+    public function sendEmailPassword($customer, $subject = 'Reset your password')
+    {
+        $messageBody = $this->_environment->render('cart/email-password.twig', array(
+            'customer' => $customer,
+            'email' => $customer->title,
+        ));
+        $message = (new \Swift_Message())
+            ->setSubject($subject)
+            ->setFrom([
+                getenv('EMAIL_FROM') => getenv('EMAIL_FROM_NAME')
+            ])
+            ->setTo([$customer->title])
             ->setBcc(array_filter(explode(',', getenv('EMAIL_BCC_ORDER'))))
             ->setBody(
                 $messageBody, 'text/html'
