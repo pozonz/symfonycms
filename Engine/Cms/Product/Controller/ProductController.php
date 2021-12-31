@@ -201,12 +201,18 @@ class ProductController extends BaseController
         return $this->_copyOrm($request, $section, $className, $id, [
             'twig' => "/cms/{$this->_theme}/product/product.twig",
             'existOrmCallback' => function($orm) {
+                $orm->id = null;
+                $orm->_uniqid = Uuid::uuid4();
+                $orm->_added = date('Y-m-d H:i:s');
+                $orm->_modified = date('Y-m-d H:i:s');
+
                 $uuid = Uuid::uuid4()->toString();
                 $variants = $orm->objVariants();
                 foreach ($variants as $itm) {
                     $itm->id = null;
                     $itm->_uniqid = Uuid::uuid4()->toString();
                     $itm->productUniqid = $uuid;
+                    $itm->sku = null;
                     $itm->save();
                 }
                 $orm->productUniqid = $uuid;

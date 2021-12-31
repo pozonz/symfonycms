@@ -69,7 +69,7 @@ trait ProductVariantTrait
     public function _getCalculatedPrice($productOrVariant, $customer, $price)
     {
         $product = $this->objProduct();
-        if ($product->noMemberDiscount || !$customer) {
+        if (!$product->noMemberDiscount || !$customer) {
             return $price;
         }
 

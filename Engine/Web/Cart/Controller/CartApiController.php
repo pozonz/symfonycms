@@ -252,6 +252,8 @@ class CartApiController extends AbstractController
     {
         $id = $request->get('id');
         $qty = $request->get('qty');
+
+        $previousQty = $qty;
         $isOutOfStock = 0;
         $outOfStockMessage = $this->outOfStockMessage ?? '';
         $stock = 0;
@@ -273,6 +275,7 @@ class CartApiController extends AbstractController
                 }
 
                 $stock = $variant->stock;
+                $previousQty = $itm->quantity;
 
                 if (!$variant->stockEnabled || $variant->stock >= $qty) {
                     $itm->quantity = $qty;
@@ -298,6 +301,7 @@ class CartApiController extends AbstractController
             'isOutOfStock' => $isOutOfStock,
             'outOfStockMessage' => $outOfStockMessage,
             'stock' => $stock,
+            'previousQty' => $previousQty,
             'cart' => $cart,
             'miniCartHtml' => $this->_environment->render('cart/cart-mini.twig', [
                 'cart' => $cart,

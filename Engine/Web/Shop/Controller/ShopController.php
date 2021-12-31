@@ -50,7 +50,7 @@ class ShopController extends BaseController
      */
     public function product(Request $request, $slug)
     {
-        $params = $this->getParamsByUrl('/product');
+        $params = $this->getParamsByRequest($request);
 
         $fullClass = UtilsService::getFullClassFromName('Product');
         $params['orm'] = $fullClass::getBySlug($this->_connection, $slug);
