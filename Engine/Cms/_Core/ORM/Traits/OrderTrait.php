@@ -14,9 +14,9 @@ trait OrderTrait
         $this->category = 0;
         $this->createAnAccount = 0;
         $this->billingSame = 1;
-        $this->billingSave = 1;
+        $this->billingSave = 0;
         $this->billingUseExisting = 0;
-        $this->shippingSave = 1;
+        $this->shippingSave = 0;
         $this->shippingUseExisting = 0;
 
         parent::__construct($connection);

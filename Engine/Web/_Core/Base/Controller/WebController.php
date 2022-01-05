@@ -99,6 +99,7 @@ class WebController extends BaseController
     {
         return $environment->render('cart/email-invoice.twig', array(
             'order' => $order,
+            'email' => $order->email,
         ));
     }
 }
