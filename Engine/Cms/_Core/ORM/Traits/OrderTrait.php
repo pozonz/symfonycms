@@ -27,7 +27,7 @@ trait OrderTrait
      */
     public function objShippingAddress()
     {
-        $address = $this->shippingAddress;
+        $address = $this->shippingFirstName . ' ' . $this->shippingLastName . ', ' . $this->shippingAddress;
         if ($this->shippingApartmentNo) {
             $address = $this->shippingApartmentNo . ', ' . $address;
         }
@@ -54,7 +54,7 @@ trait OrderTrait
         if ($this->billingSame) {
             return $this->objShippingAddress();
         }
-        $address = $this->billingAddress;
+        $address = $this->billingFirstName . ' ' . $this->billingLastName . ', ' . $this->billingAddress;
         if ($this->billingApartmentNo) {
             $address = $this->billingApartmentNo . ', ' . $address;
         }
