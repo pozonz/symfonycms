@@ -85,8 +85,8 @@ class ProductController extends BaseController
             $params['filterDateStart'] = $filterDateStart;
             $params['filterDateEnd'] = $filterDateEnd;
 
-            $whereSql = '';
-            $whereParams = [];
+//            $whereSql = '';
+//            $whereParams = [];
 
             if ($filterStatus !== 'all') {
                 if ($filterStatus === '0') {

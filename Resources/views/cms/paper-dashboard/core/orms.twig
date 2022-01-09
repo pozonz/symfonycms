@@ -45,6 +45,7 @@
                             <p class="category pb-1">{{ total }} result{% if total != 1 %}s{% endif%} found</p>
                             <table class="table table-hover orms-table js-data-container {% block sortableTable %}js-sortable-container{% endblock %}" data-class="{{ model.className }}" data-redirect="{{ app.request.pathInfo }}">
                                 <thead>
+                                {% block headerRows %}
                                 <tr>
                                     {% for column in columns %}
                                         <th {% if column.listingWidth %}width="{{ column.listingWidth }}px"{% endif %}>
@@ -55,6 +56,7 @@
                                     {% endfor %}
                                     {% block actionColumn %}<th width="180px"></th>{% endblock %}
                                 </tr>
+                                {% endblock %}
                                 </thead>
                                 <tbody>
                                 {% for itm in data %}
