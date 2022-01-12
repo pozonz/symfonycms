@@ -232,7 +232,7 @@ class FormBuilderService
                         ->setSubject("{$formBuilder->title} {$submission->title}")
                         ->setFrom([$formBuilder->fromAddress])
                         ->setTo($recipients)
-                        ->setBcc([getenv('EMAIL_BCC')])
+                        ->setBcc(array_filter(explode(',', getenv('EMAIL_BCC_ORDER'))))
                         ->setBody(
                             $messageBody, 'text/html'
                         );
@@ -260,7 +260,7 @@ class FormBuilderService
                             ->setSubject("{$formBuilder->thankYouEmailSubject} {$submission->title}")
                             ->setFrom([$formBuilder->fromAddress])
                             ->setTo($data['email'])
-                            ->setBcc([getenv('EMAIL_BCC')])
+                            ->setBcc(array_filter(explode(',', getenv('EMAIL_BCC_ORDER'))))
                             ->setBody(
                                 $messageBody, 'text/html'
                             );
