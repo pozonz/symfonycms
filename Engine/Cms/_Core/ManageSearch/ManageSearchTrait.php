@@ -41,7 +41,7 @@ trait ManageSearchTrait
             $ManageSearch = new $fullClass($this->_connection);
         }
 
-        if ($this->_status) {
+        if ($this->_status && !$this->_versionOrmId) {
             $ManageSearch->title = $this->getManageSearchTitle() ?: '';
             $ManageSearch->category = $this->getManageSearchCategory();
             $ManageSearch->image = $this->getManageSearchImage();

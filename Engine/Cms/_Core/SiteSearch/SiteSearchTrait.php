@@ -46,7 +46,7 @@ trait SiteSearchTrait
             return;
         }
 
-        if ($this->_status) {
+        if ($this->_status && !$this->_versionOrmId) {
             $siteSearch->title = $this->getSiteSearchTitle() ?: '';
             $siteSearch->category = $this->getSiteSearchCategory();
             $siteSearch->image = $this->getSiteSearchImage();
