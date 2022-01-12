@@ -126,6 +126,9 @@ class ManageController extends BaseController
                 throw new NotFoundHttpException();
             }
 
+            $user = $this->_security->getUser();
+            $orm->_userId = $user->getId();
+            
             $orm->_status = $value;
             $orm->save();
             return new JsonResponse($orm);
