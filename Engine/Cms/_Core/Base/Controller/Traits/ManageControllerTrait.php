@@ -182,6 +182,8 @@ trait ManageControllerTrait
         $sort = $request->get('sort') ?: $model->defaultSortBy;
         $order = $request->get('order') ?: $model->defaultOrderBy;
 
+        $keyword = trim($keyword);
+        
         $whereSql = '';
         $whereParams = [];
 
@@ -195,6 +197,7 @@ trait ManageControllerTrait
                     }, $fields)) . ')');
 
             $whereParams = array_merge($whereParams, array_map(function ($field) use ($keyword) {
+                $keyword = trim($keyword);
                 return "%{$keyword}%";
             }, $fields));
         }

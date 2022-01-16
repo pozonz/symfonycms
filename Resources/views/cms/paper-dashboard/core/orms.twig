@@ -43,46 +43,49 @@
                             </div>
                         {% else %}
                             <p class="category pb-1">{{ total }} result{% if total != 1 %}s{% endif%} found</p>
-                            <table class="table table-hover orms-table js-data-container {% block sortableTable %}js-sortable-container{% endblock %}" data-class="{{ model.className }}" data-redirect="{{ app.request.pathInfo }}">
-                                <thead>
-                                {% block headerRows %}
-                                <tr>
-                                    {% for column in columns %}
-                                        <th {% if column.listingWidth %}width="{{ column.listingWidth }}px"{% endif %}>
-                                            {% block th %}
-                                                {{ column.listingTitle ?? column.label }}
-                                            {% endblock %}
-                                        </th>
-                                    {% endfor %}
-                                    {% block actionColumn %}<th width="180px"></th>{% endblock %}
-                                </tr>
-                                {% endblock %}
-                                </thead>
-                                <tbody>
-                                {% for itm in data %}
-                                    {% block dataRows %}
-                                        <tr id="{{ itm.id }}" data-id="{{ itm.id }}" data-value="{{ itm._status }}" class="js-data-item-container {% block sortableTableRow %}js-sortable-item{% endblock %}">
+
+                            <div class="table-responsive table-full-width">
+                                <table class="table table-hover orms-table js-data-container {% block sortableTable %}js-sortable-container{% endblock %}" data-class="{{ model.className }}" data-redirect="{{ app.request.pathInfo }}">
+                                    <thead>
+                                    {% block headerRows %}
+                                        <tr>
                                             {% for column in columns %}
-                                                {% set columnField = column.field %}
-
-                                                {% if column.queryable %}
-                                                    <td>{{ itm._display(columnField, cmsService)|highlight(keyword ?? null)|raw }}</td>
-                                                {% else %}
-                                                    <td>{{ itm._display(columnField, cmsService)|raw }}</td>
-                                                {% endif %}
+                                                <th {% if column.listingWidth %}width="{{ column.listingWidth }}px"{% endif %}>
+                                                    {% block th %}
+                                                        {{ column.listingTitle ?? column.label }}
+                                                    {% endblock %}
+                                                </th>
                                             {% endfor %}
-
-                                            <td>
-                                                <a rel="tooltip" class="js-data-item-button-status btn btn-simple {% if itm._status == 1 %}btn-success{% else%}btn-danger{% endif%} btn-icon table-action edit" href="#" data-original-title="Enable / Disable"><i class="fa fa-circle"></i></a>
-                                                <a rel="tooltip" class="btn btn-simple btn-default btn-icon table-action edit" href="/manage/section/{{ section }}/orms/{{ model.className }}/{{ itm.id }}{{ returnQuery }}" data-original-title="Edit"><i class="ti-pencil"></i></a>
-                                                <a rel="tooltip" class="btn btn-simple btn-default btn-icon table-action copy" href="/manage/section/{{ section }}/orms/{{ model.className }}/copy/{{ itm.id }}{{ returnQuery }}" data-original-title="Copy"><i class="ti-files"></i></a>
-                                                <a rel="tooltip" class="js-data-item-button-delete btn btn-simple btn-danger btn-icon table-action remove" href="#" data-original-title="Remove"><i class="ti-close"></i></a>
-                                            </td>
+                                            {% block actionColumn %}<th width="130px"></th>{% endblock %}
                                         </tr>
                                     {% endblock %}
-                                {% endfor %}
-                                </tbody>
-                            </table>
+                                    </thead>
+                                    <tbody>
+                                    {% for itm in data %}
+                                        {% block dataRows %}
+                                            <tr id="{{ itm.id }}" data-id="{{ itm.id }}" data-value="{{ itm._status }}" class="js-data-item-container {% block sortableTableRow %}js-sortable-item{% endblock %}">
+                                                {% for column in columns %}
+                                                    {% set columnField = column.field %}
+
+                                                    {% if column.queryable %}
+                                                        <td>{{ itm._display(columnField, cmsService)|highlight(keyword ?? null)|raw }}</td>
+                                                    {% else %}
+                                                        <td>{{ itm._display(columnField, cmsService)|raw }}</td>
+                                                    {% endif %}
+                                                {% endfor %}
+
+                                                <td>
+                                                    <a rel="tooltip" class="js-data-item-button-status btn btn-simple {% if itm._status == 1 %}btn-success{% else%}btn-danger{% endif%} btn-icon table-action edit" href="#" data-original-title="Enable / Disable"><i class="fa fa-circle"></i></a>
+                                                    <a rel="tooltip" class="btn btn-simple btn-default btn-icon table-action edit" href="/manage/section/{{ section }}/orms/{{ model.className }}/{{ itm.id }}{{ returnQuery }}" data-original-title="Edit"><i class="ti-pencil"></i></a>
+                                                    <a rel="tooltip" class="btn btn-simple btn-default btn-icon table-action copy" href="/manage/section/{{ section }}/orms/{{ model.className }}/copy/{{ itm.id }}{{ returnQuery }}" data-original-title="Copy"><i class="ti-files"></i></a>
+                                                    <a rel="tooltip" class="js-data-item-button-delete btn btn-simple btn-danger btn-icon table-action remove" href="#" data-original-title="Remove"><i class="ti-close"></i></a>
+                                                </td>
+                                            </tr>
+                                        {% endblock %}
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
                         {% endif %}
                     {% endblock %}
                 </div>

@@ -46,6 +46,9 @@ body {
 
   .btn {
     border-radius: 0 !important;
+    &.btn-icon {
+      padding: 7px 5px;
+    }
   }
 
   .alert {

@@ -127,7 +127,9 @@ window._formatMoney = _formatMoney;
         });
     }
 
-    var sticky = new Sticky('[data-sticky-container]');
+    if ($(window).width() >= 1025) {
+        var sticky = new Sticky('[data-sticky-container]');
+    }
 
     $(document).on('click', '.js-sort', function (ev) {
         var sort = $(this).data('sort');
