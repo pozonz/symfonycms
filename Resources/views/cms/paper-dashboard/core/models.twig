@@ -49,37 +49,39 @@
                             No results found
                         </div>
                     {% else %}
-                        <table class="table table-hover orms-table {% if filterModelCategory == 1 %}js-sortable-container{% endif%} js-data-container" data-class="Model" data-redirect="{{ app.request.pathInfo }}">
-                            <thead>
-                            <tr>
-                                <th width="250px">Class name</th>
-                                <th>Title</th>
-                                <th width="120px">Type</th>
-                                <th width="180px"></th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            {% for itm in data %}
-                                <tr id="{{ itm.className }}" data-id="{{ itm.className }}" data-value="{{ itm._status }}" class="{% if filterModelCategory == 1 %}js-sortable-item{% endif%} js-data-item-container">
-                                    <td>{{ itm.className }}</td>
-                                    <td>{{ itm.title }}</td>
-                                    <td>
-                                        {% if itm.modelCategory == 1 %}
-                                            Customised
-                                        {% elseif itm.modelCategory == 2 %}
-                                            Built in
-                                        {% endif %}
-                                    </td>
-                                    <td>
-                                        <a rel="tooltip" class="js-data-item-button-status btn btn-simple {% if itm._status == 1 %}btn-success{% else%}btn-danger{% endif%} btn-icon table-action edit" href="#" data-original-title="Enable / Disable"><i class="fa fa-circle"></i></a>
-                                        <a rel="tooltip" class="btn btn-simple btn-default btn-icon table-action edit" href="{{ app.request.pathInfo }}/{{ itm.className }}{{ returnQuery }}" data-original-title="Edit"><i class="ti-pencil"></i></a>
-                                        <a rel="tooltip" class="btn btn-simple btn-default btn-icon table-action copy" href="{{ app.request.pathInfo }}/copy/{{ itm.className }}{{ returnQuery }}" data-original-title="Copy"><i class="ti-files"></i></a>
-                                        <a rel="tooltip" class="js-data-item-button-delete btn btn-simple btn-danger btn-icon table-action remove" href="#" data-original-title="Remove"><i class="ti-close"></i></a>
-                                    </td>
+                        <div class="table-responsive table-full-width">
+                            <table class="table table-hover orms-table {% if filterModelCategory == 1 %}js-sortable-container{% endif%} js-data-container" data-class="Model" data-redirect="{{ app.request.pathInfo }}">
+                                <thead>
+                                <tr>
+                                    <th width="250px">Class name</th>
+                                    <th>Title</th>
+                                    <th width="120px">Type</th>
+                                    <th width="180px"></th>
                                 </tr>
-                            {% endfor %}
-                            </tbody>
-                        </table>
+                                </thead>
+                                <tbody>
+                                {% for itm in data %}
+                                    <tr id="{{ itm.className }}" data-id="{{ itm.className }}" data-value="{{ itm._status }}" class="{% if filterModelCategory == 1 %}js-sortable-item{% endif%} js-data-item-container">
+                                        <td>{{ itm.className }}</td>
+                                        <td>{{ itm.title }}</td>
+                                        <td>
+                                            {% if itm.modelCategory == 1 %}
+                                                Customised
+                                            {% elseif itm.modelCategory == 2 %}
+                                                Built in
+                                            {% endif %}
+                                        </td>
+                                        <td>
+                                            <a rel="tooltip" class="js-data-item-button-status btn btn-simple {% if itm._status == 1 %}btn-success{% else%}btn-danger{% endif%} btn-icon table-action edit" href="#" data-original-title="Enable / Disable"><i class="fa fa-circle"></i></a>
+                                            <a rel="tooltip" class="btn btn-simple btn-default btn-icon table-action edit" href="{{ app.request.pathInfo }}/{{ itm.className }}{{ returnQuery }}" data-original-title="Edit"><i class="ti-pencil"></i></a>
+                                            <a rel="tooltip" class="btn btn-simple btn-default btn-icon table-action copy" href="{{ app.request.pathInfo }}/copy/{{ itm.className }}{{ returnQuery }}" data-original-title="Copy"><i class="ti-files"></i></a>
+                                            <a rel="tooltip" class="js-data-item-button-delete btn btn-simple btn-danger btn-icon table-action remove" href="#" data-original-title="Remove"><i class="ti-close"></i></a>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
                     {% endif %}
                 </div>
             </div>
