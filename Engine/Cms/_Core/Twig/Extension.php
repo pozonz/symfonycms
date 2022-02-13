@@ -152,7 +152,9 @@ class Extension extends AbstractExtension
             return '';
         }
         if (file_exists(__DIR__ . "/../../../../../../../templates/fragments/{$block->twig}")) {
-            return $this->_environment->render("fragments/{$block->twig}", array_merge($context, (array)$block->values));
+            return $this->_environment->render("fragments/{$block->twig}", array_merge($context, array_merge((array)$block->values, [
+                '__block' => $block,
+            ])));
         }
         return '';
     }
