@@ -38,7 +38,7 @@ class PageService
 
         $fullClass = UtilsService::getFullClassFromName('Page');
         /** @var Page[] $pages */
-        $pages = $fullClass::data($connection);
+        $pages = $fullClass::active($connection);
         foreach ($pages as $page) {
             $category = (array)$page->objCategory();
             if (!in_array($pageCategroyId, $category) && !($pageCategroyId == 0 && count($category) == 0)) {
