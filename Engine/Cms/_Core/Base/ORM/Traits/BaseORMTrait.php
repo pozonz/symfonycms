@@ -140,7 +140,7 @@ trait BaseORMTrait
         $implementedInterfaces = class_implements($myClass);
 
         $options['ignorePreview'] = isset($options['ignorePreview']) ? $options['ignorePreview'] : 0;
-        if (in_array('ExWife\\Engine\\Cms\\Core\\Version\\VersionInterface', $implementedInterfaces) && $options['ignorePreview'] != 1) {
+        if (in_array('ExWife\\Engine\\Cms\\_Core\\Version\\VersionInterface', $implementedInterfaces) && $options['ignorePreview'] != 1) {
             $path = explode('\\', $myClass);
             $className = array_pop($path);
             $request = $options['request'] ?? Request::createFromGlobals();
