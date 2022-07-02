@@ -202,6 +202,8 @@ window._formatMoney = _formatMoney;
                     className: className,
                 },
                 success: (response) => {
+                    success();
+
                     var url = $(dataItemContaienr).data('redirect');
                     if (url) {
                         location.href = url;
@@ -214,7 +216,6 @@ window._formatMoney = _formatMoney;
                         return;
                     }
 
-                    success();
                     $(dataItemContaienr).remove();
                 }
             });
