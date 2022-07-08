@@ -1,13 +1,13 @@
 <?php
 
-namespace ExWife\Engine\Cms\_Core\Model;
+namespace SymfonyCMS\Engine\Cms\_Core\Model;
 
-use ExWife\Engine\Cms\_Core\Base\ORM\BaseORM;
+use SymfonyCMS\Engine\Cms\_Core\Base\ORM\BaseORM;
 
 use Cocur\Slugify\Slugify;
 use Doctrine\DBAL\Connection;
-use ExWife\Engine\Cms\_Core\Service\ModelService;
-use ExWife\Engine\Cms\_Core\Service\UtilsService;
+use SymfonyCMS\Engine\Cms\_Core\Service\ModelService;
+use SymfonyCMS\Engine\Cms\_Core\Service\UtilsService;
 use Ramsey\Uuid\Uuid;
 
 class Model extends BaseORM

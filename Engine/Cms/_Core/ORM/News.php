@@ -1,9 +1,9 @@
 <?php
 
-namespace ExWife\Engine\Cms\_Core\ORM;
+namespace SymfonyCMS\Engine\Cms\_Core\ORM;
 
-use ExWife\Engine\Cms\_Core\ORM\Generated\NewsGenerated;
-use ExWife\Engine\Cms\_Core\ORM\Traits\NewsTrait;
+use SymfonyCMS\Engine\Cms\_Core\ORM\Generated\NewsGenerated;
+use SymfonyCMS\Engine\Cms\_Core\ORM\Traits\NewsTrait;
 
 class News extends NewsGenerated
 {

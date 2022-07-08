@@ -1,12 +1,12 @@
 <?php
 
-namespace ExWife\Engine\Cms\_Core\Base\ORM\Traits;
+namespace SymfonyCMS\Engine\Cms\_Core\Base\ORM\Traits;
 
 use Cocur\Slugify\Slugify;
 use Doctrine\DBAL\Connection;
-use ExWife\Engine\Cms\_Core\Model\Model;
-use ExWife\Engine\Cms\_Core\Service\UtilsService;
-use ExWife\Engine\Cms\_Core\Version\VersionInterface;
+use SymfonyCMS\Engine\Cms\_Core\Model\Model;
+use SymfonyCMS\Engine\Cms\_Core\Service\UtilsService;
+use SymfonyCMS\Engine\Cms\_Core\Version\VersionInterface;
 use Symfony\Component\HttpFoundation\Request;
 
 trait BaseORMTrait
@@ -140,7 +140,7 @@ trait BaseORMTrait
         $implementedInterfaces = class_implements($myClass);
 
         $options['ignorePreview'] = isset($options['ignorePreview']) ? $options['ignorePreview'] : 0;
-        if (in_array('ExWife\\Engine\\Cms\\_Core\\Version\\VersionInterface', $implementedInterfaces) && $options['ignorePreview'] != 1) {
+        if (in_array('SymfonyCMS\\Engine\\Cms\\_Core\\Version\\VersionInterface', $implementedInterfaces) && $options['ignorePreview'] != 1) {
             $path = explode('\\', $myClass);
             $className = array_pop($path);
             $request = $options['request'] ?? Request::createFromGlobals();
@@ -203,8 +203,8 @@ trait BaseORMTrait
         }
 
         $stmt = $connection->prepare($sql);
-        $stmt->execute($options['params']);
-        $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+        $stmtResult = $stmt->executeQuery($options['params']);
+        $result = $stmtResult->fetchAllAssociative();
 
         if ($options['orm']) {
             $orms = [];
@@ -311,22 +311,23 @@ trait BaseORMTrait
         try {
 
             $stmt = $this->_connection->prepare($sql);
-            $stmt->execute($params);
+            $stmt->executeQuery($params);
             if (!$this->id) {
                 $this->id = $this->_connection->lastInsertId();
             }
 
             if (method_exists($this, 'updateManageSearchList')) {
-                $this->updateManageSearchList();
+//                $this->updateManageSearchList();
             }
 
             if (method_exists($this, 'updateSiteSearchList')) {
-                $this->updateSiteSearchList();
+//                $this->updateSiteSearchList();
             }
 
             return $this->id;
         } catch (\Exception $ex) {
-            die($ex->getMessage());
+            var_dump($ex->getMessage(), $ex->getTraceAsString());
+            die();
         }
 
         return null;

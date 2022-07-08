@@ -1,9 +1,9 @@
 <?php
 
-namespace ExWife\Engine\Web\Cart\Payment;
+namespace SymfonyCMS\Engine\Web\Cart\Payment;
 
 use Doctrine\DBAL\Connection;
-use ExWife\Engine\Cms\_Core\Service\UtilsService;
+use SymfonyCMS\Engine\Cms\_Core\Service\UtilsService;
 use GuzzleHttp\Client;
 use GuzzleHttp\RequestOptions;
 use Ramsey\Uuid\Uuid;

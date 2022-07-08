@@ -1,6 +1,6 @@
 <?php
 
-namespace ExWife\Engine\Cms\_Core\ManageSearch;
+namespace SymfonyCMS\Engine\Cms\_Core\ManageSearch;
 
 use Doctrine\DBAL\Connection;
 

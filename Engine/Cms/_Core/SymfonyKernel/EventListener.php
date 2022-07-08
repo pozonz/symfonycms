@@ -1,13 +1,14 @@
 <?php
 
-namespace ExWife\Engine\Cms\_Core\SymfonyKernel;
+namespace SymfonyCMS\Engine\Cms\_Core\SymfonyKernel;
 
 use BlueM\Tree\Node;
 use Doctrine\DBAL\Connection;
 
 
-use ExWife\Engine\Cms\_Core\Service\CmsService;
-use ExWife\Engine\Cms\_Core\Service\UtilsService;
+use Symfony\Component\HttpKernel\Event\ExceptionEvent;
+use SymfonyCMS\Engine\Cms\_Core\Service\CmsService;
+use SymfonyCMS\Engine\Cms\_Core\Service\UtilsService;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -62,9 +63,9 @@ class EventListener
      * @throws \Twig\Error\RuntimeError
      * @throws \Twig\Error\SyntaxError
      */
-    public function onKernelException(GetResponseForExceptionEvent $event)
+    public function onKernelException(ExceptionEvent $event)
     {
-        $exception = $event->getException();
+        $exception = $event->getThrowable();
 
         if (!($exception instanceof RedirectException) && !($exception instanceof NotFoundHttpException) && !($exception instanceof MethodNotAllowedHttpException)) {
             $exception = $exception->getPrevious();

@@ -1,12 +1,12 @@
 <?php
 
-namespace ExWife\Engine\Web\_Core\Base\Controller;
+namespace SymfonyCMS\Engine\Web\_Core\Base\Controller;
 
-use ExWife\Engine\Web\_Core\Base\Controller\Traits\WebControllerTrait;
-use ExWife\Engine\Cms\_Core\Base\Controller\BaseController;
-use ExWife\Engine\Cms\_Core\Model\Model;
-use ExWife\Engine\Cms\_Core\Service\CmsService;
-use ExWife\Engine\Cms\_Core\Service\UtilsService;
+use SymfonyCMS\Engine\Web\_Core\Base\Controller\Traits\WebControllerTrait;
+use SymfonyCMS\Engine\Cms\_Core\Base\Controller\BaseController;
+use SymfonyCMS\Engine\Cms\_Core\Model\Model;
+use SymfonyCMS\Engine\Cms\_Core\Service\CmsService;
+use SymfonyCMS\Engine\Cms\_Core\Service\UtilsService;
 use Psr\Container\ContainerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -19,7 +19,7 @@ use Twig\Environment;
 
 /**
  * Class WebController
- * @package ExWife\Engine\Cms\_Core\Controller
+ * @package SymfonyCMS\Engine\Cms\_Core\Controller
  */
 class WebController extends BaseController
 {
@@ -48,7 +48,7 @@ class WebController extends BaseController
         $message = (new \Swift_Message())
             ->setSubject("Your Bedpost order has been received - #{$order->getTitle()}")
             ->setFrom([
-                getenv('EMAIL_FROM') => 'Bedpost',
+                $_ENV['EMAIL_FROM'] => 'Bedpost',
             ])
             ->setTo(['weida@iicnz.com', 'weida@gravitate.co.nz', 'jamie@gravitate.co.nz'])
             ->setBody(

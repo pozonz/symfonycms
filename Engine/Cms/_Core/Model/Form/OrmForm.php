@@ -1,15 +1,15 @@
 <?php
 
-namespace ExWife\Engine\Cms\_Core\Model\Form;
+namespace SymfonyCMS\Engine\Cms\_Core\Model\Form;
 
 use BlueM\Tree;
 use Cocur\Slugify\Slugify;
 
-use ExWife\Engine\Cms\_Core\Model\Form\Constraints\ConstraintUnique;
-use ExWife\Engine\Cms\_Core\Model\Model;
-use ExWife\Engine\Cms\_Core\Service\CmsService;
-use ExWife\Engine\Cms\_Core\Service\ModelService;
-use ExWife\Engine\Cms\_Core\Service\UtilsService;
+use SymfonyCMS\Engine\Cms\_Core\Model\Form\Constraints\ConstraintUnique;
+use SymfonyCMS\Engine\Cms\_Core\Model\Model;
+use SymfonyCMS\Engine\Cms\_Core\Service\CmsService;
+use SymfonyCMS\Engine\Cms\_Core\Service\ModelService;
+use SymfonyCMS\Engine\Cms\_Core\Service\UtilsService;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;

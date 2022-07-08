@@ -1,12 +1,12 @@
 <?php
 
-namespace ExWife\Engine\Cms\_Core\Service;
+namespace SymfonyCMS\Engine\Cms\_Core\Service;
 
 use BlueM\Tree;
 use Cocur\Slugify\Slugify;
 use Doctrine\DBAL\Connection;
-use ExWife\Engine\Cms\_Core\Base\ORM\Sql;
-use ExWife\Engine\Cms\_Core\Model\Model;
+use SymfonyCMS\Engine\Cms\_Core\Base\ORM\Sql;
+use SymfonyCMS\Engine\Cms\_Core\Model\Model;
 use Symfony\Component\HttpKernel\KernelInterface;
 
 class ModelService
@@ -253,7 +253,7 @@ EOD;
      */
     public function getOrmNamespace($model)
     {
-        return $model->modelCategory == 1 ? 'App\\ORM' : 'ExWife\\Engine\\Cms\\_Core\\ORM';
+        return $model->modelCategory == 1 ? 'App\\ORM' : 'SymfonyCMS\\Engine\\Cms\\_Core\\ORM';
     }
 
     /**
@@ -307,19 +307,19 @@ EOD;
     static public function getModelColumnWidgets()
     {
         $widgets = [
-            'Date picker' => '\\ExWife\\Engine\\Cms\\_Core\\Model\\Form\\Type\\DatePickerType',
-            'Date & time picker' => '\\ExWife\\Engine\\Cms\\_Core\\Model\\Form\\Type\\DateTimePickerType',
-            'Time picker' => '\\ExWife\\Engine\\Cms\\_Core\\Model\\Form\\Type\\TimePickerType',
-            'Asset picker' => '\\ExWife\\Engine\\Cms\\_Core\\Model\\Form\\Type\\AssetPickerType',
-            'Asset files picker' => '\\ExWife\\Engine\\Cms\\_Core\\Model\\Form\\Type\\AssetFilesPickerType',
-            'Wysiwyg' => '\\ExWife\\Engine\\Cms\\_Core\\Model\\Form\\Type\\WysiwygType',
+            'Date picker' => '\\SymfonyCMS\\Engine\\Cms\\_Core\\Model\\Form\\Type\\DatePickerType',
+            'Date & time picker' => '\\SymfonyCMS\\Engine\\Cms\\_Core\\Model\\Form\\Type\\DateTimePickerType',
+            'Time picker' => '\\SymfonyCMS\\Engine\\Cms\\_Core\\Model\\Form\\Type\\TimePickerType',
+            'Asset picker' => '\\SymfonyCMS\\Engine\\Cms\\_Core\\Model\\Form\\Type\\AssetPickerType',
+            'Asset files picker' => '\\SymfonyCMS\\Engine\\Cms\\_Core\\Model\\Form\\Type\\AssetFilesPickerType',
+            'Wysiwyg' => '\\SymfonyCMS\\Engine\\Cms\\_Core\\Model\\Form\\Type\\WysiwygType',
             'Choice' => '\\Symfony\\Component\\Form\\Extension\\Core\\Type\\ChoiceType',
-            'Choice multi' => '\\ExWife\\Engine\\Cms\\_Core\\Model\\Form\\Type\\ChoiceMultiType',
-            'Choice tree' => '\\ExWife\\Engine\\Cms\\_Core\\Model\\Form\\Type\\ChoiceTreeType',
-            'Choice tree multi' => '\\ExWife\\Engine\\Cms\\_Core\\Model\\Form\\Type\\ChoiceTreeMultiType',
-            'Choice sortable' => '\\ExWife\\Engine\\Cms\\_Core\\Model\\Form\\Type\\ChoiceSortableType',
-            'Multiple key value pair' => '\\ExWife\\Engine\\Cms\\_Core\\Model\\Form\\Type\\MultipleKeyValuePairType',
-            'Content blocks' => '\\ExWife\\Engine\\Cms\\_Core\\Model\\Form\\Type\\ContentBlockType',
+            'Choice multi' => '\\SymfonyCMS\\Engine\\Cms\\_Core\\Model\\Form\\Type\\ChoiceMultiType',
+            'Choice tree' => '\\SymfonyCMS\\Engine\\Cms\\_Core\\Model\\Form\\Type\\ChoiceTreeType',
+            'Choice tree multi' => '\\SymfonyCMS\\Engine\\Cms\\_Core\\Model\\Form\\Type\\ChoiceTreeMultiType',
+            'Choice sortable' => '\\SymfonyCMS\\Engine\\Cms\\_Core\\Model\\Form\\Type\\ChoiceSortableType',
+            'Multiple key value pair' => '\\SymfonyCMS\\Engine\\Cms\\_Core\\Model\\Form\\Type\\MultipleKeyValuePairType',
+            'Content blocks' => '\\SymfonyCMS\\Engine\\Cms\\_Core\\Model\\Form\\Type\\ContentBlockType',
             'Checkbox' => '\\Symfony\\Component\\Form\\Extension\\Core\\Type\\CheckboxType',
             'Email' => '\\Symfony\\Component\\Form\\Extension\\Core\\Type\\EmailType',
             'Password' => '\\Symfony\\Component\\Form\\Extension\\Core\\Type\\PasswordType',
@@ -635,13 +635,16 @@ EOD;
      * @param $sqlQuery
      * @return array
      */
-    static public function getResultQueryDataFromQuery($connection, $sqlQuery)
+    static public function getResultQueryDataFromQuery(Connection $connection, $sqlQuery)
     {
         $result = [];
         if ($sqlQuery) {
             $stmt = $connection->prepare($sqlQuery);
-            $stmt->execute();
-            $result = $stmt->fetchAll(\PDO::FETCH_OBJ);
+            $stmtResult = $stmt->executeQuery();
+            $result = $stmtResult->fetchAllAssociative();
+            $result = array_map(function ($itm) {
+                return (object)$itm;
+            }, $result);
         }
         return $result;
     }

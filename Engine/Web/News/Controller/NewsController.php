@@ -1,12 +1,12 @@
 <?php
 
-namespace ExWife\Engine\Web\News\Controller;
+namespace SymfonyCMS\Engine\Web\News\Controller;
 
 use Doctrine\DBAL\Connection;
-use ExWife\Engine\Cms\_Core\Base\Controller\BaseController;
-use ExWife\Engine\Cms\_Core\Base\Controller\Traits\ManageControllerTrait;
-use ExWife\Engine\Web\_Core\Base\Controller\Traits\WebControllerTrait;
-use ExWife\Engine\Cms\_Core\Service\UtilsService;
+use SymfonyCMS\Engine\Cms\_Core\Base\Controller\BaseController;
+use SymfonyCMS\Engine\Cms\_Core\Base\Controller\Traits\ManageControllerTrait;
+use SymfonyCMS\Engine\Web\_Core\Base\Controller\Traits\WebControllerTrait;
+use SymfonyCMS\Engine\Cms\_Core\Service\UtilsService;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
@@ -77,7 +77,7 @@ class NewsController extends BaseController
      */
     protected function filterNewsResult(Request $request, $selectNewsCategory)
     {
-        $limit = getenv('NEWS_LISTING_LIMIT') ?: 21;
+        $limit = $_ENV['NEWS_LISTING_LIMIT'] ?: 21;
         $pageNum = $request->get('pageNum') ?: 1;
         $sort = $request->get('sortby') ?: 'm.date';
         $order = 'DESC';

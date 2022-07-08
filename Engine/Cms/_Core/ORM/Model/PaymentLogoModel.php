@@ -1,9 +1,9 @@
 <?php
 
-namespace ExWife\Engine\Cms\_Core\ORM\Model;
+namespace SymfonyCMS\Engine\Cms\_Core\ORM\Model;
 
 use Doctrine\DBAL\Connection;
-use ExWife\Engine\Cms\_Core\Model\Model;
+use SymfonyCMS\Engine\Cms\_Core\Model\Model;
 
 class PaymentLogoModel extends Model
 {

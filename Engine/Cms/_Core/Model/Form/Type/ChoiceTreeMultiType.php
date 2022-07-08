@@ -1,5 +1,5 @@
 <?php
-namespace ExWife\Engine\Cms\_Core\Model\Form\Type;
+namespace SymfonyCMS\Engine\Cms\_Core\Model\Form\Type;
 
 use \BlueM\Tree\Node;
 use Symfony\Component\Form\AbstractType;

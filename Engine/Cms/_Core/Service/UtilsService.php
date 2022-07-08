@@ -1,12 +1,12 @@
 <?php
 
-namespace ExWife\Engine\Cms\_Core\Service;
+namespace SymfonyCMS\Engine\Cms\_Core\Service;
 
 use BlueM\Tree;
 use Cocur\Slugify\Slugify;
 use Doctrine\DBAL\Connection;
-use ExWife\Engine\Cms\_Core\Base\ORM\BaseORM;
-use ExWife\Engine\Cms\_Core\ORM\Page;
+use SymfonyCMS\Engine\Cms\_Core\Base\ORM\BaseORM;
+use SymfonyCMS\Engine\Cms\_Core\ORM\Page;
 use Ramsey\Uuid\Uuid;
 use Symfony\Component\HttpKernel\KernelInterface;
 
@@ -61,7 +61,7 @@ class UtilsService
     {
         $fullClassNames = [
             "\\App\\ORM\\Model\\{$className}Model",
-            "\\ExWife\\Engine\\Cms\\_Core\\ORM\\Model\\{$className}Model",
+            "\\SymfonyCMS\\Engine\\Cms\\_Core\\ORM\\Model\\{$className}Model",
         ];
         foreach ($fullClassNames as $fullClassName) {
             if (class_exists($fullClassName)) {
@@ -79,7 +79,7 @@ class UtilsService
     {
         $fullClassNames = [
             "\\App\\ORM\\{$className}",
-            "\\ExWife\\Engine\\Cms\\_Core\\ORM\\{$className}",
+            "\\SymfonyCMS\\Engine\\Cms\\_Core\\ORM\\{$className}",
         ];
         foreach ($fullClassNames as $fullClassName) {
             if (class_exists($fullClassName)) {

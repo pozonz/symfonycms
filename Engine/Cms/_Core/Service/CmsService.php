@@ -1,13 +1,13 @@
 <?php
 
-namespace ExWife\Engine\Cms\_Core\Service;
+namespace SymfonyCMS\Engine\Cms\_Core\Service;
 
 use BlueM\Tree;
 use Cocur\Slugify\Slugify;
 use Doctrine\DBAL\Connection;
-use ExWife\Engine\Cms\_Core\Base\ORM\BaseORM;
-use ExWife\Engine\Cms\_Core\Model\Model;
-use ExWife\Engine\Cms\Page\Service\PageService;
+use SymfonyCMS\Engine\Cms\_Core\Base\ORM\BaseORM;
+use SymfonyCMS\Engine\Cms\_Core\Model\Model;
+use SymfonyCMS\Engine\Cms\Page\Service\PageService;
 use Ramsey\Uuid\Uuid;
 use Symfony\Component\HttpKernel\KernelInterface;
 use Symfony\Component\Security\Core\Security;
@@ -238,7 +238,7 @@ class CmsService
      */
     static public function getTheme()
     {
-        return getenv('theme') ?: 'paper-dashboard';
+        return $_ENV['theme'] ?? 'paper-dashboard';
     }
 
     /**

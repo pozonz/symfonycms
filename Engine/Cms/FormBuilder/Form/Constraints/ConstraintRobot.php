@@ -1,6 +1,6 @@
 <?php
 
-namespace ExWife\Engine\Cms\FormBuilder\Form\Constraints;
+namespace SymfonyCMS\Engine\Cms\FormBuilder\Form\Constraints;
 
 use Symfony\Component\Validator\Constraint;
 

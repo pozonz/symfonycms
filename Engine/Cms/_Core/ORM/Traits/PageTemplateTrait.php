@@ -1,8 +1,8 @@
 <?php
 
-namespace ExWife\Engine\Cms\_Core\ORM\Traits;
+namespace SymfonyCMS\Engine\Cms\_Core\ORM\Traits;
 
-use ExWife\Engine\Cms\Page\Service\PageService;
+use SymfonyCMS\Engine\Cms\Page\Service\PageService;
 
 trait PageTemplateTrait
 {

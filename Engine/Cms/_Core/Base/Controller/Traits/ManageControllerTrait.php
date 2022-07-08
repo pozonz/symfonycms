@@ -1,17 +1,17 @@
 <?php
 
-namespace ExWife\Engine\Cms\_Core\Base\Controller\Traits;
+namespace SymfonyCMS\Engine\Cms\_Core\Base\Controller\Traits;
 
 use BlueM\Tree;
 use Cocur\Slugify\Slugify;
 use Doctrine\DBAL\Connection;
-use ExWife\Engine\Cms\_Core\Model\Form\ModelForm;
-use ExWife\Engine\Cms\_Core\Model\Form\OrmForm;
-use ExWife\Engine\Cms\_Core\Model\Model;
-use ExWife\Engine\Cms\_Core\Service\CmsService;
-use ExWife\Engine\Cms\_Core\Service\ModelService;
-use ExWife\Engine\Cms\_Core\Service\UtilsService;
-use ExWife\Engine\Cms\_Core\SymfonyKernel\RedirectException;
+use SymfonyCMS\Engine\Cms\_Core\Model\Form\ModelForm;
+use SymfonyCMS\Engine\Cms\_Core\Model\Form\OrmForm;
+use SymfonyCMS\Engine\Cms\_Core\Model\Model;
+use SymfonyCMS\Engine\Cms\_Core\Service\CmsService;
+use SymfonyCMS\Engine\Cms\_Core\Service\ModelService;
+use SymfonyCMS\Engine\Cms\_Core\Service\UtilsService;
+use SymfonyCMS\Engine\Cms\_Core\SymfonyKernel\RedirectException;
 use Ramsey\Uuid\Uuid;
 use Symfony\Component\HttpClient\Exception\RedirectionException;
 use Symfony\Component\HttpFoundation\JsonResponse;

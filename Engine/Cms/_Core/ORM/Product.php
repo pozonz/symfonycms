@@ -1,9 +1,9 @@
 <?php
 
-namespace ExWife\Engine\Cms\_Core\ORM;
+namespace SymfonyCMS\Engine\Cms\_Core\ORM;
 
-use ExWife\Engine\Cms\_Core\ORM\Generated\ProductGenerated;
-use ExWife\Engine\Cms\_Core\ORM\Traits\ProductTrait;
+use SymfonyCMS\Engine\Cms\_Core\ORM\Generated\ProductGenerated;
+use SymfonyCMS\Engine\Cms\_Core\ORM\Traits\ProductTrait;
 
 class Product extends ProductGenerated
 {

@@ -1,14 +1,14 @@
 <?php
 
-namespace ExWife\Engine\Web\_Core\Controller;
+namespace SymfonyCMS\Engine\Web\_Core\Controller;
 
 use Doctrine\DBAL\Connection;
-use ExWife\Engine\Cms\_Core\Base\Controller\BaseController;
-use ExWife\Engine\Cms\_Core\Base\Controller\Traits\ManageControllerTrait;
+use SymfonyCMS\Engine\Cms\_Core\Base\Controller\BaseController;
+use SymfonyCMS\Engine\Cms\_Core\Base\Controller\Traits\ManageControllerTrait;
 
-use ExWife\Engine\Cms\_Core\Model\Model;
-use ExWife\Engine\Cms\_Core\Service\CmsService;
-use ExWife\Engine\Cms\_Core\Service\UtilsService;
+use SymfonyCMS\Engine\Cms\_Core\Model\Model;
+use SymfonyCMS\Engine\Cms\_Core\Service\CmsService;
+use SymfonyCMS\Engine\Cms\_Core\Service\UtilsService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\RedirectResponse;

@@ -1,9 +1,9 @@
 <?php
 
-namespace ExWife\Engine\Cms\_Core\ORM\Traits;
+namespace SymfonyCMS\Engine\Cms\_Core\ORM\Traits;
 
 use Doctrine\DBAL\Connection;
-use ExWife\Engine\Cms\_Core\Service\UtilsService;
+use SymfonyCMS\Engine\Cms\_Core\Service\UtilsService;
 use Ramsey\Uuid\Uuid;
 use Symfony\Component\Security\Core\Encoder\MessageDigestPasswordEncoder;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -112,7 +112,7 @@ trait CustomerTrait
         }
 
         $this->_connection = \Doctrine\DBAL\DriverManager::getConnection(array(
-            'url' => getenv('DATABASE_URL'),
+            'url' => $_ENV['DATABASE_URL'],
         ), new \Doctrine\DBAL\Configuration());
     }
 }

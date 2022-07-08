@@ -1,13 +1,13 @@
 <?php
 
-namespace ExWife\Engine\Web\_Core\Controller;
+namespace SymfonyCMS\Engine\Web\_Core\Controller;
 
 use Doctrine\DBAL\Connection;
-use ExWife\Engine\Cms\_Core\Base\Controller\BaseController;
-use ExWife\Engine\Cms\_Core\Base\Controller\Traits\ManageControllerTrait;
+use SymfonyCMS\Engine\Cms\_Core\Base\Controller\BaseController;
+use SymfonyCMS\Engine\Cms\_Core\Base\Controller\Traits\ManageControllerTrait;
 
-use ExWife\Engine\Cms\_Core\Service\UtilsService;
-use ExWife\Engine\Cms\File\Service\FileManagerService;
+use SymfonyCMS\Engine\Cms\_Core\Service\UtilsService;
+use SymfonyCMS\Engine\Cms\File\Service\FileManagerService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -127,8 +127,8 @@ class PreviewController extends AbstractController
         }
 
         if ($fileType == 'application/pdf' && !$returnOriginalFile) {
-            $pdfRasterToken = getenv('PDF_RASTER_TOKEN');
-            $pdfRasterEndPoint = getenv('PDF_RASTER_ENDPOINT');
+            $pdfRasterToken = $_ENV['PDF_RASTER_TOKEN'];
+            $pdfRasterEndPoint = $_ENV['PDF_RASTER_ENDPOINT'];
 
             if ($pdfRasterToken && $pdfRasterEndPoint) {
                 $url = $request->getSchemeAndHttpHost() . "/downloads/assets/{$assetCode}";
@@ -211,10 +211,10 @@ class PreviewController extends AbstractController
                 $cropCmd = "-crop {$assetCrop->width}x{$assetCrop->height}+{$assetCrop->x}+{$assetCrop->y}";
             }
 
-            $command = getenv('CONVERT_CMD') . " $fileLocation {$qualityCmd} {$cropCmd} {$resizeCmd} {$colorCmd} -strip $thumbnail";
+            $command = $_ENV['CONVERT_CMD'] . " $fileLocation {$qualityCmd} {$cropCmd} {$resizeCmd} {$colorCmd} -strip $thumbnail";
         }
 
-        $saveAssetsToDb = getenv('SAVE_ASSETS_TO_DB');
+        $saveAssetsToDb = $_ENV['SAVE_ASSETS_TO_DB'];
         if ($saveAssetsToDb && !file_exists($fileLocation)) {
             $assetBinaryFullClass = UtilsService::getFullClassFromName('AssetBinary');
             $assetBinary = $assetBinaryFullClass::getByField($this->_connection, 'title', $asset->id);
@@ -246,7 +246,7 @@ class PreviewController extends AbstractController
         }
 
         if ($useWebp && $assetSizeCode && !$returnOriginalFile && $fileType != 'image/gif') {
-            $command = getenv('CWEBP_CMD') . " $thumbnail -o $webpThumbnail";
+            $command = $_ENV['CWEBP_CMD'] . " $thumbnail -o $webpThumbnail";
             $returnValue =  $this->_fileManagerService->generateOutput($command);
 
             $fileSize == filesize($webpThumbnail);

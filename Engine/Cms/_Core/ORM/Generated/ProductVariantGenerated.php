@@ -1,10 +1,10 @@
 <?php
 
-namespace ExWife\Engine\Cms\_Core\ORM\Generated;
+namespace SymfonyCMS\Engine\Cms\_Core\ORM\Generated;
 
-use ExWife\Engine\Cms\_Core\Base\ORM\BaseORM;
-use ExWife\Engine\Cms\_Core\Version\VersionInterface;
-use ExWife\Engine\Cms\_Core\Version\VersionTrait;
+use SymfonyCMS\Engine\Cms\_Core\Base\ORM\BaseORM;
+use SymfonyCMS\Engine\Cms\_Core\Version\VersionInterface;
+use SymfonyCMS\Engine\Cms\_Core\Version\VersionTrait;
 
 class ProductVariantGenerated extends BaseORM 
 {

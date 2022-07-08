@@ -1,9 +1,9 @@
 <?php
 
-namespace ExWife\Engine\Cms\_Core\ORM;
+namespace SymfonyCMS\Engine\Cms\_Core\ORM;
 
-use ExWife\Engine\Cms\_Core\ORM\Generated\NewsCategoryGenerated;
-use ExWife\Engine\Cms\_Core\ORM\Traits\NewsCategoryTrait;
+use SymfonyCMS\Engine\Cms\_Core\ORM\Generated\NewsCategoryGenerated;
+use SymfonyCMS\Engine\Cms\_Core\ORM\Traits\NewsCategoryTrait;
 
 class NewsCategory extends NewsCategoryGenerated
 {

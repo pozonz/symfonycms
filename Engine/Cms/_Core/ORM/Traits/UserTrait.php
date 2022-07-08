@@ -1,14 +1,22 @@
 <?php
 
-namespace ExWife\Engine\Cms\_Core\ORM\Traits;
+namespace SymfonyCMS\Engine\Cms\_Core\ORM\Traits;
 
-use ExWife\Engine\Cms\_Core\Service\CmsService;
-use ExWife\Engine\Cms\_Core\Service\UtilsService;
+use SymfonyCMS\Engine\Cms\_Core\Service\CmsService;
+use SymfonyCMS\Engine\Cms\_Core\Service\UtilsService;
 use Symfony\Component\Security\Core\Encoder\MessageDigestPasswordEncoder;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 trait UserTrait
 {
+    /**
+     * @return mixed
+     */
+    public function objAccessibleSections()
+    {
+        return json_decode($this->accessibleSections ?: '[]');
+    }
+
     /**
      * @param array $options
      * @return string|null
@@ -121,15 +129,7 @@ trait UserTrait
         }
 
         $this->_connection = \Doctrine\DBAL\DriverManager::getConnection(array(
-            'url' => getenv('DATABASE_URL'),
+            'url' => $_ENV['DATABASE_URL'],
         ), new \Doctrine\DBAL\Configuration());
-    }
-
-    /**
-     * @return mixed
-     */
-    public function objAccessibleSections()
-    {
-        return json_decode($this->accessibleSections ?: '[]');
     }
 }

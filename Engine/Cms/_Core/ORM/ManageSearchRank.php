@@ -1,9 +1,9 @@
 <?php
 
-namespace ExWife\Engine\Cms\_Core\ORM;
+namespace SymfonyCMS\Engine\Cms\_Core\ORM;
 
-use ExWife\Engine\Cms\_Core\ORM\Generated\ManageSearchRankGenerated;
-use ExWife\Engine\Cms\_Core\ORM\Traits\ManageSearchRankTrait;
+use SymfonyCMS\Engine\Cms\_Core\ORM\Generated\ManageSearchRankGenerated;
+use SymfonyCMS\Engine\Cms\_Core\ORM\Traits\ManageSearchRankTrait;
 
 class ManageSearchRank extends ManageSearchRankGenerated
 {

@@ -1,14 +1,14 @@
 <?php
 
-namespace ExWife\Engine\Cms\ContentBlock\Controller;
+namespace SymfonyCMS\Engine\Cms\ContentBlock\Controller;
 
 use Doctrine\DBAL\Connection;
-use ExWife\Engine\Cms\_Core\Base\Controller\BaseController;
-use ExWife\Engine\Cms\_Core\Base\Controller\Traits\ManageControllerTrait;
+use SymfonyCMS\Engine\Cms\_Core\Base\Controller\BaseController;
+use SymfonyCMS\Engine\Cms\_Core\Base\Controller\Traits\ManageControllerTrait;
 
-use ExWife\Engine\Cms\_Core\Model\Model;
-use ExWife\Engine\Cms\_Core\Service\UtilsService;
-use ExWife\Engine\Cms\Page\Service\PageService;
+use SymfonyCMS\Engine\Cms\_Core\Model\Model;
+use SymfonyCMS\Engine\Cms\_Core\Service\UtilsService;
+use SymfonyCMS\Engine\Cms\Page\Service\PageService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -22,7 +22,7 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 /**
  * @route("/manage")
  * Class ContentBlockController
- * @package ExWife\Engine\Cms\ContentBlock\Controller
+ * @package SymfonyCMS\Engine\Cms\ContentBlock\Controller
  */
 class ContentBlockController extends BaseController
 {

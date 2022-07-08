@@ -1,9 +1,9 @@
 <?php
 
-namespace ExWife\Engine\Web\Cart\Service;
+namespace SymfonyCMS\Engine\Web\Cart\Service;
 
 use Doctrine\DBAL\Connection;
-use ExWife\Engine\Cms\_Core\Service\UtilsService;
+use SymfonyCMS\Engine\Cms\_Core\Service\UtilsService;
 use Ramsey\Uuid\Uuid;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -151,7 +151,7 @@ class CartService
 //            $cart->setEmail($cart->email && filter_var($cart->email, FILTER_VALIDATE_EMAIL) ? $cart->email : $customer->getTitle());
 //        }
 
-        if (getenv('SHIPPING_PICKUP_ALLOWED') != 1) {
+        if ($_ENV['SHIPPING_PICKUP_ALLOWED'] != 1) {
             $cart->isPickup = 2;
         }
 
@@ -366,7 +366,7 @@ class CartService
             'params' => [$ormCountry->id],
         ]);
 
-        if (getenv('SHIPPING_PRICE_MODE') == 1) {
+        if ($_ENV['SHIPPING_PRICE_MODE'] == 1) {
             $region = $cart->shippingState;
             $ormRegion = $fullClass::getByField($this->_connection, 'title', $region);
             $data = array_filter($data, function ($itm) use ($ormRegion) {
@@ -382,7 +382,7 @@ class CartService
                 return 0;
             });
 
-        } else if (getenv('SHIPPING_PRICE_MODE') == 2) {
+        } else if ($_ENV['SHIPPING_PRICE_MODE'] == 2) {
             $postcode = $cart->shippingPostcode;
 
             $data = array_filter($data, function ($itm) use ($postcode) {
@@ -434,7 +434,7 @@ class CartService
             return null;
         }
 
-        if (getenv('SHIPPING_PRICE_MODE') == 1) {
+        if ($_ENV['SHIPPING_PRICE_MODE'] == 1) {
             $region = $cart->shippingState;
             $ormRegion = $fullClass::getByField($this->_connection, 'title', $region);
 
@@ -462,7 +462,7 @@ class CartService
                 }
             }
 
-        } else if (getenv('SHIPPING_PRICE_MODE') == 2) {
+        } else if ($_ENV['SHIPPING_PRICE_MODE'] == 2) {
             $postcode = $cart->shippingPostcode;
 
             $objShippingCostRates = $deliveryOption->objShippingCostRates();
@@ -565,12 +565,12 @@ class CartService
             'email' => $order->email,
         ));
         $message = (new \Swift_Message())
-            ->setSubject((getenv('EMAIL_ORDER_SUBJECT') ?: 'Your order has been received') . " - #{$order->title}")
+            ->setSubject(($_ENV['EMAIL_ORDER_SUBJECT'] ?: 'Your order has been received') . " - #{$order->title}")
             ->setFrom([
-                getenv('EMAIL_FROM') => getenv('EMAIL_FROM_NAME')
+                $_ENV['EMAIL_FROM'] => $_ENV['EMAIL_FROM_NAME']
             ])
             ->setTo([$order->email])
-            ->setBcc(array_filter(explode(',', getenv('EMAIL_BCC_ORDER'))))
+            ->setBcc(array_filter(explode(',', $_ENV['EMAIL_BCC_ORDER'])))
             ->setBody(
                 $messageBody, 'text/html'
             );
@@ -593,10 +593,10 @@ class CartService
         $message = (new \Swift_Message())
             ->setSubject($subject)
             ->setFrom([
-                getenv('EMAIL_FROM') => getenv('EMAIL_FROM_NAME')
+                $_ENV['EMAIL_FROM'] => $_ENV['EMAIL_FROM_NAME']
             ])
             ->setTo([$customer->title])
-            ->setBcc(array_filter(explode(',', getenv('EMAIL_BCC_ORDER'))))
+            ->setBcc(array_filter(explode(',', $_ENV['EMAIL_BCC_ORDER'])))
             ->setBody(
                 $messageBody, 'text/html'
             );
@@ -619,10 +619,10 @@ class CartService
         $message = (new \Swift_Message())
             ->setSubject($subject)
             ->setFrom([
-                getenv('EMAIL_FROM') => getenv('EMAIL_FROM_NAME')
+                $_ENV['EMAIL_FROM'] => $_ENV['EMAIL_FROM_NAME']
             ])
             ->setTo([$customer->title])
-            ->setBcc(array_filter(explode(',', getenv('EMAIL_BCC_ORDER'))))
+            ->setBcc(array_filter(explode(',', $_ENV['EMAIL_BCC_ORDER'])))
             ->setBody(
                 $messageBody, 'text/html'
             );
@@ -650,7 +650,7 @@ class CartService
     {
         $gatewayClasses = [];
 
-        $paymentMethods = explode(',', getenv('PAYMENT_METHODS'));
+        $paymentMethods = explode(',', $_ENV['PAYMENT_METHODS']);
         foreach ($paymentMethods as $paymentMethod) {
             $gatewayClasses[] = $this->getGatewayClass($paymentMethod);
         }
@@ -665,7 +665,7 @@ class CartService
     {
         $nameSpaces = [
             '\\App\\Cart\\Payment\\',
-            '\\ExWife\\Engine\\Web\\Cart\\Payment\\',
+            '\\SymfonyCMS\\Engine\\Web\\Cart\\Payment\\',
         ];
         foreach ($nameSpaces as $nameSpace) {
             $class = "{$nameSpace}Gateway{$code}";

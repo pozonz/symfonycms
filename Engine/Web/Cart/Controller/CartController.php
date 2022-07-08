@@ -1,17 +1,17 @@
 <?php
 
-namespace ExWife\Engine\Web\Cart\Controller;
+namespace SymfonyCMS\Engine\Web\Cart\Controller;
 
 use Doctrine\DBAL\Connection;
-use ExWife\Engine\Cms\_Core\Base\Controller\BaseController;
-use ExWife\Engine\Cms\_Core\Base\Controller\Traits\ManageControllerTrait;
-use ExWife\Engine\Web\_Core\Base\Controller\Traits\WebControllerTrait;
-use ExWife\Engine\Cms\_Core\Service\CmsService;
-use ExWife\Engine\Cms\_Core\Service\UtilsService;
+use SymfonyCMS\Engine\Cms\_Core\Base\Controller\BaseController;
+use SymfonyCMS\Engine\Cms\_Core\Base\Controller\Traits\ManageControllerTrait;
+use SymfonyCMS\Engine\Web\_Core\Base\Controller\Traits\WebControllerTrait;
+use SymfonyCMS\Engine\Cms\_Core\Service\CmsService;
+use SymfonyCMS\Engine\Cms\_Core\Service\UtilsService;
 
-use ExWife\Engine\Web\Cart\Form\CheckoutPaymentForm;
-use ExWife\Engine\Web\Cart\Form\CheckoutShippingForm;
-use ExWife\Engine\Web\Cart\Service\CartService;
+use SymfonyCMS\Engine\Web\Cart\Form\CheckoutPaymentForm;
+use SymfonyCMS\Engine\Web\Cart\Form\CheckoutShippingForm;
+use SymfonyCMS\Engine\Web\Cart\Service\CartService;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;

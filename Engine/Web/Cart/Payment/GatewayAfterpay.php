@@ -1,8 +1,8 @@
 <?php
 
-namespace ExWife\Engine\Web\Cart\Payment;
+namespace SymfonyCMS\Engine\Web\Cart\Payment;
 
-use ExWife\Engine\Cms\_Core\Service\UtilsService;
+use SymfonyCMS\Engine\Cms\_Core\Service\UtilsService;
 use Doctrine\DBAL\Connection;
 use GuzzleHttp\Client;
 use GuzzleHttp\RequestOptions;

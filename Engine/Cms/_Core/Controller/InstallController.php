@@ -1,16 +1,16 @@
 <?php
 
-namespace ExWife\Engine\Cms\_Core\Controller;
+namespace SymfonyCMS\Engine\Cms\_Core\Controller;
 
 use Doctrine\DBAL\Connection;
-use ExWife\Engine\Cms\_Core\Base\Controller\Traits\ManageControllerTrait;
-use ExWife\Engine\Cms\_Core\Service\CmsService;
-use ExWife\Engine\Cms\_Core\Service\ModelService;
-use ExWife\Engine\Cms\_Core\Model\Form\ModelForm;
-use ExWife\Engine\Cms\_Core\Model\Model;
-use ExWife\Engine\Cms\_Core\Base\Controller\BaseController;
+use SymfonyCMS\Engine\Cms\_Core\Base\Controller\Traits\ManageControllerTrait;
+use SymfonyCMS\Engine\Cms\_Core\Service\CmsService;
+use SymfonyCMS\Engine\Cms\_Core\Service\ModelService;
+use SymfonyCMS\Engine\Cms\_Core\Model\Form\ModelForm;
+use SymfonyCMS\Engine\Cms\_Core\Model\Model;
+use SymfonyCMS\Engine\Cms\_Core\Base\Controller\BaseController;
 
-use ExWife\Engine\Cms\_Core\Service\UtilsService;
+use SymfonyCMS\Engine\Cms\_Core\Service\UtilsService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -21,7 +21,7 @@ use Symfony\Component\Routing\Annotation\Route;
 /**
  * @route("/install")
  * Class ModelController
- * @package ExWife\Engine\Cms\Model\Controller
+ * @package SymfonyCMS\Engine\Cms\Model\Controller
  */
 class InstallController extends AbstractController
 {

@@ -1,14 +1,14 @@
 <?php
 
-namespace ExWife\Engine\Web\_Core\Controller;
+namespace SymfonyCMS\Engine\Web\_Core\Controller;
 
 use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\FetchMode;
 
-use ExWife\Engine\Cms\_Core\Service\CmsService;
-use ExWife\Engine\Cms\_Core\Service\UtilsService;
+use SymfonyCMS\Engine\Cms\_Core\Service\CmsService;
+use SymfonyCMS\Engine\Cms\_Core\Service\UtilsService;
 
-use ExWife\Engine\Cms\_Core\SiteSearch\SiteSearchInterface;
+use SymfonyCMS\Engine\Cms\_Core\SiteSearch\SiteSearchInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -17,7 +17,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * Class SiteSearchController
- * @package ExWife\Engine\Cms\_Core\Controller
+ * @package SymfonyCMS\Engine\Cms\_Core\Controller
  */
 class SiteSearchController extends AbstractController
 {

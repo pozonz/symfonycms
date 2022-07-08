@@ -1,9 +1,9 @@
 <?php
 
-namespace ExWife\Engine\Cms\_Core\ORM;
+namespace SymfonyCMS\Engine\Cms\_Core\ORM;
 
-use ExWife\Engine\Cms\_Core\ORM\Generated\FormSubmissionGenerated;
-use ExWife\Engine\Cms\_Core\ORM\Traits\FormSubmissionTrait;
+use SymfonyCMS\Engine\Cms\_Core\ORM\Generated\FormSubmissionGenerated;
+use SymfonyCMS\Engine\Cms\_Core\ORM\Traits\FormSubmissionTrait;
 
 class FormSubmission extends FormSubmissionGenerated
 {

@@ -1,17 +1,17 @@
 <?php
 
-namespace ExWife\Engine\Cms\File\Controller;
+namespace SymfonyCMS\Engine\Cms\File\Controller;
 
-use ExWife\Engine\Cms\_Core\Base\Controller\BaseController;
-use ExWife\Engine\Cms\_Core\Base\Controller\Traits\ManageControllerTrait;
+use SymfonyCMS\Engine\Cms\_Core\Base\Controller\BaseController;
+use SymfonyCMS\Engine\Cms\_Core\Base\Controller\Traits\ManageControllerTrait;
 
 use Doctrine\DBAL\Connection;
 
-use ExWife\Engine\Cms\_Core\Model\Model;
-use ExWife\Engine\Cms\_Core\Service\CmsService;
-use ExWife\Engine\Cms\_Core\Service\UtilsService;
-use ExWife\Engine\Cms\File\Form\FileForm;
-use ExWife\Engine\Cms\File\Service\FileManagerService;
+use SymfonyCMS\Engine\Cms\_Core\Model\Model;
+use SymfonyCMS\Engine\Cms\_Core\Service\CmsService;
+use SymfonyCMS\Engine\Cms\_Core\Service\UtilsService;
+use SymfonyCMS\Engine\Cms\File\Form\FileForm;
+use SymfonyCMS\Engine\Cms\File\Service\FileManagerService;
 use MillenniumFalcon\Core\Service\AssetService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Form;
@@ -27,7 +27,7 @@ use Twig\Environment;
 /**
  * @Route("/manage")
  * Class FileController
- * @package ExWife\Engine\Cms\File\Controller
+ * @package SymfonyCMS\Engine\Cms\File\Controller
  */
 class FileController extends BaseController
 {

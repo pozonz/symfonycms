@@ -1,9 +1,9 @@
 <?php
 
-namespace ExWife\Engine\Cms\_Core\Service;
+namespace SymfonyCMS\Engine\Cms\_Core\Service;
 
 use Doctrine\DBAL\Connection;
-use ExWife\Engine\Cms\_Core\Service\UtilsService;
+use SymfonyCMS\Engine\Cms\_Core\Service\UtilsService;
 
 class DbService
 {

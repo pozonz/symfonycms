@@ -1,7 +1,7 @@
 <?php
-namespace ExWife\Engine\Cms\_Core\Model\Form\Constraints;
+namespace SymfonyCMS\Engine\Cms\_Core\Model\Form\Constraints;
 
-use ExWife\Engine\Cms\_Core\Service\UtilsService;
+use SymfonyCMS\Engine\Cms\_Core\Service\UtilsService;
 use MillenniumFalcon\Core\Service\ModelService;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;

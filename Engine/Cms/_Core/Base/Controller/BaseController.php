@@ -1,13 +1,13 @@
 <?php
 
-namespace ExWife\Engine\Cms\_Core\Base\Controller;
+namespace SymfonyCMS\Engine\Cms\_Core\Base\Controller;
 
-use ExWife\Engine\Cms\_Core\Service\CmsService;
+use SymfonyCMS\Engine\Cms\_Core\Service\CmsService;
 
 use BlueM\Tree;
 use Doctrine\DBAL\Connection;
 
-use ExWife\Engine\Cms\_Core\SymfonyKernel\RedirectException;
+use SymfonyCMS\Engine\Cms\_Core\SymfonyKernel\RedirectException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
@@ -20,7 +20,7 @@ use Twig\Loader\FilesystemLoader;
 
 /**
  * Class BaseController
- * @package ExWife\Core
+ * @package SymfonyCMS\Core
  */
 abstract class BaseController extends AbstractController
 {

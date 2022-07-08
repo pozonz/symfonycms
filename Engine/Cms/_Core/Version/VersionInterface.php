@@ -1,6 +1,6 @@
 <?php
 
-namespace ExWife\Engine\Cms\_Core\Version;
+namespace SymfonyCMS\Engine\Cms\_Core\Version;
 
 Interface VersionInterface
 {

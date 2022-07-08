@@ -1,8 +1,8 @@
 <?php
 
-namespace ExWife\Engine\Cms\_Core\ORM\Traits;
+namespace SymfonyCMS\Engine\Cms\_Core\ORM\Traits;
 
-use ExWife\Engine\Cms\_Core\Service\UtilsService;
+use SymfonyCMS\Engine\Cms\_Core\Service\UtilsService;
 
 trait ShippingByWeightTrait
 {

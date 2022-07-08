@@ -1,9 +1,9 @@
 <?php
 
-namespace ExWife\Engine\Cms\_Core\ORM;
+namespace SymfonyCMS\Engine\Cms\_Core\ORM;
 
-use ExWife\Engine\Cms\_Core\ORM\Generated\ImageSizeGenerated;
-use ExWife\Engine\Cms\_Core\ORM\Traits\ImageSizeTrait;
+use SymfonyCMS\Engine\Cms\_Core\ORM\Generated\ImageSizeGenerated;
+use SymfonyCMS\Engine\Cms\_Core\ORM\Traits\ImageSizeTrait;
 
 class ImageSize extends ImageSizeGenerated
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace ExWife\Engine\Cms\_Core\Model\Form\Type;
+namespace SymfonyCMS\Engine\Cms\_Core\Model\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\OptionsResolver\OptionsResolver;

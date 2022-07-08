@@ -1,12 +1,12 @@
 <?php
 
-namespace ExWife\Engine\Web\Shop\Controller;
+namespace SymfonyCMS\Engine\Web\Shop\Controller;
 
 use Doctrine\DBAL\Connection;
-use ExWife\Engine\Cms\_Core\Base\Controller\BaseController;
-use ExWife\Engine\Cms\_Core\Base\Controller\Traits\ManageControllerTrait;
-use ExWife\Engine\Web\_Core\Base\Controller\Traits\WebControllerTrait;
-use ExWife\Engine\Cms\_Core\Service\UtilsService;
+use SymfonyCMS\Engine\Cms\_Core\Base\Controller\BaseController;
+use SymfonyCMS\Engine\Cms\_Core\Base\Controller\Traits\ManageControllerTrait;
+use SymfonyCMS\Engine\Web\_Core\Base\Controller\Traits\WebControllerTrait;
+use SymfonyCMS\Engine\Cms\_Core\Service\UtilsService;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
@@ -111,7 +111,7 @@ class ShopController extends BaseController
      */
     protected function filterProductResult(Request $request, $category = null)
     {
-        $limit = getenv('PRODUCT_LISTING_LIMIT') ?: 21;
+        $limit = $_ENV['PRODUCT_LISTING_LIMIT'] ?: 21;
         $productCategorySlug = $category ?? $request->get('category');
         $productBrandSlug = $request->get('brand');
         $productKeyword = $request->get('keyword');

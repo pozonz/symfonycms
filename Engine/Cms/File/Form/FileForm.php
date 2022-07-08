@@ -1,9 +1,9 @@
 <?php
 
-namespace ExWife\Engine\Cms\File\Form;
+namespace SymfonyCMS\Engine\Cms\File\Form;
 
 use Cocur\Slugify\Slugify;
-use ExWife\Engine\Cms\_Core\Model\Form\OrmForm;
+use SymfonyCMS\Engine\Cms\_Core\Model\Form\OrmForm;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;

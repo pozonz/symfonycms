@@ -1,9 +1,9 @@
 <?php
 
-namespace ExWife\Engine\Cms\_Core\ORM;
+namespace SymfonyCMS\Engine\Cms\_Core\ORM;
 
-use ExWife\Engine\Cms\_Core\ORM\Generated\SiteSearchGenerated;
-use ExWife\Engine\Cms\_Core\ORM\Traits\SiteSearchTrait;
+use SymfonyCMS\Engine\Cms\_Core\ORM\Generated\SiteSearchGenerated;
+use SymfonyCMS\Engine\Cms\_Core\ORM\Traits\SiteSearchTrait;
 
 class SiteSearch extends SiteSearchGenerated
 {

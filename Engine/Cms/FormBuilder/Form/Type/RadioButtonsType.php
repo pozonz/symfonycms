@@ -1,6 +1,6 @@
 <?php
 
-namespace ExWife\Engine\Cms\FormBuilder\Form\Type;
+namespace SymfonyCMS\Engine\Cms\FormBuilder\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;

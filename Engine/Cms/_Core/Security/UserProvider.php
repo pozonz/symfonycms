@@ -1,11 +1,11 @@
 <?php
 
-namespace ExWife\Engine\Cms\_Core\Security;
+namespace SymfonyCMS\Engine\Cms\_Core\Security;
 
 use Doctrine\DBAL\Connection;
 
-use ExWife\Engine\Cms\_Core\Service\CmsService;
-use ExWife\Engine\Cms\_Core\Service\UtilsService;
+use SymfonyCMS\Engine\Cms\_Core\Service\CmsService;
+use SymfonyCMS\Engine\Cms\_Core\Service\UtilsService;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
 use Symfony\Component\Security\Core\Exception\UsernameNotFoundException;
 use Symfony\Component\Security\Core\User\UserInterface;

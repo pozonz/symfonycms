@@ -1,6 +1,6 @@
 <?php
 
-namespace ExWife\Engine\Cms\_Core\Twig;
+namespace SymfonyCMS\Engine\Cms\_Core\Twig;
 
 use BlueM\Tree;
 use Doctrine\DBAL\Connection;
@@ -66,7 +66,7 @@ class Extension extends AbstractExtension
      */
     public function getenv($arg)
     {
-        return getenv($arg);
+        return $_ENV[$arg];
     }
 
     /**

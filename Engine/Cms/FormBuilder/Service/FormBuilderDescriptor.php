@@ -1,15 +1,15 @@
 <?php
 
-namespace ExWife\Engine\Cms\FormBuilder\Service;
+namespace SymfonyCMS\Engine\Cms\FormBuilder\Service;
 
 use Cocur\Slugify\Slugify;
 use Doctrine\DBAL\Connection;
 
 
-use ExWife\Engine\Cms\_Core\ORM\FormBuilder;
-use ExWife\Engine\Cms\_Core\Service\UtilsService;
-use ExWife\Engine\Cms\FormBuilder\Form\Constraints\ConstraintRobot;
-use ExWife\Engine\Cms\FormBuilder\Form\Type\RobotType;
+use SymfonyCMS\Engine\Cms\_Core\ORM\FormBuilder;
+use SymfonyCMS\Engine\Cms\_Core\Service\UtilsService;
+use SymfonyCMS\Engine\Cms\FormBuilder\Form\Constraints\ConstraintRobot;
+use SymfonyCMS\Engine\Cms\FormBuilder\Form\Type\RobotType;
 use GeoIp2\Database\Reader;
 use GeoIp2\Exception\AddressNotFoundException;
 use Symfony\Component\Form\AbstractType;
@@ -80,7 +80,7 @@ class FormBuilderDescriptor extends AbstractType
         }
 
         if ($formBuilder->antispam) {
-            $safeCountries = getenv('SAFE_COUNTRIES') ?: 'NZ,AU';
+            $safeCountries = $_ENV['SAFE_COUNTRIES'] ?: 'NZ,AU';
             if (!isset($countryInfo['country_code']) || !in_array($countryInfo['country_code'], explode(',', $safeCountries))) {
                 $builder->add('robot', RobotType::class, array(
                     "mapped" => false,
@@ -133,14 +133,14 @@ class FormBuilderDescriptor extends AbstractType
                 $options['empty_data'] = null;
                 $options['placeholder'] = 'Choose...';
                 break;
-            case '\\ExWife\\Engine\\Cms\\FormBuilder\\Form\\Type\\RadioButtonsType':
+            case '\\SymfonyCMS\\Engine\\Cms\\FormBuilder\\Form\\Type\\RadioButtonsType':
                 $options['choices'] = $this->getChoicesForField($field);
                 $options['multiple'] = false;
                 $options['expanded'] = true;
                 $options['empty_data'] = null;
                 $options['placeholder'] = false;
                 break;
-            case '\\ExWife\\Engine\\Cms\\FormBuilder\\Form\\Type\\CheckboxesType':
+            case '\\SymfonyCMS\\Engine\\Cms\\FormBuilder\\Form\\Type\\CheckboxesType':
                 $options['choices'] = $this->getChoicesForField($field);
                 $options['multiple'] = true;
                 $options['expanded'] = true;
@@ -185,10 +185,10 @@ class FormBuilderDescriptor extends AbstractType
             }
 
             $pdo = $this->_connection;
-            $stmt = $pdo->executeQuery($field->sql);
-            $stmt->execute();
+            $stmt = $pdo->prepare($field->sql);
+            $stmtResult = $stmt->executeQuery();
             $choices = [];
-            foreach ($stmt->fetchAll() as $key => $val) {
+            foreach ($stmtResult->fetchAllAssociative() as $key => $val) {
                 $choices[$val['value']] = $val['key'];
             }
             return $choices;

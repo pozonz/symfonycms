@@ -1,9 +1,9 @@
 <?php
 
-namespace ExWife\Engine\Cms\_Core\ORM;
+namespace SymfonyCMS\Engine\Cms\_Core\ORM;
 
-use ExWife\Engine\Cms\_Core\ORM\Generated\PageGenerated;
-use ExWife\Engine\Cms\_Core\ORM\Traits\PageTrait;
+use SymfonyCMS\Engine\Cms\_Core\ORM\Generated\PageGenerated;
+use SymfonyCMS\Engine\Cms\_Core\ORM\Traits\PageTrait;
 
 class Page extends PageGenerated
 {

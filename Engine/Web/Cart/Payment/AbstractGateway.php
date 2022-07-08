@@ -1,6 +1,6 @@
 <?php
 
-namespace ExWife\Engine\Web\Cart\Payment;
+namespace SymfonyCMS\Engine\Web\Cart\Payment;
 
 use Doctrine\DBAL\Connection;
 use Symfony\Component\HttpFoundation\RedirectResponse;

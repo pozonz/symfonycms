@@ -1,9 +1,9 @@
 <?php
 
-namespace ExWife\Engine\Cms\_Core\SiteSearch;
+namespace SymfonyCMS\Engine\Cms\_Core\SiteSearch;
 
 use Doctrine\DBAL\Connection;
-use ExWife\Engine\Cms\_Core\Service\UtilsService;
+use SymfonyCMS\Engine\Cms\_Core\Service\UtilsService;
 
 trait SiteSearchTrait
 {

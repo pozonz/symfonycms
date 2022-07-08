@@ -1,6 +1,6 @@
 <?php
 
-namespace ExWife\Engine\Web\Cart\Form\Constraints;
+namespace SymfonyCMS\Engine\Web\Cart\Form\Constraints;
 
 use Symfony\Component\Validator\Constraint;
 

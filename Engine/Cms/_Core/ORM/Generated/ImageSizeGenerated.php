@@ -1,14 +1,14 @@
 <?php
 
-namespace ExWife\Engine\Cms\_Core\ORM\Generated;
+namespace SymfonyCMS\Engine\Cms\_Core\ORM\Generated;
 
-use ExWife\Engine\Cms\_Core\Base\ORM\BaseORM;
-use ExWife\Engine\Cms\_Core\Version\VersionInterface;
-use ExWife\Engine\Cms\_Core\Version\VersionTrait;
-use ExWife\Engine\Cms\_Core\SiteSearch\SiteSearchInterface;
-use ExWife\Engine\Cms\_Core\SiteSearch\SiteSearchTrait;
-use ExWife\Engine\Cms\_Core\ManageSearch\ManageSearchInterface;
-use ExWife\Engine\Cms\_Core\ManageSearch\ManageSearchTrait;
+use SymfonyCMS\Engine\Cms\_Core\Base\ORM\BaseORM;
+use SymfonyCMS\Engine\Cms\_Core\Version\VersionInterface;
+use SymfonyCMS\Engine\Cms\_Core\Version\VersionTrait;
+use SymfonyCMS\Engine\Cms\_Core\SiteSearch\SiteSearchInterface;
+use SymfonyCMS\Engine\Cms\_Core\SiteSearch\SiteSearchTrait;
+use SymfonyCMS\Engine\Cms\_Core\ManageSearch\ManageSearchInterface;
+use SymfonyCMS\Engine\Cms\_Core\ManageSearch\ManageSearchTrait;
 
 class ImageSizeGenerated extends BaseORM implements ManageSearchInterface
 {

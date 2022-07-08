@@ -1,5 +1,5 @@
 <?php
-namespace ExWife\Engine\Cms\_Core\Model\Form\Type;
+namespace SymfonyCMS\Engine\Cms\_Core\Model\Form\Type;
 
 use MillenniumFalcon\Core\Nestable\Node;
 use Symfony\Component\Form\AbstractType;

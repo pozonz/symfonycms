@@ -1,11 +1,11 @@
 <?php
 
-namespace ExWife\Engine\Cms\File\Service;
+namespace SymfonyCMS\Engine\Cms\File\Service;
 
 use BlueM\Tree;
 use BlueM\Tree\Serializer\HierarchicalTreeJsonSerializer;
 use Doctrine\DBAL\Connection;
-use ExWife\Engine\Cms\_Core\Service\UtilsService;
+use SymfonyCMS\Engine\Cms\_Core\Service\UtilsService;
 use MillenniumFalcon\Core\ORM\_Model;
 use MillenniumFalcon\Core\Service\AssetService;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
@@ -185,7 +185,7 @@ class FileManagerService
 
         $targetFile = $uploadedDir . $asset->id . '.' . $fileExtension;
         if ($asset->isImage == 1) {
-            $command = getenv('CONVERT_CMD') . ' "' . $sourceFile . '" -auto-orient ' . $targetFile;
+            $command = $_ENV['CONVERT_CMD'] . ' "' . $sourceFile . '" -auto-orient ' . $targetFile;
             $this->generateOutput($command);
         } else {
             copy($sourceFile, $targetFile);
@@ -198,7 +198,7 @@ class FileManagerService
         $asset->fileLocation = $asset->id . '.' . $asset->fileExtension;
         $asset->save();
 
-        $saveAssetsToDb = getenv('SAVE_ASSETS_TO_DB');
+        $saveAssetsToDb = $_ENV['SAVE_ASSETS_TO_DB'];
         if ($saveAssetsToDb) {
             $fileLocation = $uploadedDir . $asset->fileLocation;
             if (file_exists($fileLocation)) {

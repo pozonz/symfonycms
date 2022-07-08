@@ -1,9 +1,9 @@
 <?php
 
-namespace ExWife\Engine\Cms\_Core\ORM\Traits;
+namespace SymfonyCMS\Engine\Cms\_Core\ORM\Traits;
 
-use ExWife\Engine\Cms\_Core\Service\UtilsService;
-use ExWife\Engine\Cms\File\Service\FileManagerService;
+use SymfonyCMS\Engine\Cms\_Core\Service\UtilsService;
+use SymfonyCMS\Engine\Cms\File\Service\FileManagerService;
 
 trait AssetTrait
 {
@@ -118,7 +118,7 @@ trait AssetTrait
         } else {
             FileManagerService::removeFile($this);
 
-            $saveAssetsToDb = getenv('SAVE_ASSETS_TO_DB');
+            $saveAssetsToDb = $_ENV['SAVE_ASSETS_TO_DB'];
             if ($saveAssetsToDb) {
                 $assetBinaryFullClass = UtilsService::getFullClassFromName('AssetBinary', $this->_connection);
                 $assetBinary = $assetBinaryFullClass::getByField($this->_connection, 'title', $this->id);

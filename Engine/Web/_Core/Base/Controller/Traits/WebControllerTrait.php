@@ -1,11 +1,11 @@
 <?php
 
-namespace ExWife\Engine\Web\_Core\Base\Controller\Traits;
+namespace SymfonyCMS\Engine\Web\_Core\Base\Controller\Traits;
 
 use Cocur\Slugify\Slugify;
 use Doctrine\DBAL\Connection;
-use ExWife\Engine\Cms\_Core\Model\Model;
-use ExWife\Engine\Cms\_Core\Service\UtilsService;
+use SymfonyCMS\Engine\Cms\_Core\Model\Model;
+use SymfonyCMS\Engine\Cms\_Core\Service\UtilsService;
 use Psr\Container\ContainerInterface;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -22,20 +22,20 @@ trait WebControllerTrait
         ]);
     }
 
-    /**
-     * @param ContainerInterface $container
-     * @return ContainerInterface|null
-     */
-    public function setContainer(ContainerInterface $container): ?ContainerInterface
-    {
-        $dir = __DIR__ . '/../../../../../../Resources/views/web';
-        if (file_exists($dir)) {
-            $loader = $container->get('twig')->getLoader();
-            $loader->addPath($dir);
-        }
-
-        return parent::setContainer($container);
-    }
+//    /**
+//     * @param ContainerInterface $container
+//     * @return ContainerInterface|null
+//     */
+//    public function setContainer(ContainerInterface $container): ?ContainerInterface
+//    {
+//        $dir = __DIR__ . '/../../../../../../Resources/views/web';
+//        if (file_exists($dir)) {
+//            $loader = $container->get('twig')->getLoader();
+//            $loader->addPath($dir);
+//        }
+//
+//        return parent::setContainer($container);
+//    }
 
     /**
      * @param $requestUri

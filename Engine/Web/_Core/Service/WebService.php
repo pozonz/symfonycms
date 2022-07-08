@@ -1,13 +1,13 @@
 <?php
 
-namespace ExWife\Engine\Web\_Core\Service;
+namespace SymfonyCMS\Engine\Web\_Core\Service;
 
 use BlueM\Tree;
 use BlueM\Tree\Node;
 use Cocur\Slugify\Slugify;
 use Doctrine\DBAL\Connection;
-use ExWife\Engine\Cms\_Core\Base\ORM\BaseORM;
-use ExWife\Engine\Cms\_Core\Service\UtilsService;
+use SymfonyCMS\Engine\Cms\_Core\Base\ORM\BaseORM;
+use SymfonyCMS\Engine\Cms\_Core\Service\UtilsService;
 use Ramsey\Uuid\Uuid;
 use Symfony\Component\HttpKernel\KernelInterface;
 

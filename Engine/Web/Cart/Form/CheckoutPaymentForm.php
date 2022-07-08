@@ -1,6 +1,6 @@
 <?php
 
-namespace ExWife\Engine\Web\Cart\Form;
+namespace SymfonyCMS\Engine\Web\Cart\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;

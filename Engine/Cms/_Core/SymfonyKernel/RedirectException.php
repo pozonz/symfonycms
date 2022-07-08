@@ -1,6 +1,6 @@
 <?php
 
-namespace ExWife\Engine\Cms\_Core\SymfonyKernel;
+namespace SymfonyCMS\Engine\Cms\_Core\SymfonyKernel;
 
 use Symfony\Component\HttpFoundation\Response;
 

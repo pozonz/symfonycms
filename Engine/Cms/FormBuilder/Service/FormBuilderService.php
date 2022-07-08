@@ -1,12 +1,12 @@
 <?php
 
-namespace ExWife\Engine\Cms\FormBuilder\Service;
+namespace SymfonyCMS\Engine\Cms\FormBuilder\Service;
 
-use ExWife\Engine\Cms\_Core\Service\CmsService;
-use ExWife\Engine\Cms\_Core\Service\UtilsService;
+use SymfonyCMS\Engine\Cms\_Core\Service\CmsService;
+use SymfonyCMS\Engine\Cms\_Core\Service\UtilsService;
 
 use Doctrine\DBAL\Connection;
-use ExWife\Engine\Cms\File\Service\FileManagerService;
+use SymfonyCMS\Engine\Cms\File\Service\FileManagerService;
 use GeoIp2\Database\Reader;
 use GeoIp2\Exception\AddressNotFoundException;
 use phpDocumentor\Reflection\Types\Static_;
@@ -232,7 +232,7 @@ class FormBuilderService
                         ->setSubject("{$formBuilder->title} {$submission->title}")
                         ->setFrom([$formBuilder->fromAddress])
                         ->setTo($recipients)
-                        ->setBcc(array_filter(explode(',', getenv('EMAIL_BCC_ORDER'))))
+                        ->setBcc(array_filter(explode(',', $_ENV['EMAIL_BCC_ORDER'])))
                         ->setBody(
                             $messageBody, 'text/html'
                         );
@@ -260,7 +260,7 @@ class FormBuilderService
                             ->setSubject("{$formBuilder->thankYouEmailSubject} {$submission->title}")
                             ->setFrom([$formBuilder->fromAddress])
                             ->setTo($data['email'])
-                            ->setBcc(array_filter(explode(',', getenv('EMAIL_BCC_ORDER'))))
+                            ->setBcc(array_filter(explode(',', $_ENV['EMAIL_BCC_ORDER'])))
                             ->setBody(
                                 $messageBody, 'text/html'
                             );
@@ -309,11 +309,11 @@ class FormBuilderService
     public function getFormFieldWidgets()
     {
         $widgets =[
-            'Date' => '\\ExWife\\Engine\\Cms\\FormBuilder\\Form\\Type\\DateType',
-            'File' => '\\ExWife\\Engine\\Cms\\FormBuilder\\Form\\Type\\FileType',
+            'Date' => '\\SymfonyCMS\\Engine\\Cms\\FormBuilder\\Form\\Type\\DateType',
+            'File' => '\\SymfonyCMS\\Engine\\Cms\\FormBuilder\\Form\\Type\\FileType',
             'Dropdown' => '\\Symfony\\Component\\Form\\Extension\\Core\\Type\\ChoiceType',
-            'Checkboxes' => '\\ExWife\\Engine\Cms\\FormBuilder\\Form\\Type\\CheckboxesType',
-            'Radio buttons' => '\\ExWife\Engine\\Cms\\FormBuilder\\Form\\Type\\RadioButtonsType',
+            'Checkboxes' => '\\SymfonyCMS\\Engine\Cms\\FormBuilder\\Form\\Type\\CheckboxesType',
+            'Radio buttons' => '\\SymfonyCMS\Engine\\Cms\\FormBuilder\\Form\\Type\\RadioButtonsType',
             'Checkbox' => '\\Symfony\\Component\\Form\\Extension\\Core\\Type\\CheckboxType',
             'Email' => '\\Symfony\\Component\\Form\\Extension\\Core\\Type\\EmailType',
             'Hidden' => '\\Symfony\\Component\\Form\\Extension\\Core\\Type\\HiddenType',
@@ -333,8 +333,8 @@ class FormBuilderService
     {
         return [
             '\\Symfony\\Component\\Form\\Extension\\Core\\Type\\ChoiceType',
-            '\\ExWife\\Engine\Cms\\FormBuilder\\Form\\Type\\CheckboxesType',
-            '\\ExWife\Engine\\Cms\\FormBuilder\\Form\\Type\\RadioButtonsType',
+            '\\SymfonyCMS\\Engine\Cms\\FormBuilder\\Form\\Type\\CheckboxesType',
+            '\\SymfonyCMS\Engine\\Cms\\FormBuilder\\Form\\Type\\RadioButtonsType',
         ];
     }
 
@@ -345,9 +345,9 @@ class FormBuilderService
      */
     static public function ip_info(Request $request)
     {
-        $ip = getenv('TEST_CLIENT_IP') ?: $request->getClientIp();
-        if (getenv('GEOIP_DB_PATH')) {
-            $geoDbPath = getenv('GEOIP_DB_PATH');
+        $ip = $_ENV['TEST_CLIENT_IP'] ?: $request->getClientIp();
+        if ($_ENV['GEOIP_DB_PATH']) {
+            $geoDbPath = $_ENV['GEOIP_DB_PATH'];
             if (file_exists($geoDbPath)) {
                 $geoipReader = new Reader($geoDbPath);
                 try {

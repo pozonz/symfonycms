@@ -1,8 +1,8 @@
 <?php
 
-namespace ExWife\Engine\Web\Cart\Form;
+namespace SymfonyCMS\Engine\Web\Cart\Form;
 
-use ExWife\Engine\Web\Cart\Form\Constraints\NotBlankIfRequired;
+use SymfonyCMS\Engine\Web\Cart\Form\Constraints\NotBlankIfRequired;
 use MillenniumFalcon\Cart\Service\CartService;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
@@ -200,7 +200,7 @@ class CheckoutShippingForm extends AbstractType
                 ]
             ]);
 
-        if (getenv('SHIPPING_PRICE_MODE') == 1) {
+        if ($_ENV['SHIPPING_PRICE_MODE'] == 1) {
             $builder
                 ->add('shippingState', TextType::class, [
                     'label' => 'Region',
@@ -231,7 +231,7 @@ class CheckoutShippingForm extends AbstractType
                         ]),
                     ]
                 ]);
-        } else if (getenv('SHIPPING_PRICE_MODE') == 2) {
+        } else if ($_ENV['SHIPPING_PRICE_MODE'] == 2) {
             $builder
                 ->add('shippingCountry', ChoiceType::class, [
                     'label' => 'Country',
@@ -262,7 +262,7 @@ class CheckoutShippingForm extends AbstractType
                             $shippingRequired = isset($data['isPickup']) && $data['isPickup'] == 2 ? 1 : 0;
 
                             if ($shippingRequired) {
-                                $shippingPriceMode = getenv('SHIPPING_PRICE_MODE') ?? 1;
+                                $shippingPriceMode = $_ENV['SHIPPING_PRICE_MODE'] ?? 1;
                                 if ($shippingPriceMode == 1) {
                                     return isset($data['shippingState']) && $data['shippingState'] ? 1 : 0;
                                 } else if ($shippingPriceMode == 2) {

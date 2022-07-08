@@ -1,9 +1,9 @@
 <?php
 
-namespace ExWife\Engine\Cms\_Core\ORM;
+namespace SymfonyCMS\Engine\Cms\_Core\ORM;
 
-use ExWife\Engine\Cms\_Core\ORM\Generated\ManageSearchGenerated;
-use ExWife\Engine\Cms\_Core\ORM\Traits\ManageSearchTrait;
+use SymfonyCMS\Engine\Cms\_Core\ORM\Generated\ManageSearchGenerated;
+use SymfonyCMS\Engine\Cms\_Core\ORM\Traits\ManageSearchTrait;
 
 class ManageSearch extends ManageSearchGenerated
 {

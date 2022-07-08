@@ -3,7 +3,7 @@
 namespace {namespace}\Model;
 
 use Doctrine\DBAL\Connection;
-use ExWife\Engine\Cms\_Core\Model\Model;
+use SymfonyCMS\Engine\Cms\_Core\Model\Model;
 
 class {classname}Model extends Model
 {

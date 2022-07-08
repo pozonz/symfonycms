@@ -1,14 +1,14 @@
 <?php
 
-namespace ExWife\Engine\Cms\_Core\Base\ORM;
+namespace SymfonyCMS\Engine\Cms\_Core\Base\ORM;
 
 use Cocur\Slugify\Slugify;
 use Doctrine\DBAL\Connection;
 
-use ExWife\Engine\Cms\_Core\Base\ORM\Traits\BaseORMTrait;
-use ExWife\Engine\Cms\_Core\Service\CmsService;
-use ExWife\Engine\Cms\_Core\Service\ModelService;
-use ExWife\Engine\Cms\_Core\Service\UtilsService;
+use SymfonyCMS\Engine\Cms\_Core\Base\ORM\Traits\BaseORMTrait;
+use SymfonyCMS\Engine\Cms\_Core\Service\CmsService;
+use SymfonyCMS\Engine\Cms\_Core\Service\ModelService;
+use SymfonyCMS\Engine\Cms\_Core\Service\UtilsService;
 use Ramsey\Uuid\Uuid;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Tests\JsonSerializableObject;

@@ -1,9 +1,9 @@
 <?php
 
-namespace ExWife\Engine\Cms\_Core\ORM;
+namespace SymfonyCMS\Engine\Cms\_Core\ORM;
 
-use ExWife\Engine\Cms\_Core\ORM\Generated\ImageCropGenerated;
-use ExWife\Engine\Cms\_Core\ORM\Traits\ImageCropTrait;
+use SymfonyCMS\Engine\Cms\_Core\ORM\Generated\ImageCropGenerated;
+use SymfonyCMS\Engine\Cms\_Core\ORM\Traits\ImageCropTrait;
 
 class ImageCrop extends ImageCropGenerated
 {

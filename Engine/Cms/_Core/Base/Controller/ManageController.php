@@ -1,11 +1,11 @@
 <?php
 
-namespace ExWife\Engine\Cms\_Core\Base\Controller;
+namespace SymfonyCMS\Engine\Cms\_Core\Base\Controller;
 
-use ExWife\Engine\Cms\_Core\Base\Controller\Traits\ManageControllerTrait;
+use SymfonyCMS\Engine\Cms\_Core\Base\Controller\Traits\ManageControllerTrait;
 
-use ExWife\Engine\Cms\_Core\Service\ModelService;
-use ExWife\Engine\Cms\_Core\Service\UtilsService;
+use SymfonyCMS\Engine\Cms\_Core\Service\ModelService;
+use SymfonyCMS\Engine\Cms\_Core\Service\UtilsService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -18,7 +18,7 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 /**
  * @route("/manage")
  * Class WebController
- * @package ExWife\Engine\Cms\_Core\Controller
+ * @package SymfonyCMS\Engine\Cms\_Core\Controller
  */
 class ManageController extends BaseController
 {
